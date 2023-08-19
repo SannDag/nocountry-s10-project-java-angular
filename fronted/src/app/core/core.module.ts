@@ -4,7 +4,8 @@ import { IconsModule } from './icons/icons.module';
 
 @NgModule({
     imports: [
-      IconsModule
+      IconsModule,
+
     ]
 })
 export class CoreModule
