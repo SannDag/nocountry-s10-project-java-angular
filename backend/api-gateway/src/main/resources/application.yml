@@ -1,10 +1,4 @@
 ---
-server:
-  port: 8088
-eureka:
-  client:
-    service-url:
-      defaultZone=: http://localhost:8761/eureka
 spring:
   main:
     banner-mode: off
@@ -16,9 +10,29 @@ spring:
         #locator:
           #enabled: true
       routes:
+        - id: security
+          uri: lb://security
+          predicates:
+            - Path=/api/accounts/**
+
+server:
+  error:
+    include-stacktrace: never
+  port: 5555
+
+#eureka:
+  #client:
+    #fetch-registry: true
+    #register-with-eureka: true
+    #service-url:
+      #default-zone: http://localhost:8761/eureka
 
 management:
   tracing:
     sampling:
       probability: 1.0
+
+security:
+  service:
+    url: http://localhost:8081
 ...

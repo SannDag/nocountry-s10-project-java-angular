@@ -1,4 +1,4 @@
-
+---
 #app.jwt.expiration-in-minute=5
 app:
   jwt:
@@ -14,7 +14,6 @@ spring:
     url: jdbc:mysql://20.121.214.190:3307/account-db
     username: root
     password: nocountry#2023
-
   jpa:
     show-sql: true
     hibernate:
@@ -34,12 +33,20 @@ logging:
             sql:
               BasicBinder: TRACE
 
+service:
+  security:
+    secure-key-username: NoCountryKeySecureUsername
+    secure-key-password: NoCountryKeySecurePassword!
+
 server:
   error:
     include-stacktrace: never
   port: 8081
 
-service:
-  security:
-    secure-key-username: NoCountryKeySecureUsername
-    secure-key-password: NoCountryKeySecurePassword!
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+...
