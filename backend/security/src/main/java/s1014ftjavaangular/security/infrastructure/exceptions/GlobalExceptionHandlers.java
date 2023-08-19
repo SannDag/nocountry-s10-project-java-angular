@@ -1,4 +1,4 @@
-package s1014ftjavaangular.security.infrastructure.out.exceptions;
+package s1014ftjavaangular.security.infrastructure.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

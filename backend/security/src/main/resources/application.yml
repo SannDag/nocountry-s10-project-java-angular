@@ -1,5 +1,4 @@
 ---
-#app.jwt.expiration-in-minute=5
 app:
   jwt:
     expiration-in-minute: 5
@@ -11,7 +10,7 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-    url: jdbc:mysql://20.121.214.190:3307/account-db
+    url: jdbc:mysql://localhost:3307/account-db
     username: root
     password: nocountry#2023
   jpa:
@@ -20,6 +19,10 @@ spring:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  #Connect kafka
+  kafka:
+    template:
+      default-topic: account-topic
 
 logging:
   level:

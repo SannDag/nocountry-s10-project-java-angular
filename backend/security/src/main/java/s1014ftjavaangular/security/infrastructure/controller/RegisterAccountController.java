@@ -1,4 +1,4 @@
-package s1014ftjavaangular.security.infrastructure.in.controller;
+package s1014ftjavaangular.security.infrastructure.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

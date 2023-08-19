@@ -1,6 +1,7 @@
-package s1014ftjavaangular.security.infrastructure.out.persistence.repository;
+package s1014ftjavaangular.security.infrastructure.persistence.repository;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,8 +10,10 @@ import org.springframework.util.StringUtils;
 import s1014ftjavaangular.security.domain.enums.Rol;
 import s1014ftjavaangular.security.domain.exceptions.AccountAlreadyExists;
 import s1014ftjavaangular.security.domain.model.entities.Account;
+import s1014ftjavaangular.security.domain.model.events.AccountCreatedDTO;
 import s1014ftjavaangular.security.domain.repository.AccountRepositoryPort;
-import s1014ftjavaangular.security.infrastructure.out.persistence.entities.AccountEntity;
+import s1014ftjavaangular.security.infrastructure.message.TransactionMessagePublish;
+import s1014ftjavaangular.security.infrastructure.persistence.entities.AccountEntity;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -23,6 +26,8 @@ public class AccountRepositoryAdapter implements AccountRepositoryPort {
     private final AccountJpaRepository jpaRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final TransactionMessagePublish transactionMessagePublish;
 
     private final Function<AccountEntity, Account> entityToModel = (entity)-> new Account(
             entity.getAccountUuid(),

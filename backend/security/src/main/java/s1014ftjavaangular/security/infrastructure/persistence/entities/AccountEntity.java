@@ -1,4 +1,4 @@
-package s1014ftjavaangular.security.infrastructure.out.persistence.entities;
+package s1014ftjavaangular.security.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,7 +1,7 @@
-package s1014ftjavaangular.security.infrastructure.out.persistence.repository;
+package s1014ftjavaangular.security.infrastructure.persistence.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import s1014ftjavaangular.security.infrastructure.out.persistence.entities.AccountEntity;
+import s1014ftjavaangular.security.infrastructure.persistence.entities.AccountEntity;
 
 import java.util.Optional;
 
