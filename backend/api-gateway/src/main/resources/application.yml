@@ -1,10 +1,9 @@
 ---
 server:
-  port: 8088
-eureka:
-  client:
-    service-url:
-      defaultZone=: http://localhost:8761/eureka
+  error:
+    include-stacktrace: never
+  port: 5555
+
 spring:
   main:
     banner-mode: off
@@ -12,13 +11,34 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      #discovery:
-        #locator:
-          #enabled: true
+      discovery:
+        locator:
+          enabled: true
       routes:
+        - id: security
+          uri: lb://security
+          predicates:
+            - Path=/api/accounts/**
+
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+#eureka:
+  #client:
+    #fetch-registry: true
+    #register-with-eureka: true
+    #service-url:
+      #default-zone: http://localhost:8761/eureka
 
 management:
   tracing:
     sampling:
       probability: 1.0
+
+security:
+  service:
+    url: http://localhost:8081
 ...
