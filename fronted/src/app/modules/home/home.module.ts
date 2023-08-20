@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomePage } from './pages/home-page/home.page';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [
-    HomePage
+    HomePage,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
