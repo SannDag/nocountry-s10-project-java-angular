@@ -1,0 +1,31 @@
+<div class="flex items-center justify-center h-screen">
+  <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-2xl">
+    <h2 class="text-2xl font-semibold mb-4 text-center">Crear mi cuenta</h2>
+
+    <a href="#" class="a-google mt-2 text-gray-900 py-2 px-4 rounded-lg mb-4 inline-flex items-center w-full text-center mr-2 border border-gray-300 p-1 rounded justify-center">
+      <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-vector-graphic-pixabay-15.png" width="25px" alt="google logo vector graphic pixabay" class="mr-2">
+      <span class="align-middle">Ingresa con Google</span>
+    </a>
+
+    <form action="">
+      <div class="flex mb-4">
+        <div class="w-1/2 mr-2">
+
+          <input type="text" name="nombre" autocomplete="nombre" required placeholder="Nombre" class="mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-2">
+        </div>
+        <div class="w-1/2 ml-2">
+
+          <input type="text" name="apellido" autocomplete="apellido" required placeholder="Apellido" class="mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-2">
+        </div>
+      </div>
+        <label for="" class="block text-sm font-medium leading-6 text-gray-900 border-color">Email</label>
+        <input placeholder="Correo electrónico"  name="email" type="email" autocomplete="email" required class="mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-2 ">
+        <label for="" class="block text-sm font-medium leading-6 text-gray-900 border-color">Contraseña</label>
+        <input type="password" name="password" autocomplete="password" required placeholder="Contraseña" class="mb-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-2 ">
+
+        <button type="submit" class="mb-2 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 boton ">Registrarse</button>
+        <span class="">¿ Ya estás registrado ? </span><a class="font-semibold" routerLink="/auth/login"> Inicia sesión aquí</a>
+    </form>
+
+  </div>
+</div>
