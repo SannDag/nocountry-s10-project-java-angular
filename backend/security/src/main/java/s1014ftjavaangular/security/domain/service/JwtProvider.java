@@ -1,4 +1,4 @@
-package s1014ftjavaangular.security.infrastructure.security.jwt;
+package s1014ftjavaangular.security.domain.service;
 
 import s1014ftjavaangular.security.infrastructure.security.AccountPrincipal;
 

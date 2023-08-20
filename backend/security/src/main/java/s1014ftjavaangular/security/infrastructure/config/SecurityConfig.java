@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import s1014ftjavaangular.security.domain.enums.Rol;
 import s1014ftjavaangular.security.infrastructure.security.jwt.JwtAuthorizationFilter;
 
 import java.util.List;
@@ -29,11 +30,12 @@ public class SecurityConfig {
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final UserDetailsService customAccountDetailsService;
     private final PasswordEncoder passwordEncoder;
-
+    private final AuthenticationManager authenticationManager;
+    /*
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
-    }
+    }*/
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -51,12 +53,18 @@ public class SecurityConfig {
 
         auth.userDetailsService(customAccountDetailsService).passwordEncoder(passwordEncoder);
 
-        AuthenticationManager authenticationManager = auth.build();
-
         http.authenticationManager(authenticationManager);
+        //AuthenticationManager authenticationManager = auth.build();
+        //http.authenticationManager(authenticationManager);
 
         http.authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/api/accounts/register").permitAll()
+                .requestMatchers(HttpMethod.GET,
+                        "/api/accounts/current-session"
+                ).hasAnyRole(Rol.ADMIN.name(), Rol.CUSTOMER.name(), Rol.EMPLOYEE.name())
+                .requestMatchers(HttpMethod.POST,
+                        "/api/accounts/register",
+                        "/api/accounts/login"
+                ).permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);

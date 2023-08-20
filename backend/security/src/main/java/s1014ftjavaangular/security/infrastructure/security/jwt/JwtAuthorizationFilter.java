@@ -12,6 +12,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import s1014ftjavaangular.security.domain.service.JwtProvider;
 import s1014ftjavaangular.security.domain.utils.SecurityUtils;
 import s1014ftjavaangular.security.infrastructure.security.AccountPrincipal;
 
@@ -33,7 +34,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        //Saca El
+
         final String token = SecurityUtils.cleanBearer(authorizationHeader);
         final String email = jwtProvider.extractSubject(token);
 
@@ -48,7 +49,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         ) {
             //UsernamePasswordAuthenticationToken es una instancia de Authentication
             var authUser = new UsernamePasswordAuthenticationToken(
-                    account.getUsername(),
+                    account,
                     account.getPassword(),
                     account.getAuthorities()
             );
@@ -56,6 +57,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             authUser.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authUser);
         }
+
         filterChain.doFilter(request, response);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+import s1014ftjavaangular.security.domain.service.JwtProvider;
 import s1014ftjavaangular.security.infrastructure.security.AccountPrincipal;
 
 import java.nio.charset.StandardCharsets;
@@ -38,7 +39,6 @@ public class JwtProviderImpl implements JwtProvider<AccountPrincipal> {
                 .setSubject(userDetails.getUsername())
                 .claim("id", userDetails.getId())
                 .claim("authority", userDetails.getAuthorities().stream().findFirst().get().getAuthority())
-                .setIssuer("http://localhost:8080/api/v1")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(Long.parseLong(JWT_EXPIRATION))))
                 .signWith(this.getSignInKey(), SignatureAlgorithm.HS256)
@@ -67,18 +67,18 @@ public class JwtProviderImpl implements JwtProvider<AccountPrincipal> {
     public Boolean isTokenValid(String token, AccountPrincipal userDetails) {
         //El token no debe de estar vacio
         Assert.isTrue(StringUtils.hasText(token), "The token is empty, token is invalid");
+
         //Recupera el email
-        final String userEmail = this.extractSubject(token);
+        final String acountEmail = this.extractSubject(token);
 
         //Verifica que el usuario no sea nulo
         Assert.notNull(userDetails, "The user details is null, token is invalid");
 
         //Verifica que el email del token no este vacio
-        Assert.isTrue(StringUtils.hasText(userEmail), "The token is empty, token is invalid");
+        Assert.isTrue(StringUtils.hasText(acountEmail), "The token is empty, token is invalid");
 
         //Verifica que el email del token y del usuario sean iguales
-        Assert.isTrue(userEmail.equals(userDetails.getUsername()), "Email does match, token is invalid");
-
+        Assert.isTrue(acountEmail.equals(userDetails.getUsername()), "Email does match, token is invalid");
 
         //Finalmene que el token no haya caducado
         return !isTokenExpired(token);
