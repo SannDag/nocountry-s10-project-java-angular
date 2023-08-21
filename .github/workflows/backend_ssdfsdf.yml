@@ -89,6 +89,9 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
           package: ${{ github.workspace }}/eureka-server-0.0.1.jar
+          platform: 'java'
+          platform-version: '1.8'
+          start-up-command: 'java -jar eureka-server-0.0.1.jar --server.port=5555'
 
       - name: Deploy Security Service to Azure Web App
         id: deploy-security-service
@@ -98,6 +101,9 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
           package: ${{ github.workspace }}/security-0.0.1-SNAPSHOT.jar
+          platform: 'java'
+          platform-version: '1.8'
+          start-up-command: 'java -jar security-0.0.1-SNAPSHOT.jar --server.port=8081'
 
       - name: Deploy Api-Gateway Service to Azure Web App
         id: deploy-apigateway-service
@@ -107,4 +113,7 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
           package: ${{ github.workspace }}/api-gateway-0.0.1.jar
+          platform: 'java'
+          platform-version: '1.8'
+          start-up-command: 'java -jar api-gateway-0.0.1.jar --server.port=8761'
 ...
