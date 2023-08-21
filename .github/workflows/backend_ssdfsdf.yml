@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: api-gateway-service
-          path: 'backend/security/target/api-gateway-0.0.1.jar'          
+          path: 'backend/api-gateway/target/api-gateway-0.0.1.jar'          
             
   deploy:
     runs-on: ubuntu-latest
