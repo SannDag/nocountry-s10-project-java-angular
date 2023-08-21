@@ -37,13 +37,13 @@ jobs:
       - name: Upload artifact for Eureka Server
         uses: actions/upload-artifact@v2
         with:
-          name: backend
+          name: eureka-server
           path: '${{ github.workspace }}/backend/eureka-server/target/eureka-server-0.0.1.jar' 
 
       - name: Upload artifact for Security
         uses: actions/upload-artifact@v2
         with:
-          name: backend
+          name: security-service
           path: '${{ github.workspace }}/backend/eureka-server/target/security-0.0.1-SNAPSHOT.jar'  
             
 
@@ -55,19 +55,22 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
-      - name: Download Eureka artifact from build job
+      - name: Download Eureka Server artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: backend
+          name: eureka-server
 
-      - name: Deploy to Azure Web App - Eureka Server
-        id: deploy-to-webapp
+      - name: Download Security Service artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: security-service
+
+      - name: Deploy Eureka Server to Azure Web App
+        id: deploy-eureka-server
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'ssdfsdf'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
-          package: |
-            'eureka-server-0.0.1.jar'
-            'security-0.0.1-SNAPSHOT.jar'
+          package: '*.jar'
 ...
