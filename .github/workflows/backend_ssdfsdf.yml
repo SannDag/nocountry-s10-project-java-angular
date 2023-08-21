@@ -91,7 +91,7 @@ jobs:
           package: ${{ github.workspace }}/eureka-server-0.0.1.jar
           platform: 'java'
           platform-version: '17'
-          start-up-command: 'java -jar eureka-server-0.0.1.jar --server.port=5555'
+          start-up-command: 'java -jar eureka-server-0.0.1.jar'
 
       - name: Deploy Security Service to Azure Web App
         id: deploy-security-service
@@ -103,7 +103,7 @@ jobs:
           package: ${{ github.workspace }}/security-0.0.1-SNAPSHOT.jar
           platform: 'java'
           platform-version: '17'
-          start-up-command: 'java -jar security-0.0.1-SNAPSHOT.jar --server.port=8081'
+          start-up-command: 'java -jar security-0.0.1-SNAPSHOT.jar'
 
       - name: Deploy Api-Gateway Service to Azure Web App
         id: deploy-apigateway-service
@@ -115,5 +115,5 @@ jobs:
           package: ${{ github.workspace }}/api-gateway-0.0.1.jar
           platform: 'java'
           platform-version: '17'
-          start-up-command: 'java -jar api-gateway-0.0.1.jar --server.port=8761'
+          start-up-command: 'java -jar api-gateway-0.0.1.jar'
 ...
