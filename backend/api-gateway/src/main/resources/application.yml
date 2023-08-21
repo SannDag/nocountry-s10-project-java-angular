@@ -28,7 +28,7 @@ spring:
           predicates:
             - Path=/**
         - id: eureka-server
-          uri: eureka-server
+          uri: http://localhost:8761
           predicates:
             - Path=/**
 
