@@ -11,12 +11,14 @@ spring:
 eureka:
   instance:
     #Host donde se esta corriendo el servidor
-    hostname: localhost
+    hostname: https://ssdfsdf.azurewebsites.net
+    #hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    defaultZone: ${eureka.instance.hostname}:${server.port}/eureka/
 
 management:
   endpoints:

@@ -28,7 +28,7 @@ spring:
           predicates:
             - Path=/**
         - id: eureka-server
-          uri: http://localhost:8761
+          uri: https://ssdfsdf.azurewebsites.net
           predicates:
             - Path=/**
 
@@ -36,7 +36,7 @@ eureka:
   client:
     enabled: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://ssdfsdf.azurewebsites.net:8761/eureka/
 
 management:
   tracing:
