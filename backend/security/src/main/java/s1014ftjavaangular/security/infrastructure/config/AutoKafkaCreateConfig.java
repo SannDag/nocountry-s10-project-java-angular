@@ -20,7 +20,7 @@ import java.util.Map;
 public class AutoKafkaCreateConfig {
     @Value("${spring.kafka.template.default-topic}")
     String topicname;
-    private final String bootstrapAddress = "localhost:9092";
+    private final String bootstrapAddress = "20.121.214.190:9092";
 
     @Bean
     public NewTopic transactionEvent() {
