@@ -26,12 +26,23 @@ jobs:
         run: | 
           cd backend/eureka-server/ 
           mvn clean install
+          cd ..
 
-      - name: Upload artifact for deployment job
+          cd backend/security/
+          mvn clean install
+          cd ..
+
+      - name: Upload artifact - Eureka Server
         uses: actions/upload-artifact@v2
         with:
-          name: java-app
+          name: eureka-app
           path: '${{ github.workspace }}/backend/eureka-server/target/*.jar'
+             
+      - name: Upload artifact - Security
+        uses: actions/upload-artifact@v2
+        with:
+          name: security-app
+          path: '${{ github.workspace }}/backend/security/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,14 +55,28 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: java-app
+          name: eureka-app
 
-      - name: Deploy to Azure Web App
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: security-app
+
+      - name: Deploy to Azure Web App - Eureka Server
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'ssdfsdf'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
-          package: '*.jar'
+          package: 'eureka-app.jar'
+          
+      - name: Deploy to Azure Web App - Security 
+        id: deploy-security
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'ssdfsdf'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
+          package: 'security-app.jar'
 ...
