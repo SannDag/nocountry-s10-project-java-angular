@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: eureka-app
-          path: '${{ github.workspace }}/backend/eureka-server/target/*.jar'  
+          path: '${{ github.workspace }}/backend/eureka-server/target/eureka-server-0.0.1.jar'  
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,5 +55,5 @@ jobs:
           app-name: 'ssdfsdf'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
-          package: '*.jar'
+          package: 'eureka-server-0.0.1.jar'
 ...
