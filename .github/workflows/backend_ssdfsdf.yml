@@ -28,8 +28,9 @@ jobs:
           mvn clean install
           cd ..
 
-          cd backend/security/
+          cd /security/
           mvn clean install
+          cd ..
           cd ..
 
       - name: Upload artifact - Eureka Server
