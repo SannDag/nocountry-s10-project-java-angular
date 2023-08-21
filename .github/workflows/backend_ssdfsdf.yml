@@ -55,7 +55,7 @@ jobs:
       - name: Upload artifact for Api-Gateway
         uses: actions/upload-artifact@v2
         with:
-          name: security-service
+          name: api-gateway-service
           path: 'backend/security/target/api-gateway-0.0.1.jar'          
             
   deploy:
