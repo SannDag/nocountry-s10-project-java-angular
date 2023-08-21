@@ -55,5 +55,5 @@ jobs:
           app-name: 'ssdfsdf'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
-          package: 'eureka-app.jar'
+          package: '*.jar'
 ...
