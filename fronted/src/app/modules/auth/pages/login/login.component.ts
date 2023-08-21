@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit{
 
+  loginError:string="";
+
   loginForm = this.fb.group({
     email:['', [Validators.required,Validators.email]],
     password:['',Validators.required]
@@ -32,12 +34,14 @@ export class LoginComponent implements OnInit{
 
   login(){
     if(this.loginForm.valid){
+      this.loginError = '';
       this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (response) => {
           console.log(response);
         },
         error: (errorData) => {
           console.log(errorData);
+          this.loginError = errorData;
         },
         complete: () => {
           console.info("Login completo");
