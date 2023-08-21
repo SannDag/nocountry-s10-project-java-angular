@@ -30,7 +30,7 @@ public class User {
     private String number;
 
     @Column(name = "type")
-    private String Type;
+    private String type;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "sex", columnDefinition = "enum('MALE', 'FEMALE', 'OTHER')")
