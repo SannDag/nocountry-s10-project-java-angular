@@ -33,6 +33,12 @@ jobs:
           cd backend/security/ 
           mvn clean install
           cd ../..
+
+      - name: Build Api-Gateway with Maven
+        run: | 
+          cd backend/api-gateway/ 
+          mvn clean install
+          cd ../..          
           
       - name: Upload artifact for Eureka Server
         uses: actions/upload-artifact@v2
@@ -45,6 +51,12 @@ jobs:
         with:
           name: security-service
           path: 'backend/security/target/security-0.0.1-SNAPSHOT.jar'
+
+      - name: Upload artifact for Api-Gateway
+        uses: actions/upload-artifact@v2
+        with:
+          name: security-service
+          path: 'backend/security/target/api-gateway-0.0.1.jar'          
             
   deploy:
     runs-on: ubuntu-latest
@@ -64,6 +76,11 @@ jobs:
         with:
           name: security-service
 
+      - name: Download Api-Gateway Service artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: api-gateway-service          
+
       - name: Deploy Eureka Server to Azure Web App
         id: deploy-eureka-server
         uses: azure/webapps-deploy@v2
@@ -81,4 +98,13 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
           package: ${{ github.workspace }}/security-0.0.1-SNAPSHOT.jar
+
+      - name: Deploy Api-Gateway Service to Azure Web App
+        id: deploy-api-gateway-service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'ssdfsdf'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E9FE671C6924C3F9D7D1B8F524A0343 }}
+          package: ${{ github.workspace }}/api-gateway-0.0.1.jar 
 ...
