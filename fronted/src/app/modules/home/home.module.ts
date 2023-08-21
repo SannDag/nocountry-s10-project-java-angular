@@ -5,12 +5,15 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomePage } from './pages/home-page/home.page';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { FooterComponent } from './pages/footer/footer.component';
+
 
 
 @NgModule({
   declarations: [
     HomePage,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
