@@ -1,6 +1,7 @@
-<h2 align="center">
+<h1 align="center">
   Cashnow ☕Backend
-</h2>
+</h1>
+
 <h3 align="center">
   S10-14-FT-Java-Angular
 </h3>
