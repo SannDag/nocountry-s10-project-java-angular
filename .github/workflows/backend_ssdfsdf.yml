@@ -26,20 +26,20 @@ jobs:
         run: | 
           cd backend/eureka-server/ 
           mvn clean install
-          cd ..
+          cd ../..
           
-          cd security/
+      - name: Build Security with Maven
+        run: | 
+          cd backend/security/ 
           mvn clean install
-          cd ..
-          cd ..
+          cd ../..
           
       - name: Upload artifact for Eureka Server
         uses: actions/upload-artifact@v2
         with:
-          name: backend-apps
-          path: |
-            '${{ github.workspace }}/backend/eureka-server/target/eureka-server-0.0.1.jar'  
-            '${{ github.workspace }}/backend/security/target/security-0.0.1.jar'  
+          name: eureka-app
+          path: '${{ github.workspace }}/backend/eureka-server/target/eureka-server-0.0.1.jar'  
+            
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
       - name: Download Eureka artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: backend-apps
+          name: eureka-app
 
       - name: Deploy to Azure Web App - Eureka Server
         id: deploy-to-webapp
