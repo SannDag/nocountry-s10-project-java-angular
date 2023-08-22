@@ -45,8 +45,12 @@ service:
 
 server:
   error:
+<<<<<<< HEAD
     include-message: always
     include-binding-errors: always
+=======
+    include-stacktrace: never
+>>>>>>> 1417018eb989b3c46e684571262b35d226cc084c
   port: 8081
 
 eureka:
@@ -55,6 +59,7 @@ eureka:
     fetch-registry: true
     enabled: true
     service-url:
+<<<<<<< HEAD
       default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
       #default-zone: http://localhost/eureka
 
@@ -62,4 +67,7 @@ management:
   tracing:
     sampling:
       probability: 1.0
+=======
+      default-zone: https://ssdfsdf.azurewebsites.net:8761/eureka
+>>>>>>> 1417018eb989b3c46e684571262b35d226cc084c
 ...

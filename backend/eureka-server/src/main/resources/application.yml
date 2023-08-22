@@ -12,13 +12,23 @@ eureka:
   instance:
     prefer-ip-address: true
     #Host donde se esta corriendo el servidor
+<<<<<<< HEAD
     hostname: s10-14-ft-eurekaserver.azurewebsites.net
+=======
+    hostname: https://ssdfsdf.azurewebsites.net
+    #hostname: localhost
+>>>>>>> 1417018eb989b3c46e684571262b35d226cc084c
   client:
     register-with-eureka: true
     fetch-registry: true
     enabled: true
     service-url:
+<<<<<<< HEAD
       defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net:${server.port}/eureka/
+=======
+    #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    defaultZone: ${eureka.instance.hostname}:${server.port}/eureka/
+>>>>>>> 1417018eb989b3c46e684571262b35d226cc084c
 
 management:
   endpoints:
