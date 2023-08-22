@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../models/login-request';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  urlAuth = 'http://20.121.214.190:5555/api/accounts/';
+  urlAuth = 'https://s10-14-ft-api-gateway.azurewebsites.net/api/accounts/';
+  currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http:HttpClient){}
 
@@ -18,8 +21,14 @@ export class AuthService {
     );
   }
 
+  loginMock(request:LoginRequest):Observable<any>{
+    return this.http.get<any>('././assets/loginRequest.json').pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error:HttpErrorResponse){
-    if(error.status===0){
+    if(error.status === 0){
       console.error('Se ha producio un error ', error.error);
     }
     else{
@@ -27,5 +36,10 @@ export class AuthService {
     }
     return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
   }
+
+
+
+
+
 
 }

@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit{
 
   loginError:string="";
+  loginSuccess: string = "";
 
   loginForm = this.fb.group({
     email:['', [Validators.required,Validators.email]],
@@ -38,6 +39,11 @@ export class LoginComponent implements OnInit{
       this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (response) => {
           console.log(response);
+          this.loginSuccess = "Inicio de sesión exitoso";
+          // Mostrar el mensaje por 3 segundos y luego borrarlo
+          setTimeout(() => {
+            this.loginSuccess = "";
+          }, 3000);
         },
         error: (errorData) => {
           console.log(errorData);
@@ -45,8 +51,12 @@ export class LoginComponent implements OnInit{
         },
         complete: () => {
           console.info("Login completo");
-          this.router.navigateByUrl('');
+          setTimeout(() => {
+            this.router.navigateByUrl('');
+          },2000);
+
           this.loginForm.reset();
+
         }
       })
     }
