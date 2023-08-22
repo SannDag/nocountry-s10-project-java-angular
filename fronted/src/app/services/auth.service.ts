@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../models/login-request';
+import { Registro } from '../models/registro';
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 
@@ -38,8 +40,8 @@ export class AuthService {
   }
 
 
-
-
-
+  registro(registro:Registro):Observable<any>{
+    return this.http.post<any>(this.urlAuth+ 'register', registro);
+  }
 
 }
