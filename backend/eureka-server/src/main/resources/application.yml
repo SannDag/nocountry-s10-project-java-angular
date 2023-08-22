@@ -18,7 +18,7 @@ eureka:
     fetch-registry: false
     service-url:
     #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-    defaultZone: ${eureka.instance.hostname}:${server.port}/eureka/
+    defaultZone: ${eureka.instance.hostname}/eureka/
 
 management:
   endpoints:
