@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../models/login-request';
+import { Registro } from '../models/registro';
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -26,6 +28,10 @@ export class AuthService {
       console.error('Backend retornó el código de estado ', error.status, error.error);
     }
     return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
+  }
+
+  registro(registro:Registro){
+    return this.http.post<any>(this.urlAuth+ 'register', registro);
   }
 
 }
