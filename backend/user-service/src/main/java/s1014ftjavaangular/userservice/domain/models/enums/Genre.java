@@ -1,6 +1,6 @@
 package s1014ftjavaangular.userservice.domain.models.entity;
 
-public enum Sex {
+public enum Genre {
     MALE,
     FEMALE,
     OTHER

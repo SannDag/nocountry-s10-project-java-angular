@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: user-service
+  main:
+    #Desactivo el Banner de Spring Boot de consola
+    banner-mode: off
+  datasource:
+    url: jdbc:mysql://20.121.214.190:3307/user-db
+    username: root
+    password: nocountry#2023
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+server:
+  error:
+    include-stacktrace: never
+    port: 8082
+    
+logging:
+  level:
+    root: INFO
+    web: DEBUG
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE 
