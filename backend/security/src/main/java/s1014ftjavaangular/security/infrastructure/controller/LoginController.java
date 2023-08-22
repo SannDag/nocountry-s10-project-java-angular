@@ -18,7 +18,7 @@ public class LoginController {
     private final LoginUseCase loginUseCase;
 
     @PostMapping()
-    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto){
+    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto) {
 
         var response = loginUseCase.login(loginDto.getEmail(), loginDto.getPassword());
 

@@ -24,7 +24,8 @@ spring:
           enabled: true
       routes:
         - id: security
-          uri: lb://security
+          uri: https://s10-14-ft-api-security.azurewebsites.net
+          #uri: lb://security
           predicates:
             - Path=/**
         - id: eureka-server
@@ -36,8 +37,7 @@ eureka:
   client:
     enabled: true
     service-url:
-      #defaultZone: https://ssdfsdf.azurewebsites.net:8761/eureka/
-      defaultZone: https://ssdfsdf.azurewebsites.net/eureka/
+      defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka/
 
 management:
   tracing:

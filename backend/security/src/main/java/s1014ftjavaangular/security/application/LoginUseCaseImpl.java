@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import s1014ftjavaangular.security.domain.model.dto.LoginResponse;
 import s1014ftjavaangular.security.domain.service.AuthService;
-import s1014ftjavaangular.security.domain.usecase.LoginUseCase;
 import s1014ftjavaangular.security.domain.service.JwtProvider;
+import s1014ftjavaangular.security.domain.usecase.LoginUseCase;
 
 @Component
 @RequiredArgsConstructor
@@ -14,7 +14,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
     private final JwtProvider provider;
 
     @Override
-    public LoginResponse login(final String email, final String password){
+    public LoginResponse login(final String email, final String password) {
         var accountAuthenticated = authService.authenticate(email, password);
         var token = provider.generateToken(accountAuthenticated);
 
