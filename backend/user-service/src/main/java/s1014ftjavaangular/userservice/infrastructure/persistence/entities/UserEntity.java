@@ -9,16 +9,17 @@ import s1014ftjavaangular.userservice.domain.models.enums.CivilState;
 import s1014ftjavaangular.userservice.domain.models.enums.Genre;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity implements Serializable {
+
         @Id
         @Column(name = "user_id")
         private String userId;
@@ -48,11 +49,12 @@ public class UserEntity {
         @Column(name = "birth_day")
         private LocalDate birthDay;
 
-        @OneToMany(targetEntity = PhoneDetailsEntity.class,cascade = CascadeType.ALL)
-        @JoinColumn(name = "user_id", referencedColumnName = "userId")
+        @OneToMany(targetEntity = PhoneDetailsEntity.class, cascade = CascadeType.ALL)
+        @JoinColumn(name = "user_id", referencedColumnName = "user_id")
         private List<PhoneDetailsEntity> phoneDetails;
 
-        @OneToOne(mappedBy = "userEntity")
+        @OneToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "residence_id")
         private ResidenceDetailsEntity residenceDetails;
 
         @Column(name = "blacklist")

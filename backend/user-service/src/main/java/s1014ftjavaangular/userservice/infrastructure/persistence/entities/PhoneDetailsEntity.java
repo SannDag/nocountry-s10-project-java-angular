@@ -12,18 +12,24 @@ import s1014ftjavaangular.userservice.domain.models.enums.PhoneLabel;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "")
+@Table(name = "phone_details")
 public class PhoneDetailsEntity {
 
     @Id
-    @Column(name="phone_uuid")
+    @Column(name="phone_id")
     private String phoneUuid;
+
     @Enumerated(EnumType.STRING)
     private PhoneLabel phoneLabel;
+
     @Column(name = "country_code")
     private String countryCode;
+
     @Column(name = "city_code")
     private String cityCode;
+
     @Column(name = "phone_number")
     private String phoneNumber;
+
+
 }

@@ -10,6 +10,9 @@ spring:
     password: nocountry#2023
   jpa:
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
     hibernate:
       ddl-auto: update
       naming:
@@ -24,7 +27,7 @@ spring:
 server:
   error:
     include-stacktrace: never
-    port: 8082
+  port: 8082
 logging:
   level:
     root: INFO

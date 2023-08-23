@@ -21,12 +21,12 @@ public class UserListController {
         return ResponseEntity.ok(userListFindAllUseCase.findAll());
     }
 
-    @GetMapping(value="/{type}")
+    @GetMapping("/type/{type}")
     public ResponseEntity<?> getAllByType(@PathVariable String type){
         return ResponseEntity.ok(userListByTypeUseCase.findAllByType(type));
     }
 
-    @GetMapping(value="/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> getAllById(@PathVariable String id){
         return  ResponseEntity.ok(userListByIdUseCase.findById(id));
     }
