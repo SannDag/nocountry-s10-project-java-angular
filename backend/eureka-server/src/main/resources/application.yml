@@ -1,0 +1,28 @@
+---
+server:
+  port: 8761
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    #Host donde se esta corriendo el servidor
+    hostname: s10-14-ft-eurekaserver.azurewebsites.net
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+    service-url:
+      defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net:${server.port}/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+...
