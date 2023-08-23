@@ -1,10 +1,8 @@
 package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import s1014ftjavaangular.userservice.domain.model.enums.PhoneLabel;
 
 @Data
@@ -20,6 +18,7 @@ public class PhoneDetailsEntity {
     private String phoneUuid;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "phone_label", columnDefinition = "enum('HOME', 'CELLPHONE')")
     private PhoneLabel phoneLabel;
 
     @Column(name = "country_code")
@@ -31,5 +30,10 @@ public class PhoneDetailsEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @JsonIgnore
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", updatable = false)
+    private UserEntity user;
 
 }

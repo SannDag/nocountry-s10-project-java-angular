@@ -5,16 +5,19 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-    url: jdbc:mysql://20.121.214.190:3307/user-db
+#    url: jdbc:mysql://20.121.214.190:3307/user-db
+#    username: root
+#    password: nocountry#2023
+    url: jdbc:mysql://localhost:3306/local_db_user
     username: root
-    password: nocountry#2023
+    password: 12345678
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-auto
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   kafka:
@@ -39,3 +42,10 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka

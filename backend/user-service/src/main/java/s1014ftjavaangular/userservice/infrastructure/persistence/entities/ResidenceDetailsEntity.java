@@ -1,10 +1,8 @@
 package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import s1014ftjavaangular.userservice.domain.model.enums.HousingStatus;
 
 @Data
@@ -19,7 +17,7 @@ public class ResidenceDetailsEntity {
     private String residenceUuid;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "housing_status")
+    @Column(name = "housing_status", columnDefinition = "enum('OWNED', 'RENTED')")
     private HousingStatus housingStatus;
 
     @Column(name = "years_in_house")
@@ -43,6 +41,8 @@ public class ResidenceDetailsEntity {
     @Column(name = "zipcode")
     private String zipCode;
 
-    @OneToOne(mappedBy = "residenceDetails")
+    @JsonIgnore
+    @ToString.Exclude
+    @OneToOne(mappedBy = "residenceDetails", fetch = FetchType.LAZY)
     private UserEntity userEntity;
 }

@@ -1,5 +1,6 @@
 package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,8 +49,8 @@ public class UserEntity implements Serializable {
         @Column(name = "birth_day")
         private LocalDate birthDay;
 
-        @OneToMany(targetEntity = PhoneDetailsEntity.class, cascade = CascadeType.ALL)
-        @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+        @JsonBackReference
+        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<PhoneDetailsEntity> phoneDetails;
 
         @OneToOne(cascade = CascadeType.ALL)

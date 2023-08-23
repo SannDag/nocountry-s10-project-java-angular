@@ -1,6 +1,8 @@
 package s1014ftjavaangular.userservice.infrastructure.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import s1014ftjavaangular.userservice.domain.model.dto.request.UserSaveMessage;
 import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
@@ -11,6 +13,7 @@ import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEn
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @Repository
 @RequiredArgsConstructor
 public class UserRepositoryAdapter implements UserRepository {
@@ -21,9 +24,11 @@ public class UserRepositoryAdapter implements UserRepository {
     public List<UserResponse> findAll() {
         var entity = jpaRepository.findAll();
 
+        entity.stream().peek(log::info);
+
         List<UserResponse> userResponse = entity.stream()
                 .map(mapper::entityToModel)
-                .collect(Collectors.toList());
+                .toList();
 
         return userResponse;
     }

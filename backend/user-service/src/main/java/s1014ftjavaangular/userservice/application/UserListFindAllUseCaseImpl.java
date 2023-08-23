@@ -19,9 +19,8 @@ public class UserListFindAllUseCaseImpl implements UserListFindAllUseCase {
     public List<UserResponse> findAll() {
 
         List<UserResponse> userDto = userRepository.findAll();
-        if(userDto.isEmpty()){
-            throw new UserNotFoundException("The user was not found");
-        }
+
+        if(userDto.isEmpty()) throw new UserNotFoundException("The user was not found");
 
         return userDto;
     }
