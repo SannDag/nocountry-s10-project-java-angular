@@ -41,7 +41,8 @@ export class AuthService {
 
 
   registro(registro:Registro):Observable<any>{
-    return this.http.post<any>(this.urlAuth+ 'register', registro);
+    return this.http.post<any>(this.urlAuth + 'register', registro);
+
   }
 
 }

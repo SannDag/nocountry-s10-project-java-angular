@@ -12,7 +12,7 @@ spring:
   datasource:
     url: jdbc:mysql://20.121.214.190:3307/account-db
     username: root
-    password: 12345678
+    password: nocountry#2023
   jpa:
     show-sql: true
     hibernate:
@@ -21,6 +21,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   #Connect kafka
   kafka:
+    bootstrap-servers: 20.121.214.190:9092
     template:
       default-topic: account-topic
 

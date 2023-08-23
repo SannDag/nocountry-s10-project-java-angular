@@ -9,46 +9,67 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-   registroForm!: FormGroup;
+
+   registerSuccess:string = "";
+
+      registroForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+
+
+    })
+
 
    constructor(private formBuilder: FormBuilder, private authService:AuthService) {}
 
-  ngOnInit() {
-    this.registroForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8),]],
- 
-    });
-  }
+  ngOnInit() {}
+
   get email(){
-    return this.registroForm.controls['email'];
+    return this.registroForm.controls.email;
   }
 
   get password()
   {
-    return this.registroForm.controls['password'];
+    return this.registroForm.controls.password;
   }
   get name()
   {
-    return this.registroForm.controls['nombre'];
+    return this.registroForm.controls.name;
   }
-  get lastName()
+  get lastname()
   {
-    return this.registroForm.controls['apellido'];
+    return this.registroForm.controls.lastname;
   }
 
 
 
   registrarUsuario(){
-    const nuevoUsuario: Registro = this.registroForm.value;
-    this.authService.registro(nuevoUsuario)
-    .subscribe( response =>{
-        console.log('Usuario registrado:', response);
-    })
-    
+
+    if(this.registroForm.valid){
+      this.authService.registro(this.registroForm.value as Registro).subscribe({
+        next: response =>{
+          console.log(response);
+        },
+        error: err =>{
+          console.log(err);
+        },
+        complete: () => {
+          console.log("Registro completo");
+        }
+
+
+      })
+    }else{
+
+      this.registroForm.markAllAsTouched();
+      alert("Error al ingresar los datos.");
+    }
+
   }
+
+
 
 
 }
