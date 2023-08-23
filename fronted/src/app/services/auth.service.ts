@@ -13,7 +13,7 @@ import { LoginResponse } from '../models/login-response';
 })
 export class AuthService {
 
-  urlAuth = 'https://s10-14-ft-api-gateway.azurewebsites.net/api/accounts/';
+  urlAuth = 'http://localhost:5555/api/accounts/';
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -47,7 +47,9 @@ export class AuthService {
 
 
   registro(registro:Registro):Observable<any>{
-    return this.http.post<any>(this.urlAuth + 'register', registro);
+    return this.http.post<any>(this.urlAuth + 'register', registro).pipe(
+      catchError(this.handleError)
+    );
 
   }
 

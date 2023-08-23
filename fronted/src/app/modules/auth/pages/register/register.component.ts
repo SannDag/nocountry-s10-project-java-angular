@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Registro } from 'src/app/models/registro';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,7 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent {
 
-   registerSuccess:string = "";
+  registerError : string="";
+  registerSuccess : string = "";
 
       registroForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -22,7 +24,8 @@ export class RegisterComponent {
     })
 
 
-   constructor(private formBuilder: FormBuilder, private authService:AuthService) {}
+   constructor(private formBuilder: FormBuilder, private authService:AuthService,
+    private router:Router) {}
 
   ngOnInit() {}
 
@@ -51,9 +54,18 @@ export class RegisterComponent {
       this.authService.registro(this.registroForm.value as Registro).subscribe({
         next: response =>{
           console.log(response);
+          console.log("Registro exitoso");
+          this.registerSuccess = "Usuario creado " + this.registroForm.value.name;
+          setTimeout(() => {
+            this.registerSuccess ="";
+          }, 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl("/auth/login");
+          }, 2000);
         },
         error: err =>{
           console.log(err);
+          this.registerError = err;
         },
         complete: () => {
           console.log("Registro completo");
