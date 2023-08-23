@@ -28,17 +28,14 @@ spring:
           uri: lb://security
           predicates:
             - Path=/**
-        - id: eureka-server
-          #uri: https://s10-14-ft-eurekaserver.azurewebsites.net
-          uri: lb://eureka-server
-          predicates:
-            - Path=/**
+          
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/**
           filters:
             - JwtAuthenticationFilter
+
 eureka:
   client:
     enabled: true
