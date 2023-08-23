@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.userservice.domain.models.entity.Genre;
+import s1014ftjavaangular.userservice.domain.models.entity.ResidenceDetails;
+import s1014ftjavaangular.userservice.domain.models.enums.Genre;
 import s1014ftjavaangular.userservice.domain.models.enums.CivilState;
 import s1014ftjavaangular.userservice.domain.models.entity.PhoneDetails;
 
@@ -26,5 +27,6 @@ public class UserRequest {
     private CivilState civilState;
     private LocalDate birthDay;
     private List<PhoneDetails> phoneDetails;
+    private ResidenceDetails residenceDetails;
     private Boolean blackList;
 }

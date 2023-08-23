@@ -2,10 +2,12 @@ package s1014ftjavaangular.userservice.infrastructure.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import s1014ftjavaangular.userservice.domain.models.dto.request.UserSaveMessage;
 import s1014ftjavaangular.userservice.domain.models.dto.response.UserResponse;
 import s1014ftjavaangular.userservice.domain.models.entity.User;
 import s1014ftjavaangular.userservice.domain.models.mapper.UserMapper;
 import s1014ftjavaangular.userservice.domain.repository.UserRepository;
+import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +28,7 @@ public class UserRepositoryAdapter implements UserRepository {
 
         return userResponse;
     }
-
+    //
     @Override
     public List<UserResponse> findAllByType(String type) {
         var entity = jpaRepository.findAllByType(type);
@@ -51,5 +53,19 @@ public class UserRepositoryAdapter implements UserRepository {
                 .collect(Collectors.toList());
 
         return userResponse;
+    }
+
+    @Override
+    public void saveUser(final UserSaveMessage dto){
+        if(dto == null) throw new IllegalArgumentException("The model to save the user cannot be empty");
+        //
+        var user = new UserEntity();
+
+        user.setUserId(dto.getAccountUuid());
+        user.setName(dto.getName());
+        user.setLastName(dto.getLastname());
+        user.setType(dto.getAccountRol());
+
+        jpaRepository.save(user);
     }
 }

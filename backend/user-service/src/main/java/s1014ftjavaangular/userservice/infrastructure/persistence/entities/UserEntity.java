@@ -1,4 +1,4 @@
-package s1014ftjavaangular.userservice.domain.models.entity;
+package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import s1014ftjavaangular.userservice.domain.models.enums.CivilState;
+import s1014ftjavaangular.userservice.domain.models.enums.Genre;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,11 +16,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class UserEntity {
         @Id
-        @Column(name = "id_user")
-        private String id;
+        @Column(name = "user_id")
+        private String userId;
 
         @Column(name = "identifier")
         private String identifier;
@@ -45,8 +48,12 @@ public class UserEntity {
         @Column(name = "birth_day")
         private LocalDate birthDay;
 
-        @OneToMany
-        private List<PhoneDetails> phoneDetails;
+        @OneToMany(targetEntity = PhoneDetailsEntity.class,cascade = CascadeType.ALL)
+        @JoinColumn(name = "user_id", referencedColumnName = "userId")
+        private List<PhoneDetailsEntity> phoneDetails;
+
+        @OneToOne(mappedBy = "userEntity")
+        private ResidenceDetailsEntity residenceDetails;
 
         @Column(name = "blacklist")
         private Boolean blackList;

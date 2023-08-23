@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import s1014ftjavaangular.userservice.domain.models.enums.Genre;
 import s1014ftjavaangular.userservice.domain.models.enums.CivilState;
+import s1014ftjavaangular.userservice.infrastructure.persistence.entities.ResidenceDetailsEntity;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -33,6 +35,8 @@ public class User {
     private LocalDate birthDay;
 
     private List<PhoneDetails> phoneDetails;
+
+    private ResidenceDetails residenceDetails;
 
     private Boolean blackList;
 }

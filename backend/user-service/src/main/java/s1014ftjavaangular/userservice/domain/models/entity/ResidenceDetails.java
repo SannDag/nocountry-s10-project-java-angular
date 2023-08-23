@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import s1014ftjavaangular.userservice.domain.models.enums.HousingStatus;
 
 import java.util.UUID;
 
@@ -13,8 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ResidenceDetails {
-    private UUID id;
-    private String housingStatus;
+    private String residenceUuid;
+    private HousingStatus housingStatus;
     private Integer yearsInHouse;
     private Integer monthsInHouse;
     private String city;
@@ -22,5 +23,4 @@ public class ResidenceDetails {
     private String address1;
     private String address2;
     private String zipCode;
-    private User user;
 }

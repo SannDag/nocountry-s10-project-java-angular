@@ -14,12 +14,17 @@ spring:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  kafka:
+    template:
+      default-topic: account-topic
+    consumer:
+      bootstrap-servers: 20.121.214.190:9092
+      group-id: message-account-consumer
 
 server:
   error:
     include-stacktrace: never
     port: 8082
-    
 logging:
   level:
     root: INFO
@@ -30,4 +35,4 @@ logging:
         type:
           descriptor:
             sql:
-              BasicBinder: TRACE 
+              BasicBinder: TRACE
