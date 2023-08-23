@@ -1,12 +1,13 @@
-package s1014ftjavaangular.userservice.domain.models.entity;
+package s1014ftjavaangular.userservice.domain.model.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.userservice.domain.models.enums.Genre;
-import s1014ftjavaangular.userservice.domain.models.enums.CivilState;
-import s1014ftjavaangular.userservice.infrastructure.persistence.entities.ResidenceDetailsEntity;
+import s1014ftjavaangular.userservice.domain.model.entity.ResidenceDetails;
+import s1014ftjavaangular.userservice.domain.model.enums.Genre;
+import s1014ftjavaangular.userservice.domain.model.enums.CivilState;
+import s1014ftjavaangular.userservice.domain.model.entity.PhoneDetails;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,28 +16,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class UserResponse {
     private String id;
-
     private String identifier;
-
     private String number;
-
     private String type;
-
     private Genre genre;
-
     private String name;
-
     private String lastName;
-
     private CivilState civilState;
-
     private LocalDate birthDay;
-
     private List<PhoneDetails> phoneDetails;
-
     private ResidenceDetails residenceDetails;
-
     private Boolean blackList;
 }

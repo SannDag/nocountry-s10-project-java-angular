@@ -8,7 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.listener.AcknowledgingMessageListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
-import s1014ftjavaangular.userservice.domain.models.dto.request.UserSaveMessage;
+import s1014ftjavaangular.userservice.domain.model.dto.request.UserSaveMessage;
 import s1014ftjavaangular.userservice.domain.usecase.CreateUserUseCase;
 
 @Slf4j

@@ -1,11 +1,11 @@
-package s1014ftjavaangular.userservice.domain.models.mapper;
+package s1014ftjavaangular.userservice.domain.model.mapper;
 
 import org.springframework.stereotype.Component;
-import s1014ftjavaangular.userservice.domain.models.dto.request.UserRequest;
-import s1014ftjavaangular.userservice.domain.models.dto.response.UserResponse;
-import s1014ftjavaangular.userservice.domain.models.entity.PhoneDetails;
-import s1014ftjavaangular.userservice.domain.models.entity.ResidenceDetails;
-import s1014ftjavaangular.userservice.domain.models.entity.User;
+import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
+import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
+import s1014ftjavaangular.userservice.domain.model.entity.PhoneDetails;
+import s1014ftjavaangular.userservice.domain.model.entity.ResidenceDetails;
+import s1014ftjavaangular.userservice.domain.model.entity.User;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.PhoneDetailsEntity;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.ResidenceDetailsEntity;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEntity;

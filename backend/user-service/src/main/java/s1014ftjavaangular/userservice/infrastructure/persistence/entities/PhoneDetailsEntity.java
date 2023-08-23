@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.userservice.domain.models.enums.PhoneLabel;
+import s1014ftjavaangular.userservice.domain.model.enums.PhoneLabel;
 
 @Data
 @AllArgsConstructor

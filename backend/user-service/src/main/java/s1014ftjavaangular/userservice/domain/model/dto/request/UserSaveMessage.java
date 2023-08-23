@@ -1,4 +1,4 @@
-package s1014ftjavaangular.userservice.domain.models.dto.request;
+package s1014ftjavaangular.userservice.domain.model.dto.request;
 
 import lombok.Builder;
 import lombok.Data;

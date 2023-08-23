@@ -2,11 +2,10 @@ package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.userservice.domain.models.enums.CivilState;
-import s1014ftjavaangular.userservice.domain.models.enums.Genre;
+import s1014ftjavaangular.userservice.domain.model.enums.CivilState;
+import s1014ftjavaangular.userservice.domain.model.enums.Genre;
 
 
 import java.io.Serializable;

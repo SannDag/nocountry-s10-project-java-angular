@@ -1,13 +1,10 @@
-package s1014ftjavaangular.userservice.domain.models.entity;
+package s1014ftjavaangular.userservice.domain.model.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.userservice.domain.models.enums.HousingStatus;
-
-import java.util.UUID;
+import s1014ftjavaangular.userservice.domain.model.enums.HousingStatus;
 
 @Data
 @AllArgsConstructor

@@ -1,11 +1,9 @@
 package s1014ftjavaangular.userservice.domain.repository;
 
-import s1014ftjavaangular.userservice.domain.models.dto.request.UserSaveMessage;
-import s1014ftjavaangular.userservice.domain.models.dto.response.UserResponse;
-import s1014ftjavaangular.userservice.domain.models.entity.User;
+import s1014ftjavaangular.userservice.domain.model.dto.request.UserSaveMessage;
+import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserRepository  {
 
