@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import s1014ftjavaangular.userservice.domain.models.dto.request.UserSaveMessage;
 import s1014ftjavaangular.userservice.domain.models.dto.response.UserResponse;
-import s1014ftjavaangular.userservice.domain.models.entity.User;
 import s1014ftjavaangular.userservice.domain.models.mapper.UserMapper;
 import s1014ftjavaangular.userservice.domain.repository.UserRepository;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEntity;
@@ -58,7 +57,7 @@ public class UserRepositoryAdapter implements UserRepository {
     @Override
     public void saveUser(final UserSaveMessage dto){
         if(dto == null) throw new IllegalArgumentException("The model to save the user cannot be empty");
-        //
+
         var user = new UserEntity();
 
         user.setUserId(dto.getAccountUuid());
