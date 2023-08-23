@@ -47,7 +47,7 @@ public class SecurityConfig {
         auth.userDetailsService(customAccountDetailsService).passwordEncoder(passwordEncoder);
 
         http.authenticationManager(authenticationManager);
-        
+
         http.authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/v3/**", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**", "/META-INF/**").permitAll()
                 .requestMatchers(HttpMethod.GET,

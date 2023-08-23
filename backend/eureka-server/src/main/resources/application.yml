@@ -18,7 +18,8 @@ eureka:
     fetch-registry: true
     enabled: true
     service-url:
-      defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net:${server.port}/eureka/
+      #defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net:${server.port}/eureka/
+      defaultZone: http://localhost:${server.port}/eureka/
 
 management:
   endpoints:
