@@ -4,6 +4,7 @@ import { Registro } from '../models/registro';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { LoginResponse } from '../models/login-response';
 
 
 
@@ -13,12 +14,17 @@ import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 export class AuthService {
 
   urlAuth = 'https://s10-14-ft-api-gateway.azurewebsites.net/api/accounts/';
+
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http:HttpClient){}
 
-  login(request: LoginRequest):Observable<any> {
-    return this.http.post<any>(this.urlAuth + 'login', request).pipe(
+  login(request: LoginRequest):Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.urlAuth + 'login', request).pipe(
+      tap( (response: LoginResponse) => {
+
+        this.currentUserLoginOn.next(true);
+      }),
       catchError(this.handleError)
     );
   }
@@ -43,6 +49,10 @@ export class AuthService {
   registro(registro:Registro):Observable<any>{
     return this.http.post<any>(this.urlAuth + 'register', registro);
 
+  }
+
+  get userLoginOn(): Observable<boolean>{
+    return this.currentUserLoginOn.asObservable();
   }
 
 }
