@@ -10,9 +10,9 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-    url: jdbc:mysql://20.121.214.190:3307/account-db
+    url: jdbc:mysql://localhost:3306/account-db
     username: root
-    password: nocountry#2023
+    password: 12345678
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true

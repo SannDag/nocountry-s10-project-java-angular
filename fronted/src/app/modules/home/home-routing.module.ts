@@ -9,9 +9,12 @@ import { FooterComponent } from './pages/footer/footer.component';
 const routes: Routes = [
   {
     path: '',
-    component:HomePage,
-  },
-];
+    children:[
+      {path:'', component:HomePage}
+    ]
+
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
