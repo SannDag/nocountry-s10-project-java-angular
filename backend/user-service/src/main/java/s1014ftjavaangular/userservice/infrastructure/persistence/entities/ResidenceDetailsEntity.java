@@ -49,7 +49,9 @@ public class ResidenceDetailsEntity {
     @MapsId
     private UserEntity user;
 
-    public void update(ResidenceDetails residenceDetails){
+    public void update(ResidenceDetails residenceDetails, UserEntity entity){
+        this.setUser(entity);
+        this.setResidenceUuid(entity.getUserUuid());
         if(residenceDetails.getState() != null) this.setState( residenceDetails.getState() );
         if(residenceDetails.getCity() != null) this.setCity( residenceDetails.getCity() );
         if(residenceDetails.getHousingStatus() != null) this.setHousingStatus( residenceDetails.getHousingStatus() );

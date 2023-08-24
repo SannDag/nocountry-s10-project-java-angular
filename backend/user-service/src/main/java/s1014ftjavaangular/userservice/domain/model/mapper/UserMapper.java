@@ -17,7 +17,7 @@ public class UserMapper {
         return User.builder()
                 .id(request.getId())
                 .identifier(request.getIdentifier())
-                .number(request.getNumber())
+                .identifierNumber(request.getIdentifierNumber())
                 .genre(request.getGenre())
                 .name(request.getName())
                 .lastName(request.getLastName())
@@ -32,6 +32,7 @@ public class UserMapper {
         return UserResponse.builder()
                 .id(userEntity.getUserUuid())
                 .identifier(userEntity.getIdentifier())
+                .identifierNumber(userEntity.getIdentifierNumber())
                 .number(userEntity.getNumber())
                 .type(userEntity.getType())
                 .genre(userEntity.getGenre())
@@ -64,7 +65,6 @@ public class UserMapper {
     
     public PhoneDetails phoneDetailsEntityToModel(PhoneDetailsEntity phoneDetailsEntity){
         return PhoneDetails.builder()
-                .phoneUuid(phoneDetailsEntity.getPhoneUuid())
                 .phoneLabel(phoneDetailsEntity.getPhoneLabel())
                 .phoneNumber(phoneDetailsEntity.getPhoneNumber())
                 .countryCode(phoneDetailsEntity.getCountryCode())

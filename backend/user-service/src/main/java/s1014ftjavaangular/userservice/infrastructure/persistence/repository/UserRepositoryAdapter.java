@@ -109,13 +109,13 @@ public class UserRepositoryAdapter implements UserRepository {
         //Entra si el Residence del DTO no es nulo y el de la entidad tampoco es nulo
         if(dto.getResidenceDetails() != null && entity.getResidenceDetails() != null ){
             //Actualiza el que existe
-            entity.getResidenceDetails().update(dto.getResidenceDetails());
+            entity.getResidenceDetails().update(dto.getResidenceDetails(), entity);
         }
         //Entra si el Residence del DTO no es nulo y el de la entidad si es nulo
         if(dto.getResidenceDetails() != null && entity.getResidenceDetails() == null){
             //Crea uno nuevo
             var residence = new ResidenceDetailsEntity();
-            residence.update(dto.getResidenceDetails());
+            residence.update(dto.getResidenceDetails(), entity);
             entity.setResidenceDetails(residence);
         }
 
@@ -125,6 +125,7 @@ public class UserRepositoryAdapter implements UserRepository {
             dto.getPhoneDetails().stream().forEach(phoneDetails -> {
                 //Crea el nuevo PhoneDetailsEntity
                 var newPhone = PhoneDetailsEntity.builder()
+                        .user(entity)
                         .phoneUuid(UUID.randomUUID().toString())
                         .cityCode(phoneDetails.getCityCode())
                         .phoneLabel(phoneDetails.getPhoneLabel())

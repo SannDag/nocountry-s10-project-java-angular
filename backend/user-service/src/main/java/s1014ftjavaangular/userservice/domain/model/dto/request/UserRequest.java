@@ -20,7 +20,6 @@ public class UserRequest {
     private String id;
     private String identifier;
     private String identifierNumber;
-    private String number;
     private Genre genre;
     private String name;
     private String lastName;

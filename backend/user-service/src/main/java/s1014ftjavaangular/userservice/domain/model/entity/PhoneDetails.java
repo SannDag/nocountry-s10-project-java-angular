@@ -11,8 +11,7 @@ import s1014ftjavaangular.userservice.domain.model.enums.PhoneLabel;
 @NoArgsConstructor
 @Builder
 public class PhoneDetails {
-    @NotEmpty
-    private String phoneUuid;
+
     @NotEmpty
     private PhoneLabel phoneLabel;
     @NotEmpty
