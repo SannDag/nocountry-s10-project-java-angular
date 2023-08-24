@@ -1,6 +1,7 @@
 package s1014ftjavaangular.userservice.domain.repository;
 
 import s1014ftjavaangular.userservice.domain.model.dto.request.AccountCreatedDto;
+import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
 import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface UserRepository  {
     List<UserResponse> findAllByType(String type);
     Optional<UserResponse> findById(String id);
     void saveUser(final AccountCreatedDto dto);
+
+    void update(final UserRequest dto);
 }

@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.userservice.domain.model.enums.CivilState;
+import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
+import s1014ftjavaangular.userservice.domain.model.enums.CivilStatus;
 import s1014ftjavaangular.userservice.domain.model.enums.Genre;
+import s1014ftjavaangular.userservice.domain.model.mapper.UserMapper;
 
 
 import java.io.Serializable;
@@ -44,7 +46,7 @@ public class UserEntity implements Serializable {
         private String lastName;
 
         @Column(name = "civil_state")
-        private CivilState civilState;
+        private CivilStatus civilStatus;
 
         @Column(name = "birth_day")
         private LocalDate birthDay;

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import s1014ftjavaangular.userservice.domain.model.enums.Genre;
-import s1014ftjavaangular.userservice.domain.model.enums.CivilState;
+import s1014ftjavaangular.userservice.domain.model.enums.CivilStatus;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,7 +29,7 @@ public class User {
 
     private String lastName;
 
-    private CivilState civilState;
+    private CivilStatus civilStatus;
 
     private LocalDate birthDay;
 

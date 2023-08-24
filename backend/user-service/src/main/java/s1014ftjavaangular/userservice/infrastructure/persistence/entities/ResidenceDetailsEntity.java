@@ -3,6 +3,7 @@ package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import s1014ftjavaangular.userservice.domain.model.entity.ResidenceDetails;
 import s1014ftjavaangular.userservice.domain.model.enums.HousingStatus;
 
 @Data
@@ -47,4 +48,15 @@ public class ResidenceDetailsEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @MapsId
     private UserEntity user;
+
+    public void update(ResidenceDetails residenceDetails){
+        if(residenceDetails.getState() != null) this.setState( residenceDetails.getState() );
+        if(residenceDetails.getCity() != null) this.setCity( residenceDetails.getCity() );
+        if(residenceDetails.getHousingStatus() != null) this.setHousingStatus( residenceDetails.getHousingStatus() );
+        if(residenceDetails.getYearsInHouse() != null) this.setYearsInHouse( residenceDetails.getYearsInHouse() );
+        if(residenceDetails.getMonthsInHouse() != null) this.setMonthsInHouse( residenceDetails.getMonthsInHouse() );
+        if(residenceDetails.getAddress1() != null) this.setAddress1( residenceDetails.getAddress1() );
+        if(residenceDetails.getAddress2() != null) this.setAddress2( residenceDetails.getAddress2() );
+        if(residenceDetails.getZipCode() != null) this.setZipCode( residenceDetails.getZipCode() );
+    }
 }

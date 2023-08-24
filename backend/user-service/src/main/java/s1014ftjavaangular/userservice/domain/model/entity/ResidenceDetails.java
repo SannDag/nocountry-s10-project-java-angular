@@ -11,7 +11,6 @@ import s1014ftjavaangular.userservice.domain.model.enums.HousingStatus;
 @NoArgsConstructor
 @Builder
 public class ResidenceDetails {
-    private String residenceUuid;
     private HousingStatus housingStatus;
     private Integer yearsInHouse;
     private Integer monthsInHouse;

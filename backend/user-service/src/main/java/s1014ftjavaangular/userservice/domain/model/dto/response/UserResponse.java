@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import s1014ftjavaangular.userservice.domain.model.entity.ResidenceDetails;
 import s1014ftjavaangular.userservice.domain.model.enums.Genre;
-import s1014ftjavaangular.userservice.domain.model.enums.CivilState;
+import s1014ftjavaangular.userservice.domain.model.enums.CivilStatus;
 import s1014ftjavaangular.userservice.domain.model.entity.PhoneDetails;
 
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ public class UserResponse {
     private Genre genre;
     private String name;
     private String lastName;
-    private CivilState civilState;
+    private CivilStatus civilStatus;
     private LocalDate birthDay;
     private List<PhoneDetails> phoneDetails;
     private ResidenceDetails residenceDetails;

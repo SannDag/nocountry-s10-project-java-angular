@@ -12,4 +12,6 @@ public interface UserJpaRepository extends JpaRepository<UserEntity, String> {
     List<UserEntity> findAll();
     List<UserEntity> findAllByType(String type);
     Optional<UserEntity> findById(String id);
+
+    Boolean existsByUserUuid(String userUuid);
 }

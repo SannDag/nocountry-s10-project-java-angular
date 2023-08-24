@@ -11,13 +11,15 @@ import s1014ftjavaangular.userservice.domain.usecase.UpdateUserUseCase;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/users/")
+@RequestMapping("/api/v1/users")
 public class UpdateUserController {
     private final UpdateUserUseCase useCase;
 
-    @PutMapping("updateUser")
+    @PutMapping()
     private ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UserRequest request){
-        UserResponse response = useCase.updateUser(request);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+
+        useCase.updateUser(request);
+
+        return ResponseEntity.ok().build();
     }
 }

@@ -18,11 +18,10 @@ public class UserMapper {
                 .id(request.getId())
                 .identifier(request.getIdentifier())
                 .number(request.getNumber())
-                .type(request.getType())
                 .genre(request.getGenre())
                 .name(request.getName())
                 .lastName(request.getLastName())
-                .civilState(request.getCivilState())
+                .civilStatus(request.getCivilStatus())
                 .birthDay(request.getBirthDay())
                 .phoneDetails(request.getPhoneDetails())
                 .blackList(request.getBlackList())
@@ -38,7 +37,7 @@ public class UserMapper {
                 .genre(userEntity.getGenre())
                 .name(userEntity.getName())
                 .lastName(userEntity.getLastName())
-                .civilState(userEntity.getCivilState())
+                .civilStatus(userEntity.getCivilStatus())
                 .birthDay(userEntity.getBirthDay())
                 .residenceDetails(
                         ( userEntity.getResidenceDetails() != null )
@@ -52,7 +51,6 @@ public class UserMapper {
 
     public ResidenceDetails residenceEntityToModel(ResidenceDetailsEntity residenceDetailsEntity){
         return ResidenceDetails.builder()
-                .residenceUuid(residenceDetailsEntity.getResidenceUuid())
                 .state(residenceDetailsEntity.getState())
                 .city(residenceDetailsEntity.getCity())
                 .housingStatus(residenceDetailsEntity.getHousingStatus())
