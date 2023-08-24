@@ -18,9 +18,6 @@ public class UserListFindByIdUseCaseImpl implements UserListByIdUseCase {
     @Override
     public List<UserResponse> findById(String id) {
         List<UserResponse> userDto = userRepository.findById(id);
-        if(userDto.isEmpty()){
-            throw new UserNotFoundException("The user was not found");
-        }
 
         return userDto;
     }

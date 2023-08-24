@@ -2,9 +2,8 @@ package s1014ftjavaangular.userservice.infrastructure.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import s1014ftjavaangular.userservice.domain.model.dto.request.UserSaveMessage;
+import s1014ftjavaangular.userservice.domain.model.dto.request.AccountCreatedDto;
 import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
 import s1014ftjavaangular.userservice.domain.model.mapper.UserMapper;
 import s1014ftjavaangular.userservice.domain.repository.UserRepository;
@@ -60,12 +59,12 @@ public class UserRepositoryAdapter implements UserRepository {
     }
 
     @Override
-    public void saveUser(final UserSaveMessage dto){
+    public void saveUser(final AccountCreatedDto dto){
         if(dto == null) throw new IllegalArgumentException("The model to save the user cannot be empty");
 
         var user = new UserEntity();
 
-        user.setUserId(dto.getAccountUuid());
+        user.setUserUuid(dto.getAccountUuid());
         user.setName(dto.getName());
         user.setLastName(dto.getLastname());
         user.setType(dto.getAccountRol());

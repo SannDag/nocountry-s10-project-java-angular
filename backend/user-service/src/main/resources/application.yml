@@ -5,19 +5,20 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-#    url: jdbc:mysql://20.121.214.190:3307/user-db
-#    username: root
-#    password: nocountry#2023
-    url: jdbc:mysql://localhost:3306/local_db_user
+    url: jdbc:mysql://20.121.214.190:3307/user-db
     username: root
-    password: 12345678
+    password: nocountry#2023
+    #url: jdbc:mysql://localhost:3306/local_db_user
+    #username: root
+    #password: 12345678
   jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: create-auto
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   kafka:
@@ -25,6 +26,8 @@ spring:
       default-topic: account-topic
     consumer:
       bootstrap-servers: 20.121.214.190:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: message-account-consumer
 
 server:

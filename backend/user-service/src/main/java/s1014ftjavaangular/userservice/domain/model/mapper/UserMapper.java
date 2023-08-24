@@ -31,7 +31,7 @@ public class UserMapper {
 
     public UserResponse entityToModel(UserEntity userEntity){
         return UserResponse.builder()
-                .id(userEntity.getUserId())
+                .id(userEntity.getUserUuid())
                 .identifier(userEntity.getIdentifier())
                 .number(userEntity.getNumber())
                 .type(userEntity.getType())
@@ -40,7 +40,11 @@ public class UserMapper {
                 .lastName(userEntity.getLastName())
                 .civilState(userEntity.getCivilState())
                 .birthDay(userEntity.getBirthDay())
-                .residenceDetails(residenceEntityToModel(userEntity.getResidenceDetails()))
+                .residenceDetails(
+                        ( userEntity.getResidenceDetails() != null )
+                                ? residenceEntityToModel(userEntity.getResidenceDetails())
+                                : null
+                        )
                 .phoneDetails(userEntity.getPhoneDetails().stream().map(this::phoneDetailsEntityToModel).toList())
                 .blackList(userEntity.getBlackList())
                 .build();

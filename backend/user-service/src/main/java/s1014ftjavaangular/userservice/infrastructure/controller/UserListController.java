@@ -18,17 +18,29 @@ public class UserListController {
 
     @GetMapping()
     public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok(userListFindAllUseCase.findAll());
+        var response = userListFindAllUseCase.findAll();
+
+        return response.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(response);
     }
 
     @GetMapping("/type/{type}")
     public ResponseEntity<?> getAllByType(@PathVariable String type){
-        return ResponseEntity.ok(userListByTypeUseCase.findAllByType(type));
+        var response = userListByTypeUseCase.findAllByType(type);
+
+        return response.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(response);
     }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getAllById(@PathVariable String id){
-        return  ResponseEntity.ok(userListByIdUseCase.findById(id));
+        var response = userListByIdUseCase.findById(id);
+
+        return response.isEmpty()
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(response);
     }
 
 }

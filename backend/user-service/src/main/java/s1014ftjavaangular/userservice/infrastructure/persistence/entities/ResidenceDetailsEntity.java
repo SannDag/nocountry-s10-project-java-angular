@@ -13,7 +13,7 @@ import s1014ftjavaangular.userservice.domain.model.enums.HousingStatus;
 @Table(name = "residence_details")
 public class ResidenceDetailsEntity {
     @Id
-    @Column(name = "residence_id")
+    @Column(name = "user_id")
     private String residenceUuid;
 
     @Enumerated(EnumType.STRING)
@@ -43,6 +43,8 @@ public class ResidenceDetailsEntity {
 
     @JsonIgnore
     @ToString.Exclude
-    @OneToOne(mappedBy = "residenceDetails", fetch = FetchType.LAZY)
-    private UserEntity userEntity;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @MapsId
+    private UserEntity user;
 }

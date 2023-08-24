@@ -18,9 +18,6 @@ public class UserListFindByTypeUseCaseImpl implements UserListByTypeUseCase {
     @Override
     public List<UserResponse> findAllByType(String type) {
         List<UserResponse> userDto = userRepository.findAllByType(type);
-        if(userDto.isEmpty()){
-            throw new UserNotFoundException("The user was not found");
-        }
 
         return userDto;
 

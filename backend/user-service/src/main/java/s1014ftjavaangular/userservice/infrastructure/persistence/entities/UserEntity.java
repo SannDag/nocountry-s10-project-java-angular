@@ -22,7 +22,7 @@ public class UserEntity implements Serializable {
 
         @Id
         @Column(name = "user_id")
-        private String userId;
+        private String userUuid;
 
         @Column(name = "identifier")
         private String identifier;
@@ -53,8 +53,7 @@ public class UserEntity implements Serializable {
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<PhoneDetailsEntity> phoneDetails;
 
-        @OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "residence_id")
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private ResidenceDetailsEntity residenceDetails;
 
         @Column(name = "blacklist")

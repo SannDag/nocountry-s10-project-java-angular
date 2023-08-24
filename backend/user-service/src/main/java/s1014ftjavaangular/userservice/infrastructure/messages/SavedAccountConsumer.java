@@ -8,8 +8,9 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.listener.AcknowledgingMessageListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
-import s1014ftjavaangular.userservice.domain.model.dto.request.UserSaveMessage;
+import s1014ftjavaangular.userservice.domain.model.dto.request.AccountCreatedDto;
 import s1014ftjavaangular.userservice.domain.usecase.CreateUserUseCase;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -20,23 +21,21 @@ public class SavedAccountConsumer implements AcknowledgingMessageListener<String
 
 
     @Override
-    @KafkaListener(topics = "${spring.kafka.template.default-topic}")
+    @KafkaListener(topics = "${spring.kafka.template.default-topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void onMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
-        //<<<<<<<<
+        //
         log.info("Consumer Receives in Microservice Security");
         log.info("Consumer Record	:	{}", consumerRecord.value());
 
         consumerRecord.value();
 
         try{
-            UserSaveMessage message = objectMapper.readValue(consumerRecord.value(), UserSaveMessage.class);
+            AccountCreatedDto message = objectMapper.readValue(consumerRecord.value(), AccountCreatedDto.class);
             useCase.saveUser(message);
         } catch(Exception ex){
-
+            log.error("Exception message: {}", ex);
         }
 
         acknowledgment.acknowledge();
     }
-
-
 }
