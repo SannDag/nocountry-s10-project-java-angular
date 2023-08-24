@@ -12,11 +12,9 @@ import java.util.Map;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class SecurityApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(SecurityApplication.class, args);
     }
-
     @Bean
     public EurekaClientConfigBean eurekaInstanceConfig(InetUtils inetUtils) {
         var config = new EurekaClientConfigBean();
