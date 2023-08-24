@@ -49,7 +49,7 @@ public class SecurityConfig {
         http.authenticationManager(authenticationManager);
 
         http.authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET, "/v3/**", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**", "/META-INF/**").permitAll()
+                .requestMatchers( "/api-docs/**","/v3/**", "/api-doc/**", "/**.yml","/**.yaml", "/swagger-resources/**", "/swagger-ui/**", "security.html", "/webjars/**", "/META-INF/**").permitAll()
                 .requestMatchers(HttpMethod.GET,
                         "/api/accounts/current-session"
                 ).hasAnyRole(Rol.ADMIN.name(), Rol.CUSTOMER.name(), Rol.EMPLOYEE.name())

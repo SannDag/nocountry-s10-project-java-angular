@@ -1,3 +1,7 @@
+springdoc:
+  swagger-ui:
+    path: /user-service.html
+
 spring:
   application:
     name: user-service
