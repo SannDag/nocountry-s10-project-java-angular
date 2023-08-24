@@ -102,7 +102,8 @@ public class UserRepositoryAdapter implements UserRepository {
         if(dto.getName() != null) entity.setName(dto.getName());
         if(dto.getLastName() != null) entity.setLastName(dto.getLastName());
         if(dto.getIdentifier() != null) entity.setIdentifier(dto.getIdentifier());
-        if(dto.getGenre() != null) entity.setIdentifier(dto.getIdentifier());
+        if(dto.getIdentifierNumber() != null) entity.setIdentifierNumber(dto.getIdentifierNumber());
+        if(dto.getGenre() != null) entity.setGenre(dto.getGenre());
         if(dto.getBirthDay() != null) entity.setBirthDay(dto.getBirthDay());
         if(dto.getCivilStatus() != null) entity.setCivilStatus(dto.getCivilStatus());
 

@@ -27,5 +27,4 @@ public class UserRequest {
     private LocalDate birthDay;
     private List<PhoneDetails> phoneDetails;
     private ResidenceDetails residenceDetails;
-    private Boolean blackList;
 }

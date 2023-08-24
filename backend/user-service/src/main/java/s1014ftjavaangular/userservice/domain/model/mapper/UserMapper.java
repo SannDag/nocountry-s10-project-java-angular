@@ -24,7 +24,6 @@ public class UserMapper {
                 .civilStatus(request.getCivilStatus())
                 .birthDay(request.getBirthDay())
                 .phoneDetails(request.getPhoneDetails())
-                .blackList(request.getBlackList())
                 .build();
     }
 
