@@ -63,6 +63,7 @@ export class RegisterComponent {
             this.router.navigateByUrl("/auth/login");
           }, 2000);
         },
+
         error: err =>{
           console.log(err);
           this.registerError = err;

@@ -37,7 +37,11 @@ export class TokenService {
 
   public logOut(): void{
     localStorage.removeItem(TOKEN_LOGIN);
+    localStorage.removeItem(ROL_USER);
+    localStorage.removeItem(EMAIL_USER);
   }
+
+
 
   public isLoggued(): boolean{
     return this.getToken() !== null;
