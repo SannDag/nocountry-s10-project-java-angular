@@ -47,7 +47,6 @@ export class RegisterComponent {
   }
 
 
-
   registrarUsuario(){
 
     if(this.registroForm.valid){
