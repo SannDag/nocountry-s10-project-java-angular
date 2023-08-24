@@ -19,6 +19,7 @@ import java.util.List;
 public class UserResponse {
     private String id;
     private String identifier;
+    private String identifierNumber;
     private String number;
     private String type;
     private Genre genre;

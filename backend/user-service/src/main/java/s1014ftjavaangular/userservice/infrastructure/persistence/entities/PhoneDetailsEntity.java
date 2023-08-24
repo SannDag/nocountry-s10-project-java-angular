@@ -18,16 +18,16 @@ public class PhoneDetailsEntity {
     private String phoneUuid;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "phone_label")
+    @Column(name = "phone_label", nullable = false)
     private PhoneLabel phoneLabel;
 
-    @Column(name = "country_code")
+    @Column(name = "country_code", nullable = false)
     private String countryCode;
 
-    @Column(name = "city_code")
+    @Column(name = "city_code", nullable = false)
     private String cityCode;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
     @JsonIgnore

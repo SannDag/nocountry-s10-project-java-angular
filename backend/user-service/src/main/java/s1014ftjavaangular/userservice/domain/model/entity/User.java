@@ -18,6 +18,7 @@ public class User {
     private String id;
 
     private String identifier;
+    private String identifierNumber;
 
     private String number;
 

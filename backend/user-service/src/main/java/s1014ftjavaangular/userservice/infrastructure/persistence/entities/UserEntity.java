@@ -28,6 +28,8 @@ public class UserEntity implements Serializable {
 
         @Column(name = "identifier")
         private String identifier;
+        @Column(name = "identifier_number")
+        private String identifierNumber;
 
         @Column(name = "number")
         private String number;
