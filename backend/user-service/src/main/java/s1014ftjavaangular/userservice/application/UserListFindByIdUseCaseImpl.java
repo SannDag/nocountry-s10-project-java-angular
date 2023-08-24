@@ -8,6 +8,7 @@ import s1014ftjavaangular.userservice.domain.repository.UserRepository;
 import s1014ftjavaangular.userservice.domain.usecase.UserListByIdUseCase;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -16,9 +17,9 @@ public class UserListFindByIdUseCaseImpl implements UserListByIdUseCase {
     private final UserRepository userRepository;
 
     @Override
-    public List<UserResponse> findById(String id) {
-        List<UserResponse> userDto = userRepository.findById(id);
+    public UserResponse findById(String id) {
+        Optional<UserResponse> userDto = userRepository.findById(id);
 
-        return userDto;
+        return userDto.isEmpty() ? null : userDto.get();
     }
 }

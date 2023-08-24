@@ -17,7 +17,7 @@ public class ResidenceDetailsEntity {
     private String residenceUuid;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "housing_status", columnDefinition = "enum('OWNED', 'RENTED')")
+    @Column(name = "housing_status")
     private HousingStatus housingStatus;
 
     @Column(name = "years_in_house")

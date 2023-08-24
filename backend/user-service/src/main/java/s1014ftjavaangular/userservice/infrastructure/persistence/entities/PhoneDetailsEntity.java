@@ -18,7 +18,7 @@ public class PhoneDetailsEntity {
     private String phoneUuid;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "phone_label", columnDefinition = "enum('HOME', 'CELLPHONE')")
+    @Column(name = "phone_label")
     private PhoneLabel phoneLabel;
 
     @Column(name = "country_code")

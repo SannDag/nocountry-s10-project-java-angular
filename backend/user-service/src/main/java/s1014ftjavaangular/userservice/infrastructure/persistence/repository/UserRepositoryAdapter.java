@@ -10,6 +10,7 @@ import s1014ftjavaangular.userservice.domain.repository.UserRepository;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEntity;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -44,16 +45,15 @@ public class UserRepositoryAdapter implements UserRepository {
     }
 
     @Override
-    public List<UserResponse> findById(String id) {
+    public Optional<UserResponse> findById(String id) {
         if(id.isEmpty()) {
             throw new IllegalArgumentException("The id cannot be empty");
         }
 
         var entity = jpaRepository.findById(id);
 
-        List<UserResponse> userResponse = entity.stream()
-                .map(mapper::entityToModel)
-                .collect(Collectors.toList());
+        var userResponse = entity
+                .map(mapper::entityToModel);
 
         return userResponse;
     }

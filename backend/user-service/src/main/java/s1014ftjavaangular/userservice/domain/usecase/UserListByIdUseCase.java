@@ -3,8 +3,9 @@ package s1014ftjavaangular.userservice.domain.usecase;
 import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserListByIdUseCase {
 
-    List<UserResponse> findById(String id);
+    UserResponse findById(String id);
 }

@@ -34,7 +34,7 @@ public class UserEntity implements Serializable {
         private String type;
 
         @Enumerated(EnumType.STRING)
-        @Column(name = "genre", columnDefinition = "enum('MALE', 'FEMALE', 'OTHER')")
+        @Column(name = "genre")
         private Genre genre;
 
         @Column(name = "name")
