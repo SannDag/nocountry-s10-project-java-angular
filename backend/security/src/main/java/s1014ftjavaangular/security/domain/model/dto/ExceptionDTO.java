@@ -4,8 +4,8 @@ import lombok.Builder;
 
 @Builder
 public record ExceptionDTO(
-    String detail,
-    String type,
-    Integer status
+        String detail,
+        String type,
+        Integer status
 ) {
 }

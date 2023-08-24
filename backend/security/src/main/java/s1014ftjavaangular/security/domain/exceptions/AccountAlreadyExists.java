@@ -1,8 +1,8 @@
 package s1014ftjavaangular.security.domain.exceptions;
 
-public class AccountAlreadyExists extends RuntimeException{
+public class AccountAlreadyExists extends RuntimeException {
 
-    public AccountAlreadyExists(String message){
+    public AccountAlreadyExists(String message) {
         super(message);
     }
 }

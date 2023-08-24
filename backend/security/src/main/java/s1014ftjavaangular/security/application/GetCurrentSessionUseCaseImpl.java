@@ -2,13 +2,9 @@ package s1014ftjavaangular.security.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import s1014ftjavaangular.security.domain.enums.Rol;
-import s1014ftjavaangular.security.domain.model.dto.LoginDTO;
 import s1014ftjavaangular.security.domain.model.dto.LoginResponse;
-import s1014ftjavaangular.security.domain.model.entities.Account;
-import s1014ftjavaangular.security.domain.repository.AccountRepositoryPort;
 import s1014ftjavaangular.security.domain.service.JwtProvider;
 import s1014ftjavaangular.security.domain.usecase.GetCurrentSessionUse;
 

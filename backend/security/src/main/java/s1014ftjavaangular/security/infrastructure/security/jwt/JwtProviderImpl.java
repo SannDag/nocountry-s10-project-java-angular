@@ -24,6 +24,7 @@ public class JwtProviderImpl implements JwtProvider<AccountPrincipal> {
 
     @Value("${app.jwt.secret}")
     private String SECRET_KEY;
+
     @Value("${app.jwt.expiration-in-minute}")
     private String JWT_EXPIRATION;
 
