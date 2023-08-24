@@ -99,7 +99,7 @@ public class TransactionMessagePublish {
             throws JsonMappingException, JsonProcessingException {
 
         log.info("Message Sent Successfully for the key :{} and the value is {},partition is {}", key, value,
-        result.getRecordMetadata().partition());
+                result.getRecordMetadata().partition());
 
     }
 }

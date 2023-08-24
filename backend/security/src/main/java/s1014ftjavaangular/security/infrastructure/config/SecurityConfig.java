@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,15 +30,9 @@ public class SecurityConfig {
     private final UserDetailsService customAccountDetailsService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-    /*
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }*/
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
                 .csrf().disable()
                 .httpBasic().disable()
@@ -54,10 +47,9 @@ public class SecurityConfig {
         auth.userDetailsService(customAccountDetailsService).passwordEncoder(passwordEncoder);
 
         http.authenticationManager(authenticationManager);
-        //AuthenticationManager authenticationManager = auth.build();
-        //http.authenticationManager(authenticationManager);
 
         http.authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/v3/**", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**", "/META-INF/**").permitAll()
                 .requestMatchers(HttpMethod.GET,
                         "/api/accounts/current-session"
                 ).hasAnyRole(Rol.ADMIN.name(), Rol.CUSTOMER.name(), Rol.EMPLOYEE.name())

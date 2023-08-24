@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/models/login-request';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +11,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
+  showAlert = false;
+  loginError: string="";
+  loginSuccess: string = "";
 
-  loginError:string="";
 
   loginForm = this.fb.group({
     email:['', [Validators.required,Validators.email]],
-    password:['',Validators.required]
+    password:['',[Validators.required, Validators.minLength(8)]]
   })
 
-  constructor(private fb: FormBuilder, private router:Router, private authService:AuthService){}
+  constructor(private fb: FormBuilder, private router:Router, private authService:AuthService,
+    private tokenService:TokenService){}
 
   ngOnInit(): void {
 
@@ -38,15 +42,33 @@ export class LoginComponent implements OnInit{
       this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (response) => {
           console.log(response);
+          //seteo en el localEstore el token, rol y email del usuario logueado
+          this.tokenService.setToken(response.token);
+          this.tokenService.setRol(response.rol);
+          this.tokenService.setEmail(response.email);
+          this.loginSuccess = "Inicio de sesión exitoso";
+          // Mostrar el mensaje por 3 segundos y luego borrarlo
+          setTimeout(() => {
+            this.loginSuccess = "";
+          }, 1000);
         },
         error: (errorData) => {
           console.log(errorData);
+          this.showAlert = true;
           this.loginError = errorData;
+          setTimeout(() =>{
+            this.showAlert = false;
+            this.loginForm.reset();
+          }, 3000);
         },
         complete: () => {
           console.info("Login completo");
-          this.router.navigateByUrl('');
+          setTimeout(() => {
+            this.router.navigateByUrl('');
+          },2000);
+
           this.loginForm.reset();
+
         }
       })
     }
@@ -55,4 +77,6 @@ export class LoginComponent implements OnInit{
       alert("Error al ingresar los datos.");
     }
   }
+
+
 }

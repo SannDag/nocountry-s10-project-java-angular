@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Registro } from 'src/app/models/registro';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,46 +10,79 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-   registroForm!: FormGroup;
 
-   constructor(private formBuilder: FormBuilder, private authService:AuthService) {}
+  registerError : string="";
+  registerSuccess : string = "";
 
-  ngOnInit() {
-    this.registroForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
+      registroForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8),]],
- 
-    });
-  }
+      password: ['', [Validators.required, Validators.minLength(8)]]
+
+
+    })
+
+
+   constructor(private formBuilder: FormBuilder, private authService:AuthService,
+    private router:Router) {}
+
+  ngOnInit() {}
+
   get email(){
-    return this.registroForm.controls['email'];
+    return this.registroForm.controls.email;
   }
 
   get password()
   {
-    return this.registroForm.controls['password'];
+    return this.registroForm.controls.password;
   }
   get name()
   {
-    return this.registroForm.controls['nombre'];
+    return this.registroForm.controls.name;
   }
-  get lastName()
+  get lastname()
   {
-    return this.registroForm.controls['apellido'];
+    return this.registroForm.controls.lastname;
   }
 
 
 
   registrarUsuario(){
-    const nuevoUsuario: Registro = this.registroForm.value;
-    this.authService.registro(nuevoUsuario)
-    .subscribe( response =>{
-        console.log('Usuario registrado:', response);
-    })
-    
+
+    if(this.registroForm.valid){
+      this.authService.registro(this.registroForm.value as Registro).subscribe({
+        next: response =>{
+          console.log(response);
+          console.log("Registro exitoso");
+          this.registerSuccess = "Usuario creado " + this.registroForm.value.name;
+          setTimeout(() => {
+            this.registerSuccess ="";
+          }, 1000);
+          setTimeout(() => {
+            this.router.navigateByUrl("/auth/login");
+          }, 2000);
+        },
+
+        error: err =>{
+          console.log(err);
+          this.registerError = err;
+        },
+        complete: () => {
+          console.log("Registro completo");
+        }
+
+
+      })
+    }else{
+
+      this.registroForm.markAllAsTouched();
+      alert("Error al ingresar los datos.");
+    }
+
   }
+
+
 
 
 }

@@ -18,9 +18,11 @@ import { FooterComponent } from './pages/footer/footer.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-
-
     MatIconModule,
+  ],
+  exports:[
+    NavbarComponent,
+    FooterComponent
   ]
 })
 export class HomeModule { }

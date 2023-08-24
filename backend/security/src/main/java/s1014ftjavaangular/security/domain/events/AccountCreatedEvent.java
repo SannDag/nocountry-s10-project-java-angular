@@ -10,7 +10,7 @@ import s1014ftjavaangular.security.infrastructure.message.TransactionMessagePubl
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class AccountCreatedEvent implements EventService<AccountCreatedDTO>{
+public class AccountCreatedEvent implements EventService<AccountCreatedDTO> {
     private final TransactionMessagePublish publisher;
 
     @Override
