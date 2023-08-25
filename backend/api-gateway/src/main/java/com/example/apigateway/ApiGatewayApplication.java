@@ -1,5 +1,6 @@
 package com.example.apigateway;
 
+import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,4 +18,5 @@ public class ApiGatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
+
 }

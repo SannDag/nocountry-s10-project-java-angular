@@ -9,7 +9,7 @@ springdoc:
     path: /security.html
 spring:
   application:
-    name: security
+    name: security-local
   main:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
@@ -18,7 +18,7 @@ spring:
     username: root
     password: nocountry#2023
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:
       ddl-auto: update
@@ -58,8 +58,24 @@ eureka:
     fetch-registry: true
     enabled: true
     service-url:
-      #default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
-      default-zone: http://localhost:8761/eureka
+      default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
+      #default-zone: https://localhost:8761/eureka
+
+resilience4j.circuitbreaker:
+  instances:
+    mysqlCR:
+      registerHealthIndicator: true
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 5
+      slowCallRateThreshHold: 30
+      slowCallDurationThreshHold: 25s
+      waitDurationInOpenState: 30s
+      failureRateThreshold: 50
+      ignoreExceptions:
+        - java.lang.IllegalArgumentException
+        - s1014ftjavaangular.security.domain.exceptions.AccountAlreadyExists
+        - jakarta.validation.ConstraintViolationException
+
 
 management:
   tracing:

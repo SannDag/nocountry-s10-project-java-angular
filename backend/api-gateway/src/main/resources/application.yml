@@ -28,13 +28,32 @@ spring:
           uri: lb://security
           predicates:
             - Path=/**
-          
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: security-fallback
+                fallbackuri: forward:/securityFallback
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/**
           filters:
             - JwtAuthenticationFilter
+            - name: CircuitBreaker
+              args:
+                name: user-fallback
+                fallbackuri: forward:/userFallback
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 5
+      slowCallRateThreshHold: 30
+      slowCallDurationThreshHold: 25s
+      waitDurationInOpenState: 30s
+      failureRateThreshold: 50
 
 eureka:
   client:
