@@ -11,8 +11,10 @@ const routes:Routes =[
   {
     path:'',
     children:[
+
+      {path:'register', component:RegisterComponent},
       {path:'login', component:LoginComponent},
-      {path:'register', component:RegisterComponent}
+      {path: '',  redirectTo: 'login',pathMatch: 'full'}
 
     ]
   }

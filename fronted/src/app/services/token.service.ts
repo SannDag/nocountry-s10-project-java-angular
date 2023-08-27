@@ -1,8 +1,10 @@
+import { useAnimation } from '@angular/animations';
 import { Injectable } from '@angular/core';
 
 const TOKEN_LOGIN = 'AuthToken';
 const ROL_USER = 'RolUser';
 const EMAIL_USER = 'EmailUser';
+const NAME_USER = 'NameUser';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,13 @@ const EMAIL_USER = 'EmailUser';
 export class TokenService {
 
   constructor() { }
+
+  public setNameUser(name:string):void{
+    localStorage.setItem(NAME_USER, name);
+  }
+  public getNameUser():string | null{
+    return localStorage.getItem(NAME_USER);
+  }
 
   public setToken(token:string):void{
     localStorage.setItem(TOKEN_LOGIN, token);

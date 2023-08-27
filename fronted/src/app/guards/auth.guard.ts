@@ -6,10 +6,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   const tokenStore = new TokenService();
 
   if(tokenStore.isLoggued()){
-    alert('Ya estás logueado. No puedes acceder a la página de registro.');
-    router.navigateByUrl("");
+    alert("Ruta bloqueada");
+    router.navigate(['']);
+    return  false;
 
-    return false;
      // No permitir el acceso a la página de registro
   }
  return true;

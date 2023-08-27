@@ -28,7 +28,13 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
-
+  //Actualiza token
+  getCurrentSession():Observable<LoginResponse> {
+    return this.http.get<LoginResponse>(this.urlAuth + 'current-session').pipe(
+      catchError(this.handleError)
+    )
+  }
+  //Login moqueado
   loginMock(request:LoginRequest):Observable<any>{
     return this.http.get<any>('././assets/loginRequest.json').pipe(
       catchError(this.handleError)
