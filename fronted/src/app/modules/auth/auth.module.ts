@@ -5,6 +5,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from '../home/home.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 
 
 
@@ -20,7 +22,9 @@ import { HomeModule } from '../home/home.module';
     ReactiveFormsModule,
     HomeModule
 
-
-  ]
+  ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true}
+  ],
 })
 export class AuthModule { }

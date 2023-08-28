@@ -13,8 +13,9 @@ import { LoginResponse } from '../models/login-response';
 })
 export class AuthService {
 
-  urlAuth = 'http://localhost:5555/api/accounts/';
+  urlAuth = 'https://s10-14-ft-api-security.azurewebsites.net/api/accounts/';
 
+  userActivity: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http:HttpClient){}
@@ -28,7 +29,13 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+  //Actualiza token
+  getCurrentSession():Observable<LoginResponse> {
+    return this.http.get<LoginResponse>(this.urlAuth + 'current-session');
 
+
+  }
+  //Login moqueado
   loginMock(request:LoginRequest):Observable<any>{
     return this.http.get<any>('././assets/loginRequest.json').pipe(
       catchError(this.handleError)

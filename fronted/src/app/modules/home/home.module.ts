@@ -6,6 +6,9 @@ import { HomePage } from './pages/home-page/home.page';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './pages/footer/footer.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
+
 
 
 
@@ -23,6 +26,9 @@ import { FooterComponent } from './pages/footer/footer.component';
   exports:[
     NavbarComponent,
     FooterComponent
-  ]
+  ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true}
+  ],
 })
 export class HomeModule { }
