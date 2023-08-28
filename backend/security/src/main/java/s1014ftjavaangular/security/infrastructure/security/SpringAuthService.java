@@ -12,7 +12,6 @@ import s1014ftjavaangular.security.domain.service.AuthService;
 @RequiredArgsConstructor
 public class SpringAuthService implements AuthService {
     private final AuthenticationManager authenticationManager;
-    //private final UserDetailsService service;
 
     @Override
     public AccountPrincipal authenticate(String email, String credential) {
