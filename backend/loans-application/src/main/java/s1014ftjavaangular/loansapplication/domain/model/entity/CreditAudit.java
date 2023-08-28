@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class Reviewer {
-    private String reviewerId;
-    private LocalDate initDate;
-    private String loanApplicationNumber;
+public class CreditAudit {
+    private String creditAuditId;
+    private LocalDate auditDate;
+    private String creditAuditorId;
 }

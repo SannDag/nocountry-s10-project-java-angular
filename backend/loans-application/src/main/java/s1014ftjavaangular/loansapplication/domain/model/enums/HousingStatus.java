@@ -1,8 +1,7 @@
 package s1014ftjavaangular.loansapplication.domain.model.enums;
 
-public enum WorkShift {
+public enum HousingStatus {
+    OWNED,
+    RENTED
 
-    FULLTIME,
-    PARTTIME,
-    FREELANCE
 }

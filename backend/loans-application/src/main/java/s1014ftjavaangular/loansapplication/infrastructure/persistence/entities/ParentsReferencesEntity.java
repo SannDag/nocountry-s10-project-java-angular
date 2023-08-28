@@ -11,12 +11,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="references")
-public class ReferencesEntity {
+@Table(name="parents_references")
+public class ParentsReferencesEntity {
 
     @Id
-    @Column(name="references_id")
-    private String referencesId;
+    @Column(name="loan_application_id")
+    private String loansApplicationId;
 
     @Column(name="spouses_name")
     private String spousesName;
@@ -24,15 +24,15 @@ public class ReferencesEntity {
     @Column(name="spouses_phone")
     private String spousesPhone;
 
-    @Column(name="personal_references_name")
-    private String personalReferencesName;
+    @Column(name = "family_name")
+    private String familyName;
 
-    @Column(name="personal_references_phone")
-    private String personalReferencesPhone;
+    @Column(name = "family_phone")
+    private String familyPhone;
 
     @JsonIgnore
     @ToString.Exclude
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
-    private LoansApplicationEntity loansApplication;
+    private LoanApplicationEntity loansApplication;
 }

@@ -7,29 +7,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDate;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="reviewer")
-public class ReviewerEntity {
+@Table(name="personal_reference")
+public class PersonalReferenceEntity {
 
     @Id
-    @Column(name="loan_appication_id")
-    private String loanApplicationId;
+    @Column(name = "personal_reference_id")
+    private String personalReferenceId;
 
-    @Column(name="reviewer_id", nullable = false)
-    private String reviewerId;
+    @Column(name="personal_reference_name")
+    private String personalReferenceName;
 
-    @Column(name="init_date", nullable = false)
-    private LocalDate initDate;
+    @Column(name="personal_reference_phone")
+    private String personalReferencePhone;
 
     @JsonIgnore
     @ToString.Exclude
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
-    private LoansApplicationEntity loansApplication;
+    private LoanApplicationEntity loansApplication;
+
 }

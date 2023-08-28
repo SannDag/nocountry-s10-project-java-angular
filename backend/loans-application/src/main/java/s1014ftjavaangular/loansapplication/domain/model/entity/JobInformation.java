@@ -8,7 +8,7 @@ import s1014ftjavaangular.loansapplication.domain.model.enums.WorkShift;
 @Builder
 public class JobInformation {
 
-    private String jobInformationid;
+    private String loanApplicationId;
     private String company;
     private String occupation;
     private WorkShift workShift;
@@ -17,7 +17,6 @@ public class JobInformation {
     private Double otherIncome;
     private String city;
     private String state;
-    private String address1;
-    private String address2;
+    private String address;
     private String phone;
 }

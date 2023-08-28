@@ -43,11 +43,8 @@ public class JobInformationEntity {
     @Column(name="state", length = 70)
     private String state;
 
-    @Column(name="address1", length = 80)
-    private String address1;
-
-    @Column(name="address2", length = 80)
-    private String address2;
+    @Column(name="address", length = 80)
+    private String address;
 
     @Column(name="phone", length = 30)
     private String phone;
@@ -57,5 +54,5 @@ public class JobInformationEntity {
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
-    private LoansApplicationEntity loansApplication;
+    private LoanApplicationEntity loansApplication;
 }

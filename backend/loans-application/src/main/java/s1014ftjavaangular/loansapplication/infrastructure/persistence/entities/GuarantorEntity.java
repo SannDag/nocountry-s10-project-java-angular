@@ -37,25 +37,19 @@ public class GuarantorEntity {
     @Column(name="state", nullable = false)
     private String state;
 
-    @Column(name="address1", nullable = false)
-    private String address1;
-
-    @Column(name="address2")
-    private String address2;
+    @Column(name="address", nullable = false)
+    private String address;
 
     @Column(name="zipcode", nullable = false)
     private String zipcode;
 
-    @Column(name="phone1", nullable = false)
-    private String phone1;
-
-    @Column(name="phone2")
-    private String phone2;
+    @Column(name="phone", nullable = false)
+    private String phone;
 
     @JsonIgnore
     @ToString.Exclude
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
-    private LoansApplicationEntity loansApplication;
+    private LoanApplicationEntity loansApplicationId;
 }

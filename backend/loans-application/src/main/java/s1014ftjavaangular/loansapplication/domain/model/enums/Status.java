@@ -1,4 +1,9 @@
 package s1014ftjavaangular.loansapplication.domain.model.enums;
 
-public class Status {
+public enum Status {
+
+    CREATED,
+    AUDITING,
+    DECLINED,
+    APPROVED
 }

@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.loansapplication.domain.model.entity.JobInformation;
 import s1014ftjavaangular.loansapplication.domain.model.enums.Status;
 
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name="loans_application")
-public class LoansApplicationEntity {
+public class LoanApplicationEntity {
     @Id
     @Column(name = "loan_application_id")
     private String loanApplicationId;
@@ -37,15 +36,18 @@ public class LoansApplicationEntity {
     private JobInformationEntity jobInformation;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "loansApplication", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReferencesEntity> references;
+    @OneToMany(mappedBy = "personalReferenceId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PersonalReferenceEntity> personalReferenceId;
 
-    @OneToOne(mappedBy = "loansApplication", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "loansApplication", cascade = CascadeType.ALL)
+    private ParentsReferencesEntity parentsReferenceId;
+
+    @OneToOne(mappedBy = "loansApplicationId", cascade = CascadeType.ALL, orphanRemoval = true)
     private GuarantorEntity guarantor;
 
-    @OneToOne(mappedBy = "loansApplication", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ReviewerEntity reviewer;
+    @OneToOne(mappedBy = "loansApplicationId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private CreditAuditEntity creditAuditId;
 
-    @Column(name = "request_amount", nullable = false)
+    @Column(name = "status", nullable = false)
     private Status status;
 }

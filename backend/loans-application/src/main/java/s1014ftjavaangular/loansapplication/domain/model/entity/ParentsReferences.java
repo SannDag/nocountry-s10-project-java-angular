@@ -5,11 +5,12 @@ import lombok.Data;
 
 @Data
 @Builder
-public class References {
-    private String referencesId;
+public class ParentsReferences {
+
+    private String loansApplicationId;
     private String spousesName;
     private String spousesPhone;
-    private String personalReferencesName;
-    private String personalReferencesPhone;
+    private String familyName;
+    private String familyPhone;
 
 }
