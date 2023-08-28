@@ -1,5 +1,9 @@
-import { useAnimation } from '@angular/animations';
+
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
+import { LoginResponse } from '../models/login-response';
+import { Observable, timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 const TOKEN_LOGIN = 'AuthToken';
 const ROL_USER = 'RolUser';
@@ -11,7 +15,22 @@ const NAME_USER = 'NameUser';
 })
 export class TokenService {
 
-  constructor() { }
+  private ubdateInterval = 1 * 60 * 1000;// 1minuto en milisegundos
+
+  constructor(private authService:AuthService) { }
+
+  private updateToken(): Observable<LoginResponse>{
+
+    return this.authService.getCurrentSession();
+  }
+
+  startTokenUpdater(): Observable<LoginResponse> {
+    return timer(0,this.ubdateInterval).pipe(
+
+      switchMap(()=> this.updateToken())
+    );
+  }
+
 
   public setNameUser(name:string):void{
     localStorage.setItem(NAME_USER, name);
@@ -50,10 +69,9 @@ export class TokenService {
     localStorage.removeItem(EMAIL_USER);
   }
 
-
-
   public isLoggued(): boolean{
     return this.getToken() !== null;
   }
+
 
 }
