@@ -20,7 +20,7 @@ export class InactivityService {
         this.tokenService.logOut();
         this.router.navigateByUrl('auth/login');
 
-      }, 300000); // 5 minutos de inactividad antes de cerrar sesión
+      }, 30000); // 5 minutos de inactividad antes de cerrar sesión
     });
   }
 

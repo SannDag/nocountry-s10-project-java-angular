@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit{
       this.loginError = '';
       this.authService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (response) => {
+          console.log("¡Se ha hecho clic en el botón de inicio de sesión!");
           console.log(response);
           //seteo en el localEstore el token, rol y email del usuario logueado
           this.tokenService.setToken(response.token);
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit{
           // Mostrar el mensaje por 3 segundos y luego borrarlo
           setTimeout(() => {
             this.loginSuccess = "";
-          }, 1000);
+          }, 5000);
         },
         error: (errorData) => {
           console.log(errorData);
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit{
           console.info("Login completo");
           setTimeout(() => {
             this.router.navigateByUrl('');
-          },2000);
+          },6000);
 
           this.loginForm.reset();
 

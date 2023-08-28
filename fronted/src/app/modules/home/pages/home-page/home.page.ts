@@ -27,9 +27,9 @@ export class HomePage implements OnInit, OnDestroy{
       this.userActivitySubscription = interval(this.updateIntervalMillis).subscribe(() => {
         this.updateToken();
       });
-
-    }
       this.inactivityService.startInactivityTimer();
+    }
+
   }
 
   ngOnDestroy(): void {
@@ -51,6 +51,10 @@ export class HomePage implements OnInit, OnDestroy{
       }
 
     )
+  }
+
+  clickAction():void{
+    console.log("Has apretado el boton");
   }
 
 }
