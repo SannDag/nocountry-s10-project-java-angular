@@ -1,15 +1,20 @@
 ---
 app:
   jwt:
-    expiration-in-minute: 5
+    expiration-in-minute: 30
     secret: RandomSecretKey123456789!RandomSecretKey123456789!RandomSecretKey123456789!
-
 springdoc:
   swagger-ui:
-    path: /security.html
+    path: /swagger-ui/security/index.html
+
+springfox:
+  documentation:
+    swagger-ui:
+      path: /swagger-ui/security
+
 spring:
   application:
-    name: security-local
+    name: security
   main:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
@@ -24,6 +29,7 @@ spring:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
   #Connect kafka
   kafka:
     bootstrap-servers: 20.121.214.190:9092
@@ -59,23 +65,15 @@ eureka:
     enabled: true
     service-url:
       default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
-      #default-zone: https://localhost:8761/eureka
 
-resilience4j.circuitbreaker:
+resilience4j.retry:
   instances:
-    mysqlCR:
-      registerHealthIndicator: true
-      slidingWindowType: COUNT_BASED
-      slidingWindowSize: 5
-      slowCallRateThreshHold: 30
-      slowCallDurationThreshHold: 25s
-      waitDurationInOpenState: 30s
-      failureRateThreshold: 50
-      ignoreExceptions:
-        - java.lang.IllegalArgumentException
-        - s1014ftjavaangular.security.domain.exceptions.AccountAlreadyExists
-        - jakarta.validation.ConstraintViolationException
-
+    securityRetry:
+      max-attempts: 5
+      wait-duration: 2000ms
+      retry-exceptions:
+        - java.io.IOException
+        - java.lang.RuntimeException
 
 management:
   tracing:

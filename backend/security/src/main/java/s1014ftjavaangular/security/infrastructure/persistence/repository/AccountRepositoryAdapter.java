@@ -25,8 +25,6 @@ public class AccountRepositoryAdapter implements AccountRepositoryPort {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final TransactionMessagePublish transactionMessagePublish;
-
     private final Function<AccountEntity, Account> entityToModel = (entity) -> new Account(
             entity.getAccountUuid(),
             entity.getEmail(),

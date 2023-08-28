@@ -23,37 +23,27 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: security
-          #uri: https://s10-14-ft-api-security.azurewebsites.net
-          uri: lb://security
+        - id: security-current-session
+          uri: https://s10-14-ft-api-security.azurewebsites.net
+          #uri: lb://security
           predicates:
-            - Path=/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: security-fallback
-                fallbackuri: forward:/securityFallback
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/**
+            - Path=/api/accounts/current-session
           filters:
             - JwtAuthenticationFilter
-            - name: CircuitBreaker
-              args:
-                name: user-fallback
-                fallbackuri: forward:/userFallback
-
-resilience4j.circuitbreaker:
-  configs:
-    default:
-      registerHealthIndicator: true
-      slidingWindowType: COUNT_BASED
-      slidingWindowSize: 5
-      slowCallRateThreshHold: 30
-      slowCallDurationThreshHold: 25s
-      waitDurationInOpenState: 30s
-      failureRateThreshold: 50
+        - id: security
+          uri: https://s10-14-ft-api-security.azurewebsites.net
+          predicates:
+            - Path=/**
+        - id: user-service
+          uri: https://s10-14-ft-api-users.azurewebsites.net
+          predicates:
+            - Path=/api/**
+          filters:
+            - JwtAuthenticationFilter
+        - id: user-service-swagger
+          uri: https://s10-14-ft-api-users.azurewebsites.net
+          predicates:
+            - Path=/**
 
 eureka:
   client:

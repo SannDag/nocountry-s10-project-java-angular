@@ -1,6 +1,7 @@
 package s1014ftjavaangular.security.infrastructure.controller;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +19,12 @@ import s1014ftjavaangular.security.domain.usecase.LoginUseCase;
 public class LoginController {
     private final LoginUseCase loginUseCase;
 
-    @CircuitBreaker(name = "mysqlCR", fallbackMethod = "fallBackLogin")
-    @PostMapping
-    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto) {
+    @Retry(name = "securityRetry")
+    @PostMapping()
+    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto){
         var response = loginUseCase.login(loginDto.getEmail(), loginDto.getPassword());
 
         return ResponseEntity.ok(response);
-    }
-
-    public ResponseEntity<?> fallBackLogin(@RequestBody @Valid LoginDTO loginDto, RuntimeException exception){
-        var response = ResponseEntity.ok("At the moment there is a problem in the login");
-        response.getHeaders().add("Exception", exception.getMessage());
-        return response;
     }
 
 }
