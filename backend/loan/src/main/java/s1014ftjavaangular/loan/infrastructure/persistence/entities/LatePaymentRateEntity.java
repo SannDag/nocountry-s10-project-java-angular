@@ -1,28 +1,31 @@
 package s1014ftjavaangular.loan.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Builder
+@Entity
 @Table(
-        name = "interest_rate",
+        name = "late_payment_rate",
         uniqueConstraints = @UniqueConstraint(name = "uk_name", columnNames = "name")
 )
-public class InterestRatesEntity {
+public class LatePaymentRateEntity {
+
     @Id
-    @Column(name = "interest_rate_id")
-    private String interestRatesUuid;
+    @Column(name = "late_payment_rate_id")
+    private String latePaymentRateId;
+
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
     @Column(name = "annual_percentage", nullable = false)
-    private Double annualPercentage;
+    private String  annualPercentage;
+
     @Column(name = "status", nullable = false)
     private Boolean status;
+
+    @Column(name = "day_of_grace", nullable = false)
+    private String dayOfGrace;
 }
