@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
+import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 
 
@@ -16,12 +19,15 @@ import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
   declarations: [
     HomePage,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CalculadoraComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MatIconModule,
+    MatIconModule,  
+    MatSliderModule
+    
   ],
   exports:[
     NavbarComponent,
