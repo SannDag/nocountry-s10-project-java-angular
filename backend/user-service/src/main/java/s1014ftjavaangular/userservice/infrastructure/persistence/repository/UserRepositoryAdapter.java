@@ -7,14 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import s1014ftjavaangular.userservice.domain.model.dto.request.AccountCreatedDto;
 import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
 import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
-import s1014ftjavaangular.userservice.domain.model.entity.PhoneDetails;
-import s1014ftjavaangular.userservice.domain.model.enums.PhoneLabel;
 import s1014ftjavaangular.userservice.domain.model.mapper.UserMapper;
 import s1014ftjavaangular.userservice.domain.repository.UserRepository;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.PhoneDetailsEntity;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.ResidenceDetailsEntity;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEntity;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
