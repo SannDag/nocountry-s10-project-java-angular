@@ -16,6 +16,7 @@ public class Guarantor {
     private String city;
     private String state;
     private String address;
+    private String apartment;
     private String zipcode;
     private String phone;
 }

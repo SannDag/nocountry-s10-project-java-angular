@@ -6,7 +6,7 @@ import s1014ftjavaangular.loansapplication.domain.model.enums.HousingStatus;
 
 @Data
 @Builder
-public class ApplicationResidence {
+public class GeneralData {
 
     private String loanApplicationId;
     private HousingStatus housingStatus;
@@ -15,5 +15,6 @@ public class ApplicationResidence {
     private String city;
     private String state;
     private String address;
+    private String apartment;
     private String zipcode;
 }

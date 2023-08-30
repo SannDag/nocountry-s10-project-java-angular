@@ -37,16 +37,22 @@ public class JobInformationEntity {
     @Column(name="other_income")
     private Double otherIncome;
 
-    @Column(name="city", length = 60)
+    @Column(name="city", nullable = false, length = 60)
     private String city;
 
-    @Column(name="state", length = 70)
+    @Column(name="state", nullable = false, length = 70)
     private String state;
 
-    @Column(name="address", length = 80)
+    @Column(name="address", nullable = false, length = 80)
     private String address;
 
-    @Column(name="phone", length = 30)
+    @Column(name="apartment")
+    private String apartment;
+
+    @Column(name="zipcode")
+    private String zipcode;
+
+    @Column(name="phone", nullable = false, length = 30)
     private String phone;
 
     @JsonIgnore
