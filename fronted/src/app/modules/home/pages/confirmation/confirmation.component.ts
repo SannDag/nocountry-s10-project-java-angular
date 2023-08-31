@@ -4,17 +4,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { InactivityService } from 'src/app/services/inactivity.service';
 import { TokenService } from 'src/app/services/token.service';
 
-
 @Component({
-  selector: 'app-calculadora',
-  templateUrl: './calculadora.component.html',
-  styleUrls: ['./calculadora.component.scss'],
-
-
+  selector: 'app-confirmation',
+  templateUrl: './confirmation.component.html',
+  styleUrls: ['./confirmation.component.scss']
 })
-export class CalculadoraComponent implements OnInit{
+export class ConfirmationComponent implements OnInit {
 
-  selectedvalue = 0;
   private updateIntervalMinutes = 3;
   private updateIntervalMillis = this.updateIntervalMinutes * 60 * 1000;
   private userActivitySubscription: Subscription | undefined;
@@ -52,13 +48,4 @@ export class CalculadoraComponent implements OnInit{
 
     )
   }
-
-  // formatLabel(value: number): string {
-  //   if (value >= 1000) {
-  //     return Math.round(value / 1000) + 'k';
-  //   }
-
-  //   return `${value}`;
-  // }
-
 }
