@@ -1,12 +1,16 @@
-package s1014ftjavaangular.loansapplication.domain.model.entity;
+package s1014ftjavaangular.loansapplication.domain.model.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import s1014ftjavaangular.loansapplication.domain.model.enums.IdentificationType;
 
 @Data
 @Builder
-public class Guarantor {
+@AllArgsConstructor
+@NoArgsConstructor
+public class GuarantorDto {
     private String loanApplicationId;
     private String name;
     private String lastname;
