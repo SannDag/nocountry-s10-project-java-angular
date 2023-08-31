@@ -13,7 +13,7 @@ import { LoginResponse } from '../models/login-response';
 })
 export class AuthService {
 
-  urlAuth = 'https://s10-14-ft-api-security.azurewebsites.net/api/accounts/';
+  urlAuth = 'http://localhost:5555/api/accounts/';
 
   userActivity: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -23,7 +23,7 @@ export class AuthService {
   login(request: LoginRequest):Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.urlAuth + 'login', request).pipe(
       tap( (response: LoginResponse) => {
-
+        console.log("¡Se ha hecho clic en el botón de inicio de sesión!");
         this.currentUserLoginOn.next(true);
       }),
       catchError(this.handleError)

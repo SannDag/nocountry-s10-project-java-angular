@@ -54,18 +54,18 @@ export class RegisterComponent {
         next: response =>{
           console.log(response);
           console.log("Registro exitoso");
-          this.registerSuccess = "Usuario creado " + this.registroForm.value.name;
+          this.registerSuccess = "Usuario creado " + this.registroForm.value.name + " exitosamente";
           setTimeout(() => {
             this.registerSuccess ="";
-          }, 1000);
+          }, 4000);
           setTimeout(() => {
             this.router.navigateByUrl("/auth/login");
-          }, 2000);
+          }, 5000);
         },
 
         error: err =>{
           console.log(err);
-          this.registerError = err;
+          this.registerError = err.message;
         },
         complete: () => {
           console.log("Registro completo");

@@ -1,0 +1,26 @@
+.hr-estyles{
+  background: #9C9C9CBD;
+  border-top: 2px solid #ccc;
+  margin-top: 14px;
+  margin-bottom: 14px;
+
+}
+.styleButton{
+  width: 149px;
+  height: 46px;
+
+  border-radius: 8px;
+  background: #535AA2;
+  //styleName: button 18px medium;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: center;
+
+
+}
+.styleButton:hover{
+  background-color: violet;
+}

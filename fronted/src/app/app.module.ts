@@ -23,6 +23,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatIconModule,
     ReactiveFormsModule
 
   ],
