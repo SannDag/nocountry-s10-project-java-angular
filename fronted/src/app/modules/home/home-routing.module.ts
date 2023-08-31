@@ -5,6 +5,7 @@ import { GeneralDataComponent } from './pages/general-data/general-data.componen
 import { GeneralMaterialComponent } from './pages/general-material/general-material.component';
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
 import { GaranteComponent } from './pages/garante/garante.component';
+import { InformaLaboralComponent } from './pages/informa-laboral/informa-laboral.component';
 
 
 
@@ -15,11 +16,12 @@ const routes: Routes = [
     children:[
 
     {path: '', component: HomePage},
-    {path:'general', component: GeneralDataComponent},
-    {path:'generalM', component:GeneralMaterialComponent},
+    {path:'generalP', component: GeneralDataComponent},
+    {path:'general', component:GeneralMaterialComponent},
     {path: '',component:HomePage},
     {path: 'calculadora',component:CalculadoraComponent},
-    {path: 'garante', component:GaranteComponent}
+    {path: 'garante', component:GaranteComponent},
+    {path: 'informeLa',component:InformaLaboralComponent},
 
   ]
   }

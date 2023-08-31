@@ -15,6 +15,7 @@ import { GeneralMaterialComponent } from './pages/general-material/general-mater
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { GaranteComponent } from './pages/garante/garante.component';
+import { InformaLaboralComponent } from './pages/informa-laboral/informa-laboral.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { GaranteComponent } from './pages/garante/garante.component';
     GeneralDataComponent,
     GeneralMaterialComponent,
     CalculadoraComponent,
-    GaranteComponent
+    GaranteComponent,
+    InformaLaboralComponent
   ],
   imports: [
     CommonModule,
