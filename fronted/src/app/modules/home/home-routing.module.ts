@@ -4,6 +4,7 @@ import { HomePage } from './pages/home-page/home.page';
 import { GeneralDataComponent } from './pages/general-data/general-data.component';
 import { GeneralMaterialComponent } from './pages/general-material/general-material.component';
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
+import { InformaLaboralComponent } from './pages/informa-laboral/informa-laboral.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path:'generalM', component:GeneralMaterialComponent},
     {path: '',component:HomePage},
     {path: 'calculadora',component:CalculadoraComponent},
+    {path: 'informeLa',component:InformaLaboralComponent},
 
   ]
   }
