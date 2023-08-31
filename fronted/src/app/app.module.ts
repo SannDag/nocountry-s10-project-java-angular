@@ -11,6 +11,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     CoreModule,
     HttpClientModule,
     ReactiveFormsModule
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true}
