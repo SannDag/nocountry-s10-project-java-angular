@@ -12,6 +12,8 @@ import { GeneralDataComponent } from './pages/general-data/general-data.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { GeneralMaterialComponent } from './pages/general-material/general-material.component';
 
+import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 
@@ -23,14 +25,16 @@ import { GeneralMaterialComponent } from './pages/general-material/general-mater
     NavbarComponent,
     FooterComponent,
     GeneralDataComponent,
-    GeneralMaterialComponent
-
+    GeneralMaterialComponent,
+    CalculadoraComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatSliderModule
 
   ],
   exports:[
