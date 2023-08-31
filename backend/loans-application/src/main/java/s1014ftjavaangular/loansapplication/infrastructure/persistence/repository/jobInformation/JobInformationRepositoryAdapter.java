@@ -26,6 +26,18 @@ public class JobInformationRepositoryAdapter implements JobInformationRepository
 
             var entity = jpaRepository.findById(dto.getLoanApplicationId()).get();
 
+            if(dto.getLoanApplicationId() == null) entity.setLoanApplicationId(entity.getLoanApplicationId());
+            if(dto.getCompany() == null) entity.setCompany(entity.getCompany());
+            if(dto.getOccupation() == null) entity.setOccupation(entity.getOccupation());
+            if(dto.getWorkShift() == null) entity.setWorkShift(entity.getWorkShift());
+            if(dto.getYearsInCompany() == null) entity.setYearsInCompany(entity.getYearsInCompany());
+            if(dto.getMonthlyIncome() == null) entity.setMonthlyIncome(entity.getMonthlyIncome());
+            if(dto.getOtherIncome() == null) entity.setOtherIncome(entity.getOtherIncome());
+            if(dto.getCity() == null)  entity.setCity(entity.getCity());
+            if(dto.getState() == null) entity.setState(entity.getState());
+            if(dto.getAddress() == null) entity.setAddress(entity.getAddress());
+            if(dto.getPhone() == null) entity.setPhone(entity.getPhone());
+
             if(dto.getLoanApplicationId() != null) entity.setLoanApplicationId(dto.getLoanApplicationId());
             if(dto.getCompany() != null) entity.setCompany(dto.getCompany());
             if(dto.getOccupation() != null) entity.setOccupation(dto.getOccupation());
