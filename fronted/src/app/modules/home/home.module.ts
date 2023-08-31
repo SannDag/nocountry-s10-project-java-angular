@@ -8,6 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
+import { GeneralDataComponent } from './pages/general-data/general-data.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { GeneralMaterialComponent } from './pages/general-material/general-material.component';
+
+
 
 
 
@@ -16,12 +21,17 @@ import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
   declarations: [
     HomePage,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    GeneralDataComponent,
+    GeneralMaterialComponent
+
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     MatIconModule,
+    ReactiveFormsModule
+
   ],
   exports:[
     NavbarComponent,

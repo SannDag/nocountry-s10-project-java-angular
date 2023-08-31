@@ -1,0 +1,151 @@
+
+<div class="container mx-auto mt-4">
+  <div class="flex flex-col lg:flex-row h-screen">
+    <div class="lg:w-1/5  p-4 mt-8 content-evenly">
+      <!-- Links -->
+      <a  class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Datos generales</a>
+
+      <a  class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Información laboral</a>
+
+      <a  class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Garante</a>
+
+      <a  class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Confirmación</a>
+
+      <!-- ... Agrega más links aquí ... -->
+    </div>
+
+    <div class="lg:w-4/5 p-4 space-y-4 ">
+      <h1>Datos generales</h1>
+      <hr class="mb-4 hr-estyles">
+      <!-- Formulario -->
+      <form class="">
+        <!-- Primer grupo -->
+        <div class="mb-4 lg:flex">
+
+          <div class="flex ml-2">
+            <div class="mr-2">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Identificación <span class="text-red-600">*</span></label>
+              <select id="campo" class="block mb-1 w-80 p-2 mb-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ">
+                <option class="optionEstyles text-sm " value="opcion1" selected></option>
+                <option class="optionEstyles text-sm " value="opcion2">Cedula</option>
+                <option class="optionEstyles text-sm " value="opcion3">Dni</option>
+                <!-- ... Agrega más opciones ... -->
+              </select>
+            </div>
+            <div class="">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Nro de identificación <span class="text-red-600">*</span></label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <!-- <input type="text" class="w-2/3 p-2"> -->
+          </div>
+        </div>
+
+        <!-- Segundo grupo -->
+        <div class="mb-4 ml-2 flg:flex justify-center space-x-0 lg:space-x-4">
+
+          <div class="flex">
+            <div class=" mr-2">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Nombre <span class="text-red-600">*</span></label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <div class=" mr-2">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Apellido <span class="text-red-600">*</span></label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <div class=" ">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Sexo <span class="text-red-600">*</span></label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tercer grupo -->
+        <div class="mb-4 ml-2 lg:flex lg:space-x-4">
+
+          <div class="flex">
+              <div class=" mr-2">
+                <label class="block mb-1 font-bold labelStyles" for="campo">Fecha de nacimiento <span class="text-red-600">*</span></label>
+                <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              </div>
+              <div class=" ">
+                <label class="block mb-1 font-bold labelStyles" for="campo">Nacionalidad <span class="text-red-600">*</span></label>
+                <select id="campo" class="block mb-1 w-80 p-2 mb-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  ">
+                  <option class="optionEstyles text-sm " value="opcion1" selected></option>
+                  <option class="optionEstyles text-md" value="opcion1">Opción 1</option>
+                  <option class="optionEstyles text-md" value="opcion2">Opción 2</option>
+
+                </select>
+              </div>
+          </div>
+        </div>
+
+        <!-- Cuarto grupo -->
+        <div class="mb-8 ml-2">
+          <label class="block mb-1 font-bold labelStyles" for="campo">Monto solicitado <span class="text-red-600">*</span></label>
+          <input type="text" class="block  w-8/12 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ">
+        </div>
+        <!-- Linea -->
+        <hr class="  hr-estyles">
+
+        <!-- Quinto Campo -->
+        <div class="mb-4 flex justify-center lg:flex lg:space-x-4">
+
+          <div class="flex">
+            <div class="  mr-2">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Provincia <span class="text-red-600">*</span></label>
+              <select id="campo" class="block mb-1 w-80 p-2 mb-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ">
+                <option class="optionEstyles text-sm " value="opcion1" selected></option>
+                <option class="optionEstyles" value="opcion1">Opción 1</option>
+                <option class="optionEstyles" value="opcion2">Opción 2</option>
+                <!-- ... Agrega más opciones ... -->
+              </select>
+            </div>
+            <div class=" mr-2">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Ciudad <span class="text-red-600">*</span></label>
+              <select id="campo" class="block p-2  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ">
+                <option class="optionEstyles text-sm " value="opcion1" selected></option>
+                <option class=" mr-3 optionEstyles" value="opcion1">Opción 1</option>
+                <option class="optionEstyles" value="opcion2">Opción 2</option>
+                <!-- ... Agrega más opciones ... -->
+              </select>
+            </div>
+            <div class="">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Barrio</label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ">
+            </div>
+
+          </div>
+        </div>
+        <!-- Sexto grupo -->
+        <div class="mb-4 lg:flex justify-center space-x-4">
+
+          <div class="flex">
+            <div class=" mr-2">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Dirección <span class="text-red-600">*</span></label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <div class=" mr-2">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Piso/Dpto <span class="text-red-600">*</span></label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+            <div class=" ">
+              <label class="block mb-1 font-bold labelStyles" for="campo">Celular <span class="text-red-600">*</span></label>
+              <input type="text" class="block  w-80  mb-2  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end ">
+          <button type="submit" class="mb-4 bg-blue-500 text-white p-2 mt-2 styleButton">Continuar  <i class="fa-solid fa-arrow-right fa-fade"></i></button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
