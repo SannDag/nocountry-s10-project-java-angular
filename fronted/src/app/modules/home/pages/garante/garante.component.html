@@ -1,0 +1,214 @@
+<app-navbar></app-navbar>
+<div class="container mx-auto mt-2">
+
+  <div class="flex flex-col lg:flex-row h-screen">
+    <!-- Dashboard -->
+    <div class="lg:w-1/5  p-4 mt-1 content-evenly">
+      <a routerLink="/home/general" class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Datos generales</a>
+
+      <a routerLink="/home/informeLa" class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Información laboral</a>
+
+
+      <a routerLink="/home/garante" class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Garante</a>
+
+      <a routerLink="/home/confirm" class="block link-item hover:bg-indigo-500 hover:text-white px-2 py-1 rounded transition-colors">Confirmación</a>
+
+    </div>
+    <!-- Fin Dashboard -->
+    <!-- Content Form -->
+    <div class="space-y-12 lg:w-4/5 p-4 space-y-4">
+      <form class="">
+        <!-- <p>Requiere garante</p> -->
+        <div class="mb-4">
+          <label class="mr-2 inline-block pl-[0.15rem] hover:cursor-pointer" for="flexSwitchCheckDefault">
+            Requiere garante</label>
+            <input
+            class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchChecked"
+            checked />
+
+        </div>
+
+        <h1>Garante</h1>
+        <!-- <hr class=" hr-estyles"> -->
+        <hr class="my-2 h-1 border-t-0 bg-neutral-100 opacity-100 dark:opacity-100" />
+        <div class="">
+          <div class="border-b border-gray-900/10 pb-12">
+            <div class=" grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <!-- Primera fila -->
+              <div class="sm:col-span-2">
+                <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nombre <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Apellido <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <!-- Segunda fila -->
+
+              <div class="sm:col-span-2 sm:col-start-1">
+                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Identificación <span class="text-red-600">*</span></label>
+                <div class="mt-2 ">
+                  <select id="country" name="country" autocomplete="country-name" class="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <option class="">Cedula</option>
+                    <option>Dni</option>
+                    <option>Pasaporte</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sm:col-span-4">
+                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Nro de identificación  <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <!-- Tercera fila -->
+              <div class="sm:col-span-2 sm:col-start-1">
+                <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Provincia  <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Ciudad  <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">Codigo postal  <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+              <!--Cuarta fila-->
+              <div class="sm:col-span-2 sm:col-start-1">
+                <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Calle  <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Edificio/Dpto  <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">Teléfono   <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+               <!-- Quinta fila -->
+               <div class="sm:col-span-2 sm:col-start-1">
+                <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Nombre de la empresa   <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Rubro de empresa  <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">Ocupación    <span class="text-red-600">*</span></label>
+                <div class="mt-2">
+                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+                <!-- Sexta fila -->
+                <div class="sm:col-span-2">
+                  <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Tiempo en la empresa  <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Ingreso mensual  <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+                <!-- Septima fila -->
+                <div class="sm:col-span-2 sm:col-start-1">
+                  <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Provincia    <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Ciudad   <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">Código postal     <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+                 <!-- Octava fila -->
+                 <div class="sm:col-span-2 sm:col-start-1">
+                  <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Calle    <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Edificio/Dpto   <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">Teléfono      <span class="text-red-600">*</span></label>
+                  <div class="mt-2">
+                    <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="flex flex-row justify-between">
+          <div class="mt-6 flex items-center justify-start gap-x-6">
+
+              <button type="submit" class="mb-6 bg-blue-500 text-white p-2 mt-2  text-white violeta font-poppins hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-700 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">Atras  <i class="fa-solid fa-arrow-left fa-fade"></i></button>
+
+          </div>
+
+            <div class="mt-6 flex items-center justify-end gap-x-6">
+
+                <button type="submit" class="mb-6 bg-blue-500 text-white p-2 mt-2  text-white violeta font-poppins hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-700 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">Continuar  <i class="fa-solid fa-arrow-right fa-fade"></i></button>
+
+            </div>
+        </div>
+      </form>
+    </div>
+    <!-- Fin Content Form -->
+  </div>
+</div>

@@ -5,11 +5,11 @@ import { InactivityService } from 'src/app/services/inactivity.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
-  selector: 'app-informa-laboral',
-  templateUrl: './informa-laboral.component.html',
-  styleUrls: ['./informa-laboral.component.scss']
+  selector: 'app-confirmation',
+  templateUrl: './confirmation.component.html',
+  styleUrls: ['./confirmation.component.scss']
 })
-export class InformaLaboralComponent implements OnInit{
+export class ConfirmationComponent implements OnInit {
 
   private updateIntervalMinutes = 3;
   private updateIntervalMillis = this.updateIntervalMinutes * 60 * 1000;
