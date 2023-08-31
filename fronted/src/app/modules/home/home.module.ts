@@ -16,9 +16,6 @@ import { CalculadoraComponent } from './pages/calculadora/calculadora.component'
 import {MatSliderModule} from '@angular/material/slider';
 
 
-
-
-
 @NgModule({
   declarations: [
     HomePage,
