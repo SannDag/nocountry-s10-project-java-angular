@@ -14,6 +14,7 @@ import { GeneralMaterialComponent } from './pages/general-material/general-mater
 
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
 import {MatSliderModule} from '@angular/material/slider';
+import { GaranteComponent } from './pages/garante/garante.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatSliderModule} from '@angular/material/slider';
     FooterComponent,
     GeneralDataComponent,
     GeneralMaterialComponent,
-    CalculadoraComponent
+    CalculadoraComponent,
+    GaranteComponent
   ],
   imports: [
     CommonModule,

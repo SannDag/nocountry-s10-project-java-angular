@@ -12,9 +12,11 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
+
 
   ],
   imports: [
