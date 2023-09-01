@@ -1,17 +1,17 @@
 package s1014ftjavaangular.loansapplication.application;
 
+import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import s1014ftjavaangular.loansapplication.domain.model.dto.request.LoanApplicationDto;
 import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.repository.LoanApplicationRepository;
-import s1014ftjavaangular.loansapplication.domain.usecase.SaveLoanApplicationUseCase;
+import s1014ftjavaangular.loansapplication.domain.usecase.FindByIdLoanAppUseCase;
 
 import java.util.function.Function;
-
-@Service
 @RequiredArgsConstructor
-public class SaveLoanApplicationUseCaseImpl implements SaveLoanApplicationUseCase {
+@Service
+public class findByIdLoanAppUseCaseImpl implements FindByIdLoanAppUseCase {
 
     private final LoanApplicationRepository repository;
 
@@ -47,7 +47,12 @@ public class SaveLoanApplicationUseCaseImpl implements SaveLoanApplicationUseCas
     };
 
     @Override
-    public void saveLoanApplication(LoanApplicationDto request) {
-        repository.saveLoanApplication(modelToEntity.apply(request));
+    public LoanApplicationDto findById(String id) {
+        LoanApplication entity = repository.findById(id);
+        if(entity == null){
+            throw new NotFoundException("Loan Application was not found");
+        } else {
+            return entityToModel.apply(entity);
+        }
     }
 }

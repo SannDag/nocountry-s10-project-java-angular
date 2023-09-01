@@ -2,7 +2,6 @@ package s1014ftjavaangular.loansapplication.infrastructure.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,14 +17,9 @@ public class SaveJobInformationController {
 
     private final SaveJobInformationUseCase useCase;
 
-    @PostMapping
+    @PostMapping("/save")
     private ResponseEntity<String> saveJobInformation (@Valid @RequestBody JobInformationDto request){
-        try {
             useCase.saveJobInformation(request);
-            return ResponseEntity.ok("Job information saved successfully.");
-        } catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error while saving job information " + e.getMessage());
-        }
+            return ResponseEntity.ok().build();
     }
 }

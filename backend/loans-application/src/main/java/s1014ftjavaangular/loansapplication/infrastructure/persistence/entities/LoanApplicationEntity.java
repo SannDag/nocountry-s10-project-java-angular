@@ -2,12 +2,15 @@ package s1014ftjavaangular.loansapplication.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.model.enums.Status;
 
 import java.time.LocalDate;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,4 +47,19 @@ public class LoanApplicationEntity {
 
     @Column(name = "status", nullable = false)
     private Status status;
+
+    public static LoanApplicationEntity modelToEntity(LoanApplication model){
+        return LoanApplicationEntity.builder()
+                .loanApplicationId(model.getLoanApplicationId())
+                .loanApplicationNumber(model.getLoanApplicationNumber())
+                .requestedAmount(model.getRequestedAmount())
+                .createAt(model.getCreateAt())
+                .jobInformation(JobInformationEntity.modelToEntity.apply(model.getJobInformation()))
+                .guarantor(GuarantorEntity.modelToEntity.apply(model.getGuarantor()))
+                .generalData(GeneralDataEntity.modelToEntity.apply(model.getGeneralData()))
+                .creditAuditId(CreditAuditEntity.modelToEntity.apply(model.getCreditAuditorId()))
+                .status(model.getStatus())
+                .build();
+    }
+
 }

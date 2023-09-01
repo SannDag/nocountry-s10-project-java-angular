@@ -2,12 +2,14 @@ package s1014ftjavaangular.loansapplication.infrastructure.persistence.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import s1014ftjavaangular.loansapplication.domain.model.entity.GeneralData;
 import s1014ftjavaangular.loansapplication.domain.model.enums.HousingStatus;
+
+import java.util.function.Function;
 
 @Data
 @NoArgsConstructor
@@ -53,6 +55,21 @@ public class GeneralDataEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
     private LoanApplicationEntity loansApplicationId;
+
+    public static final Function<GeneralData, GeneralDataEntity> modelToEntity = (model) -> {
+        GeneralDataEntity entity = new GeneralDataEntity();
+        entity.setLoanApplicationId(model.getLoanApplicationId());
+        entity.setHousingStatus(model.getHousingStatus());
+        entity.setYearsInHouse(model.getYearsInHouse());
+        entity.setMonthsInHouse(model.getMonthsInHouse());
+        entity.setCity(model.getCity());
+        entity.setState(model.getState());
+        entity.setAddress(model.getAddress());
+        entity.setApartment(model.getApartment());
+        entity.setZipcode(model.getZipcode());
+
+        return entity;
+    };
 
 
 }

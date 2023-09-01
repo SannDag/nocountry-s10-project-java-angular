@@ -2,7 +2,7 @@ package s1014ftjavaangular.loansapplication.infrastructure.persistence.repositor
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import s1014ftjavaangular.loansapplication.domain.model.dto.request.GuarantorDto;
+import s1014ftjavaangular.loansapplication.domain.model.entity.Guarantor;
 import s1014ftjavaangular.loansapplication.domain.repository.GuarantorRepository;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.GuarantorEntity;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.LoanApplicationEntity;
@@ -18,34 +18,35 @@ public class GuarantorRepositoryAdapter implements GuarantorRepository {
     private final GuarantorJpaRepository jpaRepository;
     private final LoanApplicationJpaRepository loanApplicationJpaRepository;
 
-    private final Function<GuarantorDto, GuarantorEntity> modelToEntity = (dto) -> {
+    private final Function<Guarantor, GuarantorEntity> modelToEntity = (model) -> {
         GuarantorEntity entity = new GuarantorEntity();
-            entity.setLoanApplicationId(dto.getLoanApplicationId());
-            entity.setName(dto.getName());
-            entity.setLastname(dto.getLastname());
-            entity.setIdentificationType(dto.getIdentificationType());
-            entity.setIdentification(dto.getIdentification());
-            entity.setCity(dto.getCity());
-            entity.setState(dto.getState());
-            entity.setAddress(dto.getAddress());
-            entity.setApartment(dto.getApartment());
-            entity.setPhone(dto.getPhone());
-            entity.setZipcode(dto.getZipcode());
+            entity.setLoanApplicationId(model.getLoanApplicationId());
+            entity.setName(model.getName());
+            entity.setLastname(model.getLastname());
+            entity.setIdentificationType(model.getIdentificationType());
+            entity.setIdentification(model.getIdentification());
+            entity.setCity(model.getCity());
+            entity.setState(model.getState());
+            entity.setAddress(model.getAddress());
+            entity.setApartment(model.getApartment());
+            entity.setPhone(model.getPhone());
+            entity.setZipcode(model.getZipcode());
 
             return entity;
 
     };
 
     @Override
-    public void saveGuarantor(GuarantorDto dto) {
-        if(dto == null) throw new IllegalArgumentException("The guarantor information cannot be empty");
+    public void saveGuarantor(Guarantor model) {
+        if(model == null) throw new IllegalArgumentException("The guarantor information cannot be empty");
 
-        Optional<LoanApplicationEntity> loanApplication = loanApplicationJpaRepository.findById(dto.getLoanApplicationId());
+        Optional<LoanApplicationEntity> loanApplication = loanApplicationJpaRepository.findById(model.getLoanApplicationId());
+
         if (!loanApplication.isPresent()) {
             throw new IllegalArgumentException("Loan application not found");
         }
 
-            jpaRepository.save(modelToEntity.apply(dto));
+            jpaRepository.save(modelToEntity.apply(model));
 
     }
 }

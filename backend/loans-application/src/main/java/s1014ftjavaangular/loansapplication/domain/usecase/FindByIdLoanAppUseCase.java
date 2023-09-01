@@ -2,9 +2,9 @@ package s1014ftjavaangular.loansapplication.domain.usecase;
 
 import s1014ftjavaangular.loansapplication.domain.model.dto.request.LoanApplicationDto;
 
-public interface SaveLoanApplicationUseCase {
+public interface FindByIdLoanAppUseCase {
 
-    void saveLoanApplication(LoanApplicationDto request);
+    LoanApplicationDto findById(String id);
 
 
 }

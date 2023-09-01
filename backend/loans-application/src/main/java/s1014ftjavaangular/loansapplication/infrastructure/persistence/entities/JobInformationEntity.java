@@ -6,7 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import s1014ftjavaangular.loansapplication.domain.model.entity.JobInformation;
 import s1014ftjavaangular.loansapplication.domain.model.enums.WorkShift;
+
+import java.util.function.Function;
 
 @Data
 @NoArgsConstructor
@@ -61,4 +64,21 @@ public class JobInformationEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
     private LoanApplicationEntity loansApplication;
+
+    public static final Function<JobInformation, JobInformationEntity> modelToEntity = (model) -> {
+        JobInformationEntity entity = new JobInformationEntity();
+        entity.setLoanApplicationId(model.getLoanApplicationId());
+        entity.setCompany(model.getCompany());
+        entity.setOccupation(model.getOccupation());
+        entity.setYearsInCompany(model.getYearsInCompany());
+        entity.setMonthlyIncome(model.getMonthlyIncome());
+        entity.setCity(model.getCity());
+        entity.setState(model.getState());
+        entity.setAddress(model.getAddress());
+        entity.setApartment(model.getApartment());
+        entity.setZipcode(model.getZipcode());
+        entity.setPhone(model.getPhone());
+
+        return entity;
+    };
 }

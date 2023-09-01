@@ -1,11 +1,15 @@
 package s1014ftjavaangular.loansapplication.domain.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import s1014ftjavaangular.loansapplication.domain.model.enums.Status;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
 public class LoanApplication {

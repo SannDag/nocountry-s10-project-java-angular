@@ -2,7 +2,7 @@ package s1014ftjavaangular.loansapplication.infrastructure.persistence.repositor
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import s1014ftjavaangular.loansapplication.domain.model.dto.request.GeneralDataDto;
+import s1014ftjavaangular.loansapplication.domain.model.entity.GeneralData;
 import s1014ftjavaangular.loansapplication.domain.repository.GeneralDataRepository;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.GeneralDataEntity;
 
@@ -13,26 +13,26 @@ import java.util.function.Function;
 public class GeneralDataRepositoryAdapter implements GeneralDataRepository{
     private final GeneralDataJpaRepository jpaRepository;
 
-    private final Function<GeneralDataDto, GeneralDataEntity> modelToEntity = (dto) -> {
+    private final Function<GeneralData, GeneralDataEntity> modelToEntity = (model) -> {
         GeneralDataEntity entity = new GeneralDataEntity();
-        entity.setLoanApplicationId(dto.getLoanApplicationId());
-        entity.setHousingStatus(dto.getHousingStatus());
-        entity.setYearsInHouse(dto.getYearsInHouse());
-        entity.setMonthsInHouse(dto.getMonthsInHouse());
-        entity.setCity(dto.getCity());
-        entity.setState(dto.getState());
-        entity.setAddress(dto.getAddress());
-        entity.setApartment(dto.getApartment());
-        entity.setZipcode(dto.getZipcode());
+        entity.setLoanApplicationId(model.getLoanApplicationId());
+        entity.setHousingStatus(model.getHousingStatus());
+        entity.setYearsInHouse(model.getYearsInHouse());
+        entity.setMonthsInHouse(model.getMonthsInHouse());
+        entity.setCity(model.getCity());
+        entity.setState(model.getState());
+        entity.setAddress(model.getAddress());
+        entity.setApartment(model.getApartment());
+        entity.setZipcode(model.getZipcode());
 
         return entity;
     };
 
     @Override
-    public void saveGeneralData(GeneralDataDto dto) {
-        if(dto == null) throw new IllegalArgumentException("The general data cannot be empty");
+    public void saveGeneralData(GeneralData model) {
+        if(model == null) throw new IllegalArgumentException("The general data cannot be empty");
 
-        jpaRepository.save(modelToEntity.apply(dto));
+        jpaRepository.save(modelToEntity.apply(model));
 
     }
 

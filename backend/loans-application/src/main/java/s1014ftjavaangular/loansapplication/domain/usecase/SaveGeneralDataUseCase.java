@@ -4,6 +4,6 @@ import s1014ftjavaangular.loansapplication.domain.model.dto.request.GeneralDataD
 
 public interface SaveGeneralDataUseCase {
 
-    void saveGeneralData(GeneralDataDto request);
+    String saveGeneralData(GeneralDataDto request);
 
 }
