@@ -1,6 +1,6 @@
 package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.guarantor;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import s1014ftjavaangular.loansapplication.domain.model.dto.request.GuarantorDto;
@@ -8,10 +8,10 @@ import s1014ftjavaangular.loansapplication.domain.repository.GuarantorRepository
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication.LoanApplicationFormJpaRepository;
 
 @Repository
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GuarantorJpaRepositoryAdapter implements GuarantorRepository {
 
-    private final GuarantorJpaRepository guarantorJpaRepository;
+    private final GuarantorJpaRepository jpaRepository;
     private final LoanApplicationFormJpaRepository loanApplicationFormJpaRepository;
 
     @Transactional
@@ -21,10 +21,10 @@ public class GuarantorJpaRepositoryAdapter implements GuarantorRepository {
         var loanApplicationStatus = loanApplicationEntity.getStatus().toString();
         if (loanApplicationStatus.equals("INCOMPLETE")){
             if(dto == null) throw new IllegalArgumentException("The request cannot be empty");
-            var isGuarantorExists = guarantorJpaRepository.existsByUuid(dto.getLoanApplicationId());
+            var isGuarantorExists = jpaRepository.existsById(dto.getLoanApplicationId());
             if (!isGuarantorExists) throw new RuntimeException("Guarantor does not exists");
     
-            var entity = guarantorJpaRepository.findById(dto.getLoanApplicationId()).get();
+            var entity = jpaRepository.findById(dto.getLoanApplicationId()).get();
                 
             if (dto.getLoanApplicationId() == null) entity.setLoanApplicationId(entity.getLoanApplicationId());
             if (dto.getName() == null) entity.setName(entity.getName());
@@ -48,8 +48,8 @@ public class GuarantorJpaRepositoryAdapter implements GuarantorRepository {
             if (dto.getZipcode() != null) entity.setZipcode(dto.getZipcode());
             if (dto.getPhone() != null) entity.setPhone(dto.getPhone());
 
-        }
-        else{
+            jpaRepository.save(entity);
+        } else{
             throw new IllegalArgumentException("You cannot update this form");
         }
     }

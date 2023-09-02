@@ -9,15 +9,16 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#   driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
 #    url: jdbc:sqlserver://20.121.214.190:1434;databaseName=user;encrypt=true;trustServerCertificate=true;
 #    username: sa
 #    password: nocountry2023
 
     #para testear con db en local
-    url: jdbc:${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    #driver-class-name: org.postgresql.Driver
+    url:
+    username:
+    password:
   jpa:
     show-sql: true
     hibernate:

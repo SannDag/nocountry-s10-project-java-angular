@@ -1,6 +1,7 @@
 package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.jobInformation;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import s1014ftjavaangular.loansapplication.domain.model.dto.request.JobInformationDto;
@@ -9,7 +10,7 @@ import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.L
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication.LoanApplicationFormJpaRepository;
 
 @Repository
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class JobInformationRepositoryAdapter implements JobInformationRepository {
     private final JobInformationJpaRepository jpaRepository;
     private final LoanApplicationFormJpaRepository loanApplicationFormJpaRepository;
@@ -21,7 +22,7 @@ public class JobInformationRepositoryAdapter implements JobInformationRepository
         var loanApplicationStatus = loanApplicationEntity.getStatus().toString();
         if (loanApplicationStatus.equals("INCOMPLETE")){
             if(dto == null) throw new IllegalArgumentException("The request cannot be empty");
-            var isJobInformationExists = jpaRepository.existsByUuid(dto.getLoanApplicationId());
+            var isJobInformationExists = jpaRepository.existsById(dto.getLoanApplicationId());
             if(!isJobInformationExists) throw new RuntimeException("Job Information does not exists");
 
             var entity = jpaRepository.findById(dto.getLoanApplicationId()).get();
@@ -49,8 +50,9 @@ public class JobInformationRepositoryAdapter implements JobInformationRepository
             if(dto.getState() != null) entity.setState(dto.getState());
             if(dto.getAddress() != null) entity.setAddress(dto.getAddress());
             if(dto.getPhone() != null) entity.setPhone(dto.getPhone());
-        }
-        else {
+
+            jpaRepository.save(entity);
+        } else {
             throw new IllegalArgumentException("You cannot update this form");
         }
     }

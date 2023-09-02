@@ -7,7 +7,6 @@ import s1014ftjavaangular.loansapplication.domain.model.enums.WorkShift;
 @Data
 @Builder
 public class JobInformation {
-
     private String loanApplicationId;
     private String company;
     private String occupation;
