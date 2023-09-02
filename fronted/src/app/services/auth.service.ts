@@ -5,6 +5,8 @@ import { Registro } from '../models/registro';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { LoginResponse } from '../models/login-response';
+import { environment } from 'src/environments/environment';
+
 
 
 
@@ -13,7 +15,7 @@ import { LoginResponse } from '../models/login-response';
 })
 export class AuthService {
 
-  urlAuth = 'http://localhost:5555/api/accounts/';
+  urlAuth = environment.apiURL;
 
   userActivity: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
