@@ -84,7 +84,6 @@ public class TransactionMessagePublish {
         return new ProducerRecord<>(topic, null, key, value, recordHeaders);
     }
 
-
     private void handleFailure(String key, String value, Throwable ex) {
         log.error("Error: send message and the error is {}", ex.getMessage());
         try {
