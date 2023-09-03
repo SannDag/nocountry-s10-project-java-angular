@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import s1014ftjavaangular.loan.domain.model.entities.InterestRateLoan;
+import s1014ftjavaangular.loan.domain.model.entities.LatePaymentRateLoan;
 
 import java.time.LocalDate;
 
@@ -32,4 +34,14 @@ public class LatePaymentRateLoanEntity {
     @OneToOne
     @JoinColumn(name = "loan_id", referencedColumnName = "loan_id", foreignKey = @ForeignKey(name = "late_payment_rate_loan_fk"))
     private LoanEntity loan;
+
+
+    public static LatePaymentRateLoanEntity modelToEntity(LatePaymentRateLoan model){
+        return LatePaymentRateLoanEntity.builder()
+                .loanId(model.getLoanId())
+                .name(model.getName())
+                .annualPercentage(model.getAnnualPercentage())
+                .expiredDate(model.getExpiredDate())
+                .build();
+    }
 }

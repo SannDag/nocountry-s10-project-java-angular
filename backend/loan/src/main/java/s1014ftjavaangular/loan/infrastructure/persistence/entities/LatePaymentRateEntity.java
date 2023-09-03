@@ -21,7 +21,7 @@ public class LatePaymentRateEntity {
     private String name;
 
     @Column(name = "annual_percentage", nullable = false)
-    private String  annualPercentage;
+    private Double  annualPercentage;
 
     @Column(name = "status", nullable = false)
     private Boolean status;

@@ -7,6 +7,6 @@ import s1014ftjavaangular.loan.infrastructure.persistence.entities.LoanEntity;
 import java.util.Optional;
 
 public interface LoanJpaRepository extends JpaRepository<LoanEntity, String> {
-    @Query(value = "SELECT MAX(l.loan_number) FROM 'loan'.loan l", nativeQuery = true)
+    @Query(value = "SELECT MAX(l.loan_number) FROM loan l", nativeQuery = true)
     Optional<String> findLastLoanNumber();
 }

@@ -1,7 +1,7 @@
 package s1014ftjavaangular.loan.domain.usecase;
 
-import s1014ftjavaangular.loan.domain.model.dtos.ApplicationLoanMessage;
+import s1014ftjavaangular.loan.domain.model.dtos.LoanDTO;
 
 public interface CreateLoanUseCase {
-    void createLoan(final ApplicationLoanMessage message);
+    void createLoan(final LoanDTO message);
 }

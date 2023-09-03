@@ -10,28 +10,27 @@ springfox:
 
 spring:
   application:
-    name: user-service
+    name: loan-service
   main:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-    #driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    #url: jdbc:sqlserver://20.121.214.190:1434;databaseName=user;encrypt=true;trustServerCertificate=true;
-    #username: sa
-    #password: nocountry2023
+    url: jdbc:postgresql://localhost:5434/postgres
+    username: postgres
+    password: postgres
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        #dialect: org.hibernate.dialect.SQLServerDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
   kafka:
     template:
       default-topic: loan-application-topic
     consumer:
-      bootstrap-servers: 20.121.214.190:9092
+      bootstrap-servers: localhost:9092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: message-loan-application-consumer
@@ -60,7 +59,7 @@ resilience4j.retry:
       retry-exceptions:
         - java.io.IOException
         - java.lang.RuntimeException
-
+#
 eureka:
   client:
     fetch-registry: true
