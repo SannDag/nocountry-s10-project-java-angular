@@ -1,8 +1,11 @@
 package s1014ftjavaangular.loan.domain.services;
 
+import s1014ftjavaangular.loan.domain.model.entities.AmortizationSchedule;
+import s1014ftjavaangular.loan.domain.model.entities.Loan;
 import s1014ftjavaangular.loan.domain.model.enums.FrequencyPayment;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static s1014ftjavaangular.loan.domain.util.UtilitiesCalculations.DAYS_OF_YEAR;
 import static s1014ftjavaangular.loan.domain.util.UtilitiesCalculations.DAYS_OF_YEAR_IN_LEAP;
@@ -11,8 +14,9 @@ public interface CalculateStrategy {
 
     Double calculateCapital(Double capital, Double annualInterest, Integer numberInstallments, LocalDate currentDate);
     Double calculateCapital(Double capital, Double annualInterest, Integer numberInstallments);
-
     Double calculateInterest(Double capital, Double annualInterest, Integer numberInstallments,LocalDate currentDate, FrequencyPayment frequencyPayment);
+
+    List<AmortizationSchedule> generateTable(Loan model);
 
     default Integer daysInYear(LocalDate date) {
         return isLeapYears(date) ? DAYS_OF_YEAR_IN_LEAP : DAYS_OF_YEAR;

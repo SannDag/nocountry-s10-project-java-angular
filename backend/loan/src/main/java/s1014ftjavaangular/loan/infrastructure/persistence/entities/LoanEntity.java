@@ -45,13 +45,13 @@ public class LoanEntity implements Serializable {
     @Column(name = "start_at", nullable = false)
     private LocalDate startAt;
 
-    @Column(name = "amount_approved", nullable = false, scale = 2)
+    @Column(name = "amount_approved", nullable = false, scale = 2, precision = 2)
     private Double amountApproved;
 
     @Column(name = "calculation_type")
     private AmortizationType amortizationType;
 
-    @Column(name = "number_installments", length = 3)
+    @Column(name = "number_installments")
     private Integer numberInstallments;
 
     @Column(name = "frequency_payment")

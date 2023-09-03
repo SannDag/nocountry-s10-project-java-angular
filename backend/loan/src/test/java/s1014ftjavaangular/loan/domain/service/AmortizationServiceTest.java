@@ -1,31 +1,121 @@
 package s1014ftjavaangular.loan.domain.service;
 
 import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import s1014ftjavaangular.loan.domain.model.entities.InterestRateLoan;
+import s1014ftjavaangular.loan.domain.model.entities.Loan;
+import s1014ftjavaangular.loan.domain.model.enums.AmortizationType;
+import s1014ftjavaangular.loan.domain.model.enums.FrequencyPayment;
+import s1014ftjavaangular.loan.domain.model.enums.LoanStatus;
 import s1014ftjavaangular.loan.domain.services.AmortizationService;
+import s1014ftjavaangular.loan.domain.services.CalculateStrategy;
 import s1014ftjavaangular.loan.domain.services.SimpleInterestStrategy;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.when;
+import java.time.LocalDate;
+import java.util.UUID;
 
-@RunWith(MockitoJUnitRunner.class)
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
 public class AmortizationServiceTest {
 
-    @InjectMocks
+    @Autowired
     private AmortizationService amortizationService;
 
-    @Before
+    private Loan model;
+
+    @BeforeEach
     public void setUp(){
-        MockitoAnnotations.openMocks(this);
+        //MockitoAnnotations.openMocks(this);
+
+
+        var id = UUID.randomUUID().toString();
+        this.model = Loan.builder()
+                .loanId(id)
+                .loanNumber("1")
+                .createAt(LocalDate.now())
+                .startAt(LocalDate.now())
+                .amortizationType(AmortizationType.SIMPLE_INTEREST)
+                .amountApproved(8000.00)
+                .interestRateLoan(InterestRateLoan.builder()
+                        .loanId(id)
+                        .name("Interes de testeo")
+                        .expiredDate(LocalDate.of(2024, 9, 3))
+                        .annualPercentage(35.00)
+                        .build())
+                .numberInstallments(5)
+                .status(LoanStatus.NORMAL)
+                .build();
+
+        amortizationService.setAmortizationStrategy(new SimpleInterestStrategy());
     }
 
     @Test
-    public void when_interest_is_simple(){
-        Mockito.doNothing().when(amortizationService).setStrategy(new SimpleInterestStrategy());
+    public void verify_scheduleList_notNull(){
+        model.setFrequencyPayment(FrequencyPayment.MONTHLY);
+        var scheduleList = amortizationService.generate(model);
+        assertFalse(scheduleList.isEmpty());
+    }
 
+    @Test
+    public void when_capital_in_first_installment_with_monthly_payment_is_correct(){
+        model.setFrequencyPayment(FrequencyPayment.MONTHLY);
+        var scheduleList = amortizationService.generate(model);
+
+        var capital = scheduleList.get(0).getCapitalInstallment();
+        assertTrue(capital != null);
+
+        var expectedCapital = 1600.00;
+        assertEquals(expectedCapital, capital);
+    }
+
+    @Test
+    public void when_interest_in_first_installment_with_monthly_payment_is_correct(){
+        model.setFrequencyPayment(FrequencyPayment.MONTHLY);
+        var scheduleList = amortizationService.generate(model);
+        var interest = scheduleList.get(0).getInterest();
+        assertTrue(interest != null);
+
+        var expectedInterest = 233.33;
+        assertEquals(expectedInterest, interest);
+    }
+
+    @Test
+    public void when_capital_balance_in_first_installment_with_monthly_payment_is_correct(){
+        model.setFrequencyPayment(FrequencyPayment.MONTHLY);
+        var scheduleList = amortizationService.generate(model);
+        var capitalBalance= scheduleList.get(0).getCapitalBalance();
+        assertTrue(capitalBalance != null);
+        assertTrue(capitalBalance != 0);
+
+        var expectedCapitalBalance = 6400.00;
+        assertEquals(expectedCapitalBalance, capitalBalance);
+    }
+
+    @Test
+    public void when_last_interest_with_monthly_payment_is_correct(){
+        model.setFrequencyPayment(FrequencyPayment.MONTHLY);
+        var scheduleList = amortizationService.generate(model);
+
+        var interest= scheduleList.get(scheduleList.size()-1).getInterest();
+
+        var expectedInterest = 46.67;
+        assertEquals(expectedInterest, interest);
+    }
+
+    @Test
+    public void when_last_capital_balance_with_monthly_payment_is_correct(){
+        model.setFrequencyPayment(FrequencyPayment.MONTHLY);
+        var scheduleList = amortizationService.generate(model);
+
+        var capitalBalance= scheduleList.get(scheduleList.size()-1).getCapitalBalance();
+
+        var expectedInterest = 0.00;
+        assertEquals(expectedInterest, capitalBalance);
     }
 }

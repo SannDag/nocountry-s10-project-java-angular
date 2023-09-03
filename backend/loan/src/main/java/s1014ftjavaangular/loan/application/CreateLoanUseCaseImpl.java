@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static s1014ftjavaangular.loan.domain.util.UtilitiesCalculations.calculationStrategies;
+
 @Service
 @RequiredArgsConstructor
 public final class CreateLoanUseCaseImpl implements CreateLoanUseCase {
@@ -49,21 +51,10 @@ public final class CreateLoanUseCaseImpl implements CreateLoanUseCase {
         loan.setInterestRateLoan(mapper.storeInterestRateLoan(loan.getLoanId(), loanDTO));
         loan.setLatePaymentRateLoan(mapper.storeLatePaymentRateLoan(loan.getLoanId(), loanDTO));
 
-        defineStrategy(loan.getAmortizationType());
+        amortizationService.setAmortizationStrategy(calculationStrategies.get(loan.getAmortizationType()));
         var amortizationSchedules =amortizationService.generate(loan);
         loan.setAmortizationScheduleList(amortizationSchedules);
         repository.saveLoan(loan);
-    }
-
-    private void defineStrategy(AmortizationType type){
-        if(type == AmortizationType.SIMPLE_INTEREST)
-            amortizationService.setStrategy(new SimpleInterestStrategy());
-        if(type == AmortizationType.CREDIT_LINE)
-            amortizationService.setStrategy(new CreditLineStrategy());
-        if(type == AmortizationType.FIXED_INSTALLMENTS)
-            amortizationService.setStrategy(new FixedInstallmentsStrategy());
-        if(type == AmortizationType.OUTSTANDING_INTEREST)
-            amortizationService.setStrategy(new OutstandingInterestStrategy());
     }
 
     private String createNextLoanNumber(String lastLoanNumber){

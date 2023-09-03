@@ -26,16 +26,16 @@ public class AmortizationScheduleEntity {
     @Column(name = "payment_day", nullable = false)
     private LocalDate paymentDate;
 
-    @Column(name = "capital_instalment", nullable = false, scale = 2)
+    @Column(name = "capital_instalment", nullable = false, scale = 2, precision = 2)
     private Double capitalInstalment;
 
-    @Column(name = "interest", nullable = false, scale = 2)
+    @Column(name = "interest", nullable = false, scale = 2,precision = 2)
     private Double interest;
 
-    @Column(name = "capital_balance", nullable = false, scale = 2)
+    @Column(name = "capital_balance", nullable = false, scale = 2,precision = 2)
     private Double capitalBalance;
 
-    @Column(name = "total_paid", nullable = false, scale = 2)
+    @Column(name = "total_paid", nullable = false, scale = 2, precision = 2)
     private Double totalPaid;
 
     @Column(name = "status", nullable = false)
