@@ -15,7 +15,7 @@ const NAME_USER = 'NameUser';
 })
 export class TokenService {
 
-  private ubdateInterval = 1 * 60 * 1000;// 1minuto en milisegundos
+  private ubdateInterval = 3 * 60 * 1000;// 3 minuto en milisegundos
 
   constructor(private authService:AuthService) { }
 

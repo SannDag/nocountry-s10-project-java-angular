@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 @Builder
-public class LoanApplicationDto {
+public class LoanApplicationDto {//prestamo
 
     @NotNull
     private String loanApplicationId;

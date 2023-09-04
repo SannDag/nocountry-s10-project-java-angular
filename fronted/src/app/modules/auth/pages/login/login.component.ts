@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
           // Mostrar el mensaje por 3 segundos y luego borrarlo
           setTimeout(() => {
             this.loginSuccess = "";
-          }, 5000);
+          }, 1000);
         },
         error: (errorData) => {
           console.log(errorData);
@@ -60,13 +60,13 @@ export class LoginComponent implements OnInit{
           setTimeout(() =>{
             this.showAlert = false;
             this.loginForm.reset();
-          }, 3000);
+          }, 1000);
         },
         complete: () => {
           console.info("Login completo");
           setTimeout(() => {
             this.router.navigateByUrl('');
-          },6000);
+          },2000);
 
           this.loginForm.reset();
 
