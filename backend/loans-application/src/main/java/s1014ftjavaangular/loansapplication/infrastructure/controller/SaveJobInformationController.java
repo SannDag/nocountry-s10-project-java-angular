@@ -17,9 +17,9 @@ public class SaveJobInformationController {
 
     private final SaveJobInformationUseCase useCase;
 
-    @PostMapping("/save")
-    private ResponseEntity<String> saveJobInformation (@Valid @RequestBody JobInformationDto request){
+    @PostMapping
+    private ResponseEntity<Void> saveJobInformation (@Valid @RequestBody JobInformationDto request){
             useCase.saveJobInformation(request);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
     }
 }

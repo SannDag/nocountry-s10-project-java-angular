@@ -7,5 +7,7 @@ public interface LoanApplicationRepository {
     LoanApplication findById(final String id);
     void saveLoanApplication(final LoanApplication model);
 
+    String findLastLoanApplicationNumber();
 
+    Integer countOfInactiveOrAuditingLoanApplicatin(final String identification);
 }

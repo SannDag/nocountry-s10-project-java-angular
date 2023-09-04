@@ -1,8 +1,10 @@
 package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication;
 
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
 import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.repository.LoanApplicationRepository;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.LoanApplicationEntity;
@@ -10,32 +12,44 @@ import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.L
 @RequiredArgsConstructor
 @Repository
 public class LoanApplicationRepositoryAdapter implements LoanApplicationRepository {
-
     private final LoanApplicationJpaRepository jpaRepository;
 
+    @Transactional
+    @Override
+    public String findLastLoanApplicationNumber(){
+        var lastNumber = jpaRepository.findLastLoanApplicationNumber();
+        return lastNumber.isEmpty() ? "" : lastNumber.get();
+    }
+
+    @Transactional
+    @Override
+    public Integer countOfInactiveOrAuditingLoanApplicatin(String identification) {
+        if(identification == null) throw new IllegalArgumentException("Identification cannot be empty");
+
+        return jpaRepository.countIncompleteOrAuditingStatusLoanApplication(identification);
+    }
+
+    @Transactional
     @Override
     public LoanApplication findById(String id) {
-        var loan = jpaRepository.findById(id).get();
+        if(id == null) throw new IllegalArgumentException("ID cannot be empty");
 
-        if(loan == null){
-            throw new NotFoundException("Loan application with id " + id + "was not found.");
-        }
+        var loan = jpaRepository.findById(id);
 
-        return LoanApplication.builder()
-                .loanApplicationId(loan.getLoanApplicationId())
-                .customersUuid(loan.getCustomersUuid())
-                .loanApplicationNumber(loan.getLoanApplicationNumber())
-                .requestedAmount(loan.getRequestedAmount())
-                .createAt(loan.getCreateAt())
-                .status(loan.getStatus())
-                //faltaría JobInformation, Guarantor, GeneralData y Credit Audit pero tengo error
-                // con las relaciones, y no encontré como mapearlas todavía
-                .build();
+        if(loan.isEmpty()) throw new NotFoundException("Loan application with id " + id + " was not found.");
+
+        var loanEntity = loan.get();
+
+        var loanModel = loanEntity.entityToModel();
+
+        return loanModel;
     }
 
     @Override
-    public void saveLoanApplication(LoanApplication request) {
-        jpaRepository.save(LoanApplicationEntity.modelToEntity(request));
+    public void saveLoanApplication(LoanApplication model) {
+        if(model == null) throw new IllegalArgumentException("The request cannot be empty");
+
+        jpaRepository.save(LoanApplicationEntity.modelToEntity(model));
     }
 
 }

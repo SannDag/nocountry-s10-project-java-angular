@@ -9,5 +9,4 @@ public interface GeneralDataJpaRepository extends JpaRepository<GeneralDataEntit
 
     Optional<GeneralDataEntity> findById(String id);
 
-
 }

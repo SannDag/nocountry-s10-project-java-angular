@@ -2,6 +2,9 @@ package s1014ftjavaangular.loansapplication.infrastructure.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +15,7 @@ import s1014ftjavaangular.loansapplication.domain.usecase.SaveGeneralDataUseCase
 
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/generaldata")
@@ -19,9 +23,11 @@ public class SaveGeneralDataController {
 
     private final SaveGeneralDataUseCase useCase;
 
-    @PostMapping("/save")
+    @PostMapping
     private ResponseEntity<?> saveGeneralData(@Valid @RequestBody GeneralDataDto request){
         var id = useCase.saveGeneralData(request);
+
+        log.info("guardé registro");
         return ResponseEntity.ok(Map.of("loanApplicationId", id));
     }
 }
