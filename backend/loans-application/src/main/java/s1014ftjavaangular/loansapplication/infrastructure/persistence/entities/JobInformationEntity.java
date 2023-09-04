@@ -6,7 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import s1014ftjavaangular.loansapplication.domain.model.entity.JobInformation;
+import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.model.enums.WorkShift;
+
+import java.util.function.BiFunction;
 
 @Data
 @NoArgsConstructor
@@ -21,32 +25,34 @@ public class JobInformationEntity {
 
     @Column(name="company",nullable = false , length = 60)
     private String company;
+    @Column(name="business_category",nullable = false , length = 60)
+    private String businessCategory;
 
     @Column(name="occupation",nullable = false, length = 60)
     private String occupation;
-
-    @Column(name="work_shift",nullable = false)
-    private WorkShift workShift;
-
+    //
     @Column(name="years_in_company")
     private Integer yearsInCompany;
 
     @Column(name="monthly_income", nullable = false)
     private Double monthlyIncome;
 
-    @Column(name="other_income")
-    private Double otherIncome;
-
-    @Column(name="city", length = 60)
+    @Column(name="city", nullable = false, length = 60)
     private String city;
 
-    @Column(name="state", length = 70)
+    @Column(name="state", nullable = false, length = 70)
     private String state;
 
-    @Column(name="address", length = 80)
+    @Column(name="address", nullable = false, length = 80)
     private String address;
 
-    @Column(name="phone", length = 30)
+    @Column(name="apartment", nullable = false, length = 10)
+    private String apartment;
+
+    @Column(name="zipcode", nullable = false, length = 16)
+    private String zipcode;
+
+    @Column(name="phone", nullable = false, length = 30)
     private String phone;
 
     @JsonIgnore
@@ -55,4 +61,41 @@ public class JobInformationEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
     private LoanApplicationEntity loansApplication;
+
+    public static final BiFunction<JobInformation, LoanApplication, JobInformationEntity> modelToEntity = (model, loanApplication) -> {
+        JobInformationEntity entity = new JobInformationEntity();
+        entity.setLoanApplicationId(model.getLoanApplicationId());
+        entity.setCompany(model.getCompany());
+        entity.setBusinessCategory(model.getBusinessCategory());
+        entity.setOccupation(model.getOccupation());
+        entity.setYearsInCompany(model.getYearsInCompany());
+        entity.setMonthlyIncome(model.getMonthlyIncome());
+        entity.setCity(model.getCity());
+        entity.setState(model.getState());
+        entity.setAddress(model.getAddress());
+        entity.setApartment(model.getApartment());
+        entity.setZipcode(model.getZipcode());
+        entity.setPhone(model.getPhone());
+
+        loanApplication.setJobInformation(null);
+        entity.setLoansApplication(LoanApplicationEntity.modelToEntity(loanApplication));
+        return entity;
+    };
+
+    public JobInformation entityToModel(){
+        return JobInformation.builder()
+                .loanApplicationId(this.getLoanApplicationId())
+                .company(this.getCompany())
+                .businessCategory(this.getBusinessCategory())
+                .occupation(this.getOccupation())
+                .yearsInCompany(this.getYearsInCompany())
+                .monthlyIncome(this.getMonthlyIncome())
+                .city(this.getCity())
+                .state(this.getState())
+                .address(this.getAddress())
+                .apartment(this.getApartment())
+                .zipcode(this.getZipcode())
+                .phone(this.getPhone())
+                .build();
+    }
 }

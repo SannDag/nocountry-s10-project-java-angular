@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import s1014ftjavaangular.loansapplication.domain.model.dto.request.GuarantorDto;
+import s1014ftjavaangular.loansapplication.domain.model.entity.Guarantor;
+import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.repository.GuarantorRepository;
+import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.GuarantorEntity;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication.LoanApplicationFormJpaRepository;
 
 @Repository
@@ -16,41 +19,14 @@ public class GuarantorJpaRepositoryAdapter implements GuarantorRepository {
 
     @Transactional
     @Override
-    public void updateGuarantor(GuarantorDto dto) {
-        var loanApplicationEntity = loanApplicationFormJpaRepository.findById(dto.getLoanApplicationId()).get();
-        var loanApplicationStatus = loanApplicationEntity.getStatus().toString();
-        if (loanApplicationStatus.equals("INCOMPLETE")){
-            if(dto == null) throw new IllegalArgumentException("The request cannot be empty");
-            var isGuarantorExists = jpaRepository.existsById(dto.getLoanApplicationId());
-            if (!isGuarantorExists) throw new RuntimeException("Guarantor does not exists");
-    
-            var entity = jpaRepository.findById(dto.getLoanApplicationId()).get();
-                
-            if (dto.getLoanApplicationId() == null) entity.setLoanApplicationId(entity.getLoanApplicationId());
-            if (dto.getName() == null) entity.setName(entity.getName());
-            if (dto.getLastname() == null) entity.setLastname(entity.getLastname());
-            if (dto.getIdentificationType() != null) entity.setIdentificationType(entity.getIdentificationType());
-            if (dto.getIdentification() == null) entity.setIdentification(entity.getIdentification());
-            if (dto.getCity() == null) entity.setCity(entity.getCity());
-            if (dto.getState() == null) entity.setState(entity.getState());
-            if (dto.getAddress() == null) entity.setAddress(entity.getAddress());
-            if (dto.getZipcode() == null) entity.setZipcode(entity.getZipcode());
-            if (dto.getPhone() == null) entity.setPhone(entity.getPhone());
-    
-            if (dto.getLoanApplicationId() != null) entity.setLoanApplicationId(dto.getLoanApplicationId());
-            if (dto.getName() != null) entity.setName(dto.getName());
-            if (dto.getLastname() != null) entity.setLastname(dto.getLastname());
-            if (dto.getIdentificationType() != null) entity.setIdentificationType(dto.getIdentificationType());
-            if (dto.getIdentification() != null) entity.setIdentification(dto.getIdentification());
-            if (dto.getCity() != null) entity.setCity(dto.getCity());
-            if (dto.getState() != null) entity.setState(dto.getState());
-            if (dto.getAddress() != null) entity.setAddress(dto.getAddress());
-            if (dto.getZipcode() != null) entity.setZipcode(dto.getZipcode());
-            if (dto.getPhone() != null) entity.setPhone(dto.getPhone());
+    public void updateGuarantor(Guarantor model, LoanApplication loanApplication) {
+        if(model == null) throw new IllegalArgumentException("Request cannot be empty");
 
-            jpaRepository.save(entity);
-        } else{
-            throw new IllegalArgumentException("You cannot update this form");
-        }
+        jpaRepository.save(GuarantorEntity.modelToEntity.apply(model, loanApplication));
+    }
+    @Transactional
+    @Override
+    public void deleteGuarantor(String id) {
+        jpaRepository.deleteById(id);
     }
 }

@@ -1,12 +1,12 @@
 package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.jobInformation;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import s1014ftjavaangular.loansapplication.domain.model.dto.request.JobInformationDto;
+import s1014ftjavaangular.loansapplication.domain.model.entity.JobInformation;
+import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.repository.JobInformationRepository;
-import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.LoanApplicationEntity;
+import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.JobInformationEntity;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication.LoanApplicationFormJpaRepository;
 
 @Repository
@@ -17,43 +17,14 @@ public class JobInformationRepositoryAdapter implements JobInformationRepository
 
     @Transactional
     @Override
-    public void updateJobInformation(JobInformationDto dto) {
-        var loanApplicationEntity = loanApplicationFormJpaRepository.findById(dto.getLoanApplicationId()).get();
-        var loanApplicationStatus = loanApplicationEntity.getStatus().toString();
-        if (loanApplicationStatus.equals("INCOMPLETE")){
-            if(dto == null) throw new IllegalArgumentException("The request cannot be empty");
-            var isJobInformationExists = jpaRepository.existsById(dto.getLoanApplicationId());
-            if(!isJobInformationExists) throw new RuntimeException("Job Information does not exists");
-
-            var entity = jpaRepository.findById(dto.getLoanApplicationId()).get();
-
-            if(dto.getLoanApplicationId() == null) entity.setLoanApplicationId(entity.getLoanApplicationId());
-            if(dto.getCompany() == null) entity.setCompany(entity.getCompany());
-            if(dto.getOccupation() == null) entity.setOccupation(entity.getOccupation());
-            if(dto.getWorkShift() == null) entity.setWorkShift(entity.getWorkShift());
-            if(dto.getYearsInCompany() == null) entity.setYearsInCompany(entity.getYearsInCompany());
-            if(dto.getMonthlyIncome() == null) entity.setMonthlyIncome(entity.getMonthlyIncome());
-            if(dto.getOtherIncome() == null) entity.setOtherIncome(entity.getOtherIncome());
-            if(dto.getCity() == null)  entity.setCity(entity.getCity());
-            if(dto.getState() == null) entity.setState(entity.getState());
-            if(dto.getAddress() == null) entity.setAddress(entity.getAddress());
-            if(dto.getPhone() == null) entity.setPhone(entity.getPhone());
-
-            if(dto.getLoanApplicationId() != null) entity.setLoanApplicationId(dto.getLoanApplicationId());
-            if(dto.getCompany() != null) entity.setCompany(dto.getCompany());
-            if(dto.getOccupation() != null) entity.setOccupation(dto.getOccupation());
-            if(dto.getWorkShift() != null) entity.setWorkShift(dto.getWorkShift());
-            if(dto.getYearsInCompany() != null) entity.setYearsInCompany(dto.getYearsInCompany());
-            if(dto.getMonthlyIncome() != null) entity.setMonthlyIncome(dto.getMonthlyIncome());
-            if(dto.getOtherIncome() != null) entity.setOtherIncome(dto.getOtherIncome());
-            if(dto.getCity() != null)  entity.setCity(dto.getCity());
-            if(dto.getState() != null) entity.setState(dto.getState());
-            if(dto.getAddress() != null) entity.setAddress(dto.getAddress());
-            if(dto.getPhone() != null) entity.setPhone(dto.getPhone());
-
-            jpaRepository.save(entity);
-        } else {
-            throw new IllegalArgumentException("You cannot update this form");
-        }
+    public void updateJobInformation(JobInformation model, LoanApplication loanApplication) {
+        if(model == null) throw new IllegalArgumentException("");
+        jpaRepository.save(JobInformationEntity.modelToEntity.apply(model, loanApplication));
     }
+
+    @Override
+    public void deleteJobInformation(String id) {
+        jpaRepository.deleteById(id);
+    }
+
 }
