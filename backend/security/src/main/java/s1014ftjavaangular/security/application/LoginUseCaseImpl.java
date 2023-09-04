@@ -22,6 +22,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
         loginResponse.setEmail(email);
         loginResponse.setToken(token);
         loginResponse.setRol(accountAuthenticated.getAccount().getRol());
+        loginResponse.setId(accountAuthenticated.getId());
 
         return loginResponse;
     }
