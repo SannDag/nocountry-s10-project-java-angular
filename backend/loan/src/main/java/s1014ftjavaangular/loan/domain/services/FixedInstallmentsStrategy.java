@@ -20,8 +20,10 @@ public class FixedInstallmentsStrategy extends AmortizationStrategy{
     }
 
     private Double calculateInterest(Double capital, Double annualInterest, Integer numberInstallments) {
-        Double interestInstallment = capital * ((annualInterest/ NUMBER_OF_MONTHS)/HUNDRED_PERCENT)/numberInstallments;
-        return interestInstallment;
+        Double porcentage = (annualInterest/HUNDRED_PERCENT);
+        Double interestInstallmentAnnual = capital * porcentage;
+        Double interestInstallmentMonthly = interestInstallmentAnnual/NUMBER_OF_MONTHS;
+        return interestInstallmentMonthly;
     }
 
     @Override
@@ -59,7 +61,7 @@ public class FixedInstallmentsStrategy extends AmortizationStrategy{
                     .amortizationScheduleId(UUID.randomUUID().toString())
                     .paymentDate(currentPaymentDate)
                     .capitalInstallment(capitalInstallment)
-                    .interest(interestInstallment)
+                    .interest(formatDecimal(interestInstallment))
                     .capitalBalance(capitalBalance)
                     .totalPaid(0.00)
                     .status(AmortizationStatus.CURRENT)
