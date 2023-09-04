@@ -1,5 +1,13 @@
-import { Component } from '@angular/core';
+
 import { FormBuilder, FormGroup } from '@angular/forms';
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { Subscription, interval } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { InactivityService } from 'src/app/services/inactivity.service';
+import { TokenService } from 'src/app/services/token.service';
 
 
 
@@ -10,7 +18,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 })
-export class CalculadoraComponent {
+export class CalculadoraComponent implements OnInit{
 
   selectedvalue = 100000;
   formulario!: FormGroup;
