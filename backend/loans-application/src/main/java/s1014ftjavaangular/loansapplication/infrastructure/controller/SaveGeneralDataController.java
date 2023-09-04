@@ -24,7 +24,7 @@ public class SaveGeneralDataController {
     private final SaveGeneralDataUseCase useCase;
 
     @PostMapping
-    private ResponseEntity<?> saveGeneralData(@Valid @RequestBody GeneralDataDto request){
+    private ResponseEntity<Map<String, String>> saveGeneralData(@Valid @RequestBody GeneralDataDto request){
         var id = useCase.saveGeneralData(request);
 
         log.info("guardé registro");
