@@ -47,7 +47,6 @@ public class AccountRepositoryAdapter implements AccountRepositoryPort {
 
     @Override
     public Account registerAccount(String email, String password, Rol rol) {
-        log.info("ENTRE: {}, {}. {}", email, password, rol);
         //Validar que el email no este registrado
         if (this.findByEmail(email).isPresent()) {
             throw new AccountAlreadyExists("This account already exists");
