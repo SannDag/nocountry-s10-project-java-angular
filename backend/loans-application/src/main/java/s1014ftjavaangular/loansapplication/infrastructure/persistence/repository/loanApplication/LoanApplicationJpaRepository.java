@@ -1,8 +1,7 @@
-package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication;
+package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.loanApplication;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import s1014ftjavaangular.loansapplication.domain.model.enums.Status;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.LoanApplicationEntity;
 
 import java.util.Optional;

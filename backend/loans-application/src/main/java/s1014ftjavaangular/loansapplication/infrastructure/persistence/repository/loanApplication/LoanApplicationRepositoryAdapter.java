@@ -1,4 +1,4 @@
-package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication;
+package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.loanApplication;
 
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;

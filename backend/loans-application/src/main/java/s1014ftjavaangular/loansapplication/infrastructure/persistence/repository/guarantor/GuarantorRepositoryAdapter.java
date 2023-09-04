@@ -8,7 +8,7 @@ import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.repository.GuarantorRepository;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.GuarantorEntity;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.LoanApplicationEntity;
-import s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.LoanApplication.LoanApplicationJpaRepository;
+import s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.loanApplication.LoanApplicationJpaRepository;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.generaldata.GeneralDataJpaRepository;
 
 
