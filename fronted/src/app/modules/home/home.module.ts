@@ -7,12 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
-<<<<<<< HEAD
 import { GeneralDataComponent } from './pages/general-data/general-data.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-=======
-import { ReactiveFormsModule } from '@angular/forms';
->>>>>>> fdbe893daa6071d5d369f1e3a2064b2573a66828
 import { GeneralMaterialComponent } from './pages/general-material/general-material.component';
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
 import {MatSliderModule} from '@angular/material/slider';
@@ -28,6 +24,7 @@ import { ConfirmationComponent } from './pages/confirmation/confirmation.compone
     FooterComponent,
     GeneralMaterialComponent,
     CalculadoraComponent,
+    
     GaranteComponent,
     InformaLaboralComponent,
     ConfirmationComponent

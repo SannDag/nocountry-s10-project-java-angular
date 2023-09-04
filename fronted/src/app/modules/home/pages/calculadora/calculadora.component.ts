@@ -32,6 +32,9 @@ export class CalculadoraComponent implements OnInit{
       
     });
   }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   calcularDatos(valueButton: any,selectedvalue:any){
     const tasa = 0.01;
