@@ -9,7 +9,7 @@ import { FooterComponent } from './pages/footer/footer.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 import { GeneralDataComponent } from './pages/general-data/general-data.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeneralMaterialComponent } from './pages/general-material/general-material.component';
 
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
@@ -32,6 +32,7 @@ import { InformaLaboralComponent } from './pages/informa-laboral/informa-laboral
     HomeRoutingModule,
     MatIconModule,
     ReactiveFormsModule,
+    FormsModule,
     MatIconModule,
     MatSliderModule
 
