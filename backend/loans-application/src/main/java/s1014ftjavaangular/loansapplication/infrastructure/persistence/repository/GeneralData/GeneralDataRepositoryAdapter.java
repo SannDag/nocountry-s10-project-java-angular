@@ -1,4 +1,4 @@
-package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.generaldata;
+package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.GeneralData;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +13,6 @@ import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.L
 @RequiredArgsConstructor
 public class GeneralDataRepositoryAdapter implements GeneralDataRepository{
     private final GeneralDataJpaRepository jpaRepository;
-
-    @Override
-    public void deleteGeneralDataById(String id) {
-        jpaRepository.deleteById(id);
-    }
 
     @Override
     public void saveGeneralData(GeneralData model, LoanApplication loanApplication) {

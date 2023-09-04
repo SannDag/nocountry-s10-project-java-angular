@@ -7,10 +7,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import s1014ftjavaangular.loansapplication.domain.model.enums.IdentificationType;
-import s1014ftjavaangular.loansapplication.domain.model.enums.WorkShift;
 
 import java.time.LocalDate;
 import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor

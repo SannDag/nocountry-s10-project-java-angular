@@ -33,6 +33,6 @@ public class UpdateGuarantorUseCaseImp implements UpdateGuarantorUseCase {
         //Se mapea de DTO a Modelo
         var model = mapper.dtoToModel.apply(request);
         //Se vuelve a guardar el garante
-        repository.updateGuarantor(model, loanApplication);
+        repository.saveGuarantor(model, loanApplication);
     }
 }

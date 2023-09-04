@@ -7,11 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import s1014ftjavaangular.loansapplication.domain.model.entity.GeneralData;
-import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.model.enums.IdentificationType;
 
 import java.time.LocalDate;
-import java.util.function.BiFunction;
+
+import java.util.function.Function;
+
 
 @Data
 @NoArgsConstructor
@@ -26,7 +27,7 @@ public class GeneralDataEntity {
 
     @Column(name = "identification", nullable = false)
     private String identification;
-    //
+
     @Column(name = "identification_type", nullable = false)
     private IdentificationType identificationType;
 
@@ -62,15 +63,16 @@ public class GeneralDataEntity {
 
     @Column(name = "phone", nullable = false)
     private String phone;
-    //
+
     @JsonIgnore
     @ToString.Exclude
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
     private LoanApplicationEntity loansApplication;
 
-    public static final BiFunction<GeneralData, LoanApplication, GeneralDataEntity> modelToEntity = (model, loanApplication) -> {
+    public static final Function<GeneralData, GeneralDataEntity> modelToEntity = (model) -> {
+
         GeneralDataEntity entity = new GeneralDataEntity();
         entity.setLoanApplicationId(model.getLoanApplicationId());
         entity.setIdentification(model.getIdentification());
@@ -86,8 +88,6 @@ public class GeneralDataEntity {
         entity.setApartment(model.getApartment());
         entity.setZipcode(model.getZipcode());
         entity.setPhone(model.getPhone());
-        loanApplication.setGeneralData(null);
-        entity.setLoansApplication(LoanApplicationEntity.modelToEntity(loanApplication));
 
         return entity;
     };

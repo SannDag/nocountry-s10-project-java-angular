@@ -8,12 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import s1014ftjavaangular.loansapplication.domain.model.enums.IdentificationType;
 
-import java.time.LocalDate;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class GuarantorDto {
 
     @NotEmpty(message = "Field required")
@@ -60,4 +59,5 @@ public class GuarantorDto {
     private String companyZipcode;
     @NotEmpty(message = "Field required")
     private String companyPhone;
+
 }

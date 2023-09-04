@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import s1014ftjavaangular.loansapplication.domain.model.entity.JobInformation;
 import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
-import s1014ftjavaangular.loansapplication.domain.model.enums.WorkShift;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +30,7 @@ public class JobInformationEntity {
 
     @Column(name="occupation",nullable = false, length = 60)
     private String occupation;
-    //
+
     @Column(name="years_in_company")
     private Integer yearsInCompany;
 
@@ -58,14 +58,16 @@ public class JobInformationEntity {
     @JsonIgnore
     @ToString.Exclude
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
     private LoanApplicationEntity loansApplication;
 
-    public static final BiFunction<JobInformation, LoanApplication, JobInformationEntity> modelToEntity = (model, loanApplication) -> {
+
+    public static final Function<JobInformation, JobInformationEntity> modelToEntity = (model) -> {
+
         JobInformationEntity entity = new JobInformationEntity();
-        entity.setLoanApplicationId(model.getLoanApplicationId());
-        entity.setCompany(model.getCompany());
+        entity.setLoanApplicationId( model.getLoanApplicationId() );
+        entity.setCompany( model.getCompany() );
         entity.setBusinessCategory(model.getBusinessCategory());
         entity.setOccupation(model.getOccupation());
         entity.setYearsInCompany(model.getYearsInCompany());
@@ -77,8 +79,6 @@ public class JobInformationEntity {
         entity.setZipcode(model.getZipcode());
         entity.setPhone(model.getPhone());
 
-        loanApplication.setJobInformation(null);
-        entity.setLoansApplication(LoanApplicationEntity.modelToEntity(loanApplication));
         return entity;
     };
 

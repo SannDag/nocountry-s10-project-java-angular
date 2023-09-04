@@ -11,7 +11,7 @@ import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.usecase.UpdateStatusUseCase;
 
 @RestController
-@RequestMapping("/api/loan-application")
+@RequestMapping("/api/v1/loansapplication")
 @RequiredArgsConstructor
 public class LoanApplicationStatusUpdate {
     private final UpdateStatusUseCase updateStatusUseCase;

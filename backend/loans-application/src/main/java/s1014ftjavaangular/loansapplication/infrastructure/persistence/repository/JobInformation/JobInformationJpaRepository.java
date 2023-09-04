@@ -1,4 +1,4 @@
-package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.jobInformation;
+package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.JobInformation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.JobInformationEntity;

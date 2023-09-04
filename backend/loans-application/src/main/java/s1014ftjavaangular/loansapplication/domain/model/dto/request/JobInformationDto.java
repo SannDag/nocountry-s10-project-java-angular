@@ -37,4 +37,5 @@ public class JobInformationDto {
     private String zipcode;
     @NotEmpty(message = "Field required")
     private String phone;
+
 }

@@ -9,7 +9,8 @@ import java.util.function.Function;
 @Component
 public class JobInformationMapper {
 
-    public final Function<JobInformationDto, JobInformation> dtoToModel = (model) -> {
+    public static final Function<JobInformationDto, JobInformation> dtoToModel = (model) -> {
+
         JobInformation entity = new JobInformation();
         entity.setLoanApplicationId(model.getLoanApplicationId());
         entity.setCompany(model.getCompany());
@@ -27,7 +28,8 @@ public class JobInformationMapper {
         return entity;
     };
 
-    public final Function<JobInformation, JobInformationDto> entityToModel = (entity) -> new JobInformationDto(
+
+    private final Function<JobInformation, JobInformationDto> entityToModel = (entity) -> new JobInformationDto(
             entity.getLoanApplicationId(),
             entity.getCompany(),
             entity.getBusinessCategory(),

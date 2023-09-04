@@ -40,6 +40,6 @@ public final class UpdateJobInformationUseCaseImp implements UpdateJobInformatio
         //Mapeo el DTO al Modelo
         var model = mapper.dtoToModel.apply(request);
         //Vuelve a guardar el JobInformation
-        repository.updateJobInformation(model, loanApplication);
+        repository.saveJobInformation(model, loanApplication);
     }
 }

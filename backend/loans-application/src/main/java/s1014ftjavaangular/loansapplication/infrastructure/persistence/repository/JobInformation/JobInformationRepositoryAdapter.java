@@ -1,4 +1,4 @@
-package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.jobInformation;
+package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.JobInformation;
 
 
 import jakarta.transaction.Transactional;
@@ -15,11 +15,6 @@ import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.L
 @RequiredArgsConstructor
 public class JobInformationRepositoryAdapter implements JobInformationRepository {
     private final JobInformationJpaRepository jpaRepository;
-
-    @Override
-    public void deleteJobInformation(String id) {
-        jpaRepository.deleteById(id);
-    }
 
     @Override
     public void saveJobInformation(JobInformation model, LoanApplication loanApplication) {

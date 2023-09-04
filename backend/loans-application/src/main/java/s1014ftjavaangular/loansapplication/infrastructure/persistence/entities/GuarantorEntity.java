@@ -11,6 +11,7 @@ import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.model.enums.IdentificationType;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 @Data
 @NoArgsConstructor
@@ -93,7 +94,8 @@ public class GuarantorEntity {
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
     private LoanApplicationEntity loansApplication;
 
-    public static final BiFunction<Guarantor, LoanApplication, GuarantorEntity> modelToEntity = (model, loanApplication) -> {
+    public static final Function<Guarantor, GuarantorEntity> modelToEntity = (model) -> {
+
         GuarantorEntity entity = new GuarantorEntity();
         entity.setLoanApplicationId(model.getLoanApplicationId());
         entity.setName(model.getName());
@@ -118,8 +120,6 @@ public class GuarantorEntity {
         entity.setCompanyZipcode(model.getCompanyZipcode());
         entity.setCompanyPhone(model.getCompanyPhone());
 
-        loanApplication.setGuarantor(null);
-        entity.setLoansApplication(LoanApplicationEntity.modelToEntity(loanApplication));
         return entity;
 
     };

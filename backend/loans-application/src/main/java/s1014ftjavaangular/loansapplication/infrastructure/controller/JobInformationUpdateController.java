@@ -11,7 +11,7 @@ import s1014ftjavaangular.loansapplication.domain.model.dto.request.JobInformati
 import s1014ftjavaangular.loansapplication.domain.usecase.UpdateJobInformationUseCase;
 
 @RestController
-@RequestMapping("/api/job-information")
+@RequestMapping("/api/v1/jobinformation")
 @RequiredArgsConstructor
 public class JobInformationUpdateController {
     private final UpdateJobInformationUseCase updateJobInformationUseCase;

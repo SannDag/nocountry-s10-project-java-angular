@@ -1,6 +1,5 @@
 package s1014ftjavaangular.loansapplication.infrastructure.persistence.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +9,6 @@ import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.model.enums.Status;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Builder
 @Data
@@ -22,7 +20,7 @@ public class LoanApplicationEntity {
     @Id
     @Column(name = "loan_application_id")
     private String loanApplicationId;
-    //
+
     @Column(name = "customer_id", nullable = false)
     private String customersUuid;
 
@@ -43,7 +41,7 @@ public class LoanApplicationEntity {
 
     @OneToOne(mappedBy = "loansApplication")
     private GeneralDataEntity generalData;
-    //
+
     @OneToOne(mappedBy = "loansApplicationId", cascade = CascadeType.ALL)
     private CreditAuditEntity creditAuditId;
 
@@ -58,9 +56,11 @@ public class LoanApplicationEntity {
                 .requestedAmount(model.getRequestedAmount())
                 .createAt(model.getCreateAt())
                 .status(model.getStatus())
-                .jobInformation(model.getJobInformation() != null ? JobInformationEntity.modelToEntity.apply(model.getJobInformation(), model) : null)
-                .guarantor(model.getGuarantor() != null ? GuarantorEntity.modelToEntity.apply(model.getGuarantor(), model) : null)
-                .generalData(model.getGeneralData() != null ? GeneralDataEntity.modelToEntity.apply(model.getGeneralData(), model) : null)
+
+                .jobInformation(model.getJobInformation() != null ? JobInformationEntity.modelToEntity.apply(model.getJobInformation()) : null)
+                .guarantor(model.getGuarantor() != null ? GuarantorEntity.modelToEntity.apply(model.getGuarantor()) : null)
+                .generalData(model.getGeneralData() != null ? GeneralDataEntity.modelToEntity.apply(model.getGeneralData()) : null)
+
                 .creditAuditId(model.getCreditAuditorId() != null ? CreditAuditEntity.modelToEntity.apply(model.getCreditAuditorId()) : null)
                 .build();
     }
