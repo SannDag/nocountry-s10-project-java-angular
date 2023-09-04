@@ -5,10 +5,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import s1014ftjavaangular.userservice.domain.model.entity.User;
+
+import s1014ftjavaangular.userservice.domain.model.dto.request.AccountCreatedDto;
+import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
+import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
+
 import s1014ftjavaangular.userservice.domain.model.mapper.UserMapper;
 import s1014ftjavaangular.userservice.domain.repository.UserRepository;
 import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEntity;
+
+import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Optional;
