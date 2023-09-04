@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
-import { GeneralDataComponent } from './pages/general-data/general-data.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeneralMaterialComponent } from './pages/general-material/general-material.component';
 import { CalculadoraComponent } from './pages/calculadora/calculadora.component';
