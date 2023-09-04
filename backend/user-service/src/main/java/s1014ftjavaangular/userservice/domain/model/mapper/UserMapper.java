@@ -13,20 +13,6 @@ import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEn
 @Component
 public class UserMapper {
 
-    public User updateToEntity(UserRequest request) {
-        return User.builder()
-                .id(request.getId())
-                .identifier(request.getIdentifier())
-                .identifierNumber(request.getIdentifierNumber())
-                .genre(request.getGenre())
-                .name(request.getName())
-                .lastName(request.getLastName())
-                .civilStatus(request.getCivilStatus())
-                .birthDay(request.getBirthDay())
-                .phoneDetails(request.getPhoneDetails())
-                .build();
-    }
-
     public UserResponse entityToModel(UserEntity userEntity){
         return UserResponse.builder()
                 .id(userEntity.getUserUuid())
