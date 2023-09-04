@@ -1,19 +1,16 @@
 package s1014ftjavaangular.userservice.domain.model.mapper;
 
 import org.springframework.stereotype.Component;
+import s1014ftjavaangular.userservice.domain.model.dto.request.ResidenceDetailsDto;
 import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
 import s1014ftjavaangular.userservice.domain.model.dto.response.UserResponse;
-import s1014ftjavaangular.userservice.domain.model.entity.PhoneDetails;
 import s1014ftjavaangular.userservice.domain.model.entity.ResidenceDetails;
 import s1014ftjavaangular.userservice.domain.model.entity.User;
-import s1014ftjavaangular.userservice.infrastructure.persistence.entities.PhoneDetailsEntity;
-import s1014ftjavaangular.userservice.infrastructure.persistence.entities.ResidenceDetailsEntity;
-import s1014ftjavaangular.userservice.infrastructure.persistence.entities.UserEntity;
 
 @Component
 public class UserMapper {
 
-    public User updateToEntity(UserRequest request) {
+    public User userDtoToModel(UserRequest request) {
         return User.builder()
                 .id(request.getId())
                 .identifier(request.getIdentifier())
@@ -21,54 +18,45 @@ public class UserMapper {
                 .genre(request.getGenre())
                 .name(request.getName())
                 .lastName(request.getLastName())
-                .civilStatus(request.getCivilStatus())
+                .nationality(request.getNationality())
                 .birthDay(request.getBirthDay())
-                .phoneDetails(request.getPhoneDetails())
+                .phone(request.getPhone())
+                .residenceDetails(this.residenceDetailsDtoToModel(request.getResidenceDetails()))
                 .build();
     }
 
-    public UserResponse entityToModel(UserEntity userEntity){
+    public UserResponse userModelToResponse(User user){
         return UserResponse.builder()
-                .id(userEntity.getUserUuid())
-                .identifier(userEntity.getIdentifier())
-                .identifierNumber(userEntity.getIdentifierNumber())
-                .number(userEntity.getNumber())
-                .type(userEntity.getType())
-                .genre(userEntity.getGenre())
-                .name(userEntity.getName())
-                .lastName(userEntity.getLastName())
-                .civilStatus(userEntity.getCivilStatus())
-                .birthDay(userEntity.getBirthDay())
-                .residenceDetails(
-                        ( userEntity.getResidenceDetails() != null )
-                                ? residenceEntityToModel(userEntity.getResidenceDetails())
-                                : null
-                        )
-                .phoneDetails(userEntity.getPhoneDetails().stream().map(this::phoneDetailsEntityToModel).toList())
-                .blackList(userEntity.getBlackList())
+                .id(user.getId())
+                .identifier(user.getIdentifier())
+                .identifierNumber(user.getIdentifierNumber())
+                .genre(user.getGenre())
+                .name(user.getName())
+                .lastName(user.getLastName())
+                .nationality(user.getNationality())
+                .birthDay(user.getBirthDay())
+                .phone(user.getPhone())
+                .residenceDetails(this.residenceDetailsModelToDto(user.getResidenceDetails()))
                 .build();
     }
 
-    public ResidenceDetails residenceEntityToModel(ResidenceDetailsEntity residenceDetailsEntity){
+    public ResidenceDetails residenceDetailsDtoToModel(ResidenceDetailsDto residenceDetailsDto){
         return ResidenceDetails.builder()
-                .state(residenceDetailsEntity.getState())
-                .city(residenceDetailsEntity.getCity())
-                .housingStatus(residenceDetailsEntity.getHousingStatus())
-                .yearsInHouse(residenceDetailsEntity.getYearsInHouse())
-                .monthsInHouse(residenceDetailsEntity.getMonthsInHouse())
-                .address1(residenceDetailsEntity.getAddress1())
-                .address2(residenceDetailsEntity.getAddress2())
-                .zipCode(residenceDetailsEntity.getZipCode())
+                .city(residenceDetailsDto.getCity())
+                .state(residenceDetailsDto.getState())
+                .address(residenceDetailsDto.getAddress())
+                .apartment(residenceDetailsDto.getApartment())
+                .zipCode(residenceDetailsDto.getZipCode())
                 .build();
     }
-    
-    public PhoneDetails phoneDetailsEntityToModel(PhoneDetailsEntity phoneDetailsEntity){
-        return PhoneDetails.builder()
-                .phoneLabel(phoneDetailsEntity.getPhoneLabel())
-                .phoneNumber(phoneDetailsEntity.getPhoneNumber())
-                .countryCode(phoneDetailsEntity.getCountryCode())
-                .cityCode(phoneDetailsEntity.getCityCode())
-                .phoneNumber(phoneDetailsEntity.getPhoneNumber())
+
+    public ResidenceDetailsDto residenceDetailsModelToDto(ResidenceDetails residenceDetails){
+        return ResidenceDetailsDto.builder()
+                .city(residenceDetails.getCity())
+                .state(residenceDetails.getState())
+                .address(residenceDetails.getAddress())
+                .apartment(residenceDetails.getApartment())
+                .zipCode(residenceDetails.getZipCode())
                 .build();
     }
 }
