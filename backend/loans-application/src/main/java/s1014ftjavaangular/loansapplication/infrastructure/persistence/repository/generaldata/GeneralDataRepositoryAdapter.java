@@ -19,6 +19,7 @@ public class GeneralDataRepositoryAdapter implements GeneralDataRepository{
         jpaRepository.deleteById(id);
     }
 
+
     @Override
     public void saveGeneralData(GeneralData model, LoanApplication loanApplication) {
         if(model == null) throw new IllegalArgumentException("The request cannot be empty");

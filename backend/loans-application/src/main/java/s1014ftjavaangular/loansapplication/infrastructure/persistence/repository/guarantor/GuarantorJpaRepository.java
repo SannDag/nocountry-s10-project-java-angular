@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface GuarantorJpaRepository extends JpaRepository<GuarantorEntity, String> {
 
     Optional<GuarantorEntity> findById(String id);
+
 }

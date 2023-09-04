@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface JobInformationJpaRepository extends JpaRepository<JobInformationEntity, String> {
     Optional<JobInformationEntity> findById(String id);
 
+
 }

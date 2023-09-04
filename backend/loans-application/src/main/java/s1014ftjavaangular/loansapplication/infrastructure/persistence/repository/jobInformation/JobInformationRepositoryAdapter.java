@@ -19,7 +19,9 @@ public class JobInformationRepositoryAdapter implements JobInformationRepository
     @Override
     public void deleteJobInformation(String id) {
         jpaRepository.deleteById(id);
+
     }
+
 
     @Override
     public void saveJobInformation(JobInformation model, LoanApplication loanApplication) {
