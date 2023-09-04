@@ -14,8 +14,6 @@ public interface UserJpaRepository extends JpaRepository<UserEntity, String> {
     List<UserEntity> findAllByType(String type);
     Optional<UserEntity> findById(String id);
 
-    Boolean existsByUserUuid(String userUuid);
-
     @Query(value = "SELECT MAX(u.number) FROM [user].dbo.users u WHERE u.[type] = :type", nativeQuery = true)
     String findByNumber(String type);
 }

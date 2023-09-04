@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 public class UserListAllController {
     private final UserListFindAllUseCase userListFindAllUseCase;
+
     @Retry(name = "userRetry")
     @GetMapping()
     public ResponseEntity<List<UserResponse>> getAll(){

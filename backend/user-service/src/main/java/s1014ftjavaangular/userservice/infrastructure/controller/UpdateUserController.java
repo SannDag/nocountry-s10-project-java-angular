@@ -16,9 +16,8 @@ import s1014ftjavaangular.userservice.domain.usecase.UpdateUserUseCase;
 public class UpdateUserController {
     private final UpdateUserUseCase useCase;
     @Retry(name = "userRetry")
-    @PutMapping()
+    @PutMapping
     private ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UserRequest request){
-
         useCase.updateUser(request);
 
         return ResponseEntity.ok().build();

@@ -1,5 +1,6 @@
 package s1014ftjavaangular.userservice.domain.model.dto.request;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,14 +18,15 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class UserRequest {
+    @NotEmpty(message = "ID cannot be empty")
     private String id;
     private String identifier;
     private String identifierNumber;
     private Genre genre;
     private String name;
     private String lastName;
-    private CivilStatus civilStatus;
+    private String nationality;
     private LocalDate birthDay;
-    private List<PhoneDetails> phoneDetails;
-    private ResidenceDetails residenceDetails;
+    private String phone;
+    private ResidenceDetailsDto residenceDetails;
 }
