@@ -15,7 +15,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     private final UserRepository repository;
 
     @Override
-    public void saveUser(AccountCreatedDto message){
+    public void saveUser(final AccountCreatedDto message){
         var lastUserNumber = repository.findLastUserNumber(message.getAccountRol());
         Integer actualYear = LocalDate.now().getYear();
         var nextCustomerNumber = getCustomerActualCustomerNumber(lastUserNumber);

@@ -4,6 +4,8 @@ import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
+import s1014ftjavaangular.userservice.domain.model.exception.ResourceAlreadyExists;
+import s1014ftjavaangular.userservice.domain.model.exception.UserNotFoundException;
 import s1014ftjavaangular.userservice.domain.model.mapper.UserMapper;
 import s1014ftjavaangular.userservice.domain.repository.UserRepository;
 import s1014ftjavaangular.userservice.domain.usecase.UpdateUserUseCase;
@@ -17,11 +19,11 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
     @Override
     public void updateUser(UserRequest request) {
         var modelOptional = repository.findById(request.getId());
-        if(modelOptional.isEmpty()) throw new NotFoundException("User with ID "+request.getId()+" not found");
+        if(modelOptional.isEmpty()) throw new UserNotFoundException("User with ID "+request.getId()+" not found");
         var model = modelOptional.get();
 
         if(model.getIdentifier() != null && request.getIdentifier() != null && request.getIdentifier() != model.getIdentifier()){
-            throw new RuntimeException("Identification cannot be updated once added");
+            throw new ResourceAlreadyExists("Identification cannot be updated once added");
         }
 
         if(model.getIdentifier() == null) {
