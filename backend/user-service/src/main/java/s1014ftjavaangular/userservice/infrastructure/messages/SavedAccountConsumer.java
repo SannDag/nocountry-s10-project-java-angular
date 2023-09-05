@@ -19,14 +19,11 @@ public class SavedAccountConsumer implements AcknowledgingMessageListener<String
     private final CreateUserUseCase useCase;
     private final ObjectMapper objectMapper;
 
-
     @Override
     @KafkaListener(topics = "${spring.kafka.template.default-topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void onMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
-        //
         log.info("Consumer Receives in Microservice Security");
         log.info("Consumer Record	:	{}", consumerRecord.value());
-
         consumerRecord.value();
 
         try{

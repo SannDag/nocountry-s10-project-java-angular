@@ -9,7 +9,7 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#   driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
 #    url: jdbc:sqlserver://20.121.214.190:1434;databaseName=user;encrypt=true;trustServerCertificate=true;
 #    username: sa
 #    password: nocountry2023

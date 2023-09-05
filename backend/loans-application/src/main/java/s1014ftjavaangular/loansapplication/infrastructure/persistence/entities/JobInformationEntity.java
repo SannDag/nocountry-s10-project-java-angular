@@ -7,8 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import s1014ftjavaangular.loansapplication.domain.model.entity.JobInformation;
-import s1014ftjavaangular.loansapplication.domain.model.enums.WorkShift;
+import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 @Data
@@ -24,21 +25,17 @@ public class JobInformationEntity {
 
     @Column(name="company",nullable = false , length = 60)
     private String company;
+    @Column(name="business_category",nullable = false , length = 60)
+    private String businessCategory;
 
     @Column(name="occupation",nullable = false, length = 60)
     private String occupation;
-
-    @Column(name="work_shift",nullable = false)
-    private WorkShift workShift;
 
     @Column(name="years_in_company")
     private Integer yearsInCompany;
 
     @Column(name="monthly_income", nullable = false)
     private Double monthlyIncome;
-
-    @Column(name="other_income")
-    private Double otherIncome;
 
     @Column(name="city", nullable = false, length = 60)
     private String city;
@@ -49,10 +46,10 @@ public class JobInformationEntity {
     @Column(name="address", nullable = false, length = 80)
     private String address;
 
-    @Column(name="apartment")
+    @Column(name="apartment", nullable = false, length = 10)
     private String apartment;
 
-    @Column(name="zipcode")
+    @Column(name="zipcode", nullable = false, length = 16)
     private String zipcode;
 
     @Column(name="phone", nullable = false, length = 30)
@@ -61,14 +58,17 @@ public class JobInformationEntity {
     @JsonIgnore
     @ToString.Exclude
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "loan_application_id", referencedColumnName = "loan_application_id")
     private LoanApplicationEntity loansApplication;
 
+
     public static final Function<JobInformation, JobInformationEntity> modelToEntity = (model) -> {
+
         JobInformationEntity entity = new JobInformationEntity();
-        entity.setLoanApplicationId(model.getLoanApplicationId());
-        entity.setCompany(model.getCompany());
+        entity.setLoanApplicationId( model.getLoanApplicationId() );
+        entity.setCompany( model.getCompany() );
+        entity.setBusinessCategory(model.getBusinessCategory());
         entity.setOccupation(model.getOccupation());
         entity.setYearsInCompany(model.getYearsInCompany());
         entity.setMonthlyIncome(model.getMonthlyIncome());
@@ -81,4 +81,21 @@ public class JobInformationEntity {
 
         return entity;
     };
+
+    public JobInformation entityToModel(){
+        return JobInformation.builder()
+                .loanApplicationId(this.getLoanApplicationId())
+                .company(this.getCompany())
+                .businessCategory(this.getBusinessCategory())
+                .occupation(this.getOccupation())
+                .yearsInCompany(this.getYearsInCompany())
+                .monthlyIncome(this.getMonthlyIncome())
+                .city(this.getCity())
+                .state(this.getState())
+                .address(this.getAddress())
+                .apartment(this.getApartment())
+                .zipcode(this.getZipcode())
+                .phone(this.getPhone())
+                .build();
+    }
 }

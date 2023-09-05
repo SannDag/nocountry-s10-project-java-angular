@@ -20,7 +20,6 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
         this.jwtProvider = jwtProvider;
     }
 
-
     @Override
     public GatewayFilter apply(JwtAuthenticationFilter.Config config) {
         // Custom Pre Filter. Suppose we can extract JWT and perform Authentication

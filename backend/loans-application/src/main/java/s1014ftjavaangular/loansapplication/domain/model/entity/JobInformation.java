@@ -14,11 +14,12 @@ public class JobInformation {
 
     private String loanApplicationId;
     private String company;
+    private String businessCategory;
     private String occupation;
-    private WorkShift workShift;
+
     private Integer yearsInCompany;
     private Double monthlyIncome;
-    private Double otherIncome;
+
     private String city;
     private String state;
     private String address;

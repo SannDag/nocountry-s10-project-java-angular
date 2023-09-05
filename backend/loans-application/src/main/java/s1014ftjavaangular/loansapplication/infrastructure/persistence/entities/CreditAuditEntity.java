@@ -19,13 +19,13 @@ import java.util.function.Function;
 public class CreditAuditEntity {
 
     @Id
-    @Column(name="credit_audit_id", nullable = false)
+    @Column(name = "credit_audit_id", nullable = false)
     private String creditAuditId;
 
-    @Column(name="audit_date", nullable = false)
+    @Column(name = "audit_date", nullable = false)
     private LocalDate auditDate;
 
-    @Column(name="credit_auditor_id", nullable = false)
+    @Column(name = "credit_auditor_id", nullable = false)
     private String creditAuditorId;
 
     @JsonIgnore
@@ -39,9 +39,8 @@ public class CreditAuditEntity {
         entity.setCreditAuditId(model.getCreditAuditId());
         entity.setAuditDate(model.getAuditDate());
         entity.setCreditAuditorId(model.getCreditAuditorId());
-        //entity.setLoansApplicationId(model.getLoanApplicationId());
 
         return entity;
-
     };
+
 }

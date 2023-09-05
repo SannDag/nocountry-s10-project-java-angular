@@ -9,6 +9,7 @@ const TOKEN_LOGIN = 'AuthToken';
 const ROL_USER = 'RolUser';
 const EMAIL_USER = 'EmailUser';
 const NAME_USER = 'NameUser';
+const CUSTOMERS_UUID = "CustomersUuId";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,12 @@ export class TokenService {
     );
   }
 
-
+  public setCustomersUuId(id:string):void{
+    localStorage.setItem(CUSTOMERS_UUID, id);
+  }
+  public getCustomersUuId():string | null{
+    return localStorage.getItem(CUSTOMERS_UUID);
+  }
   public setNameUser(name:string):void{
     localStorage.setItem(NAME_USER, name);
   }

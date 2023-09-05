@@ -23,4 +23,15 @@ public class Guarantor {
     private String apartment;
     private String zipcode;
     private String phone;
+    private String company;
+    private String businessCategory;
+    private String occupation;
+    private Integer timeInCompany;
+    private Double monthlyIncome;
+    private String companyCity;
+    private String companyState;
+    private String companyAddress;
+    private String companyApartment;
+    private String companyZipcode;
+    private String companyPhone;
 }

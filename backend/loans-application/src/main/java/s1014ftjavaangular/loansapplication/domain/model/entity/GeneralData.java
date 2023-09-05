@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.loansapplication.domain.model.enums.HousingStatus;
+import s1014ftjavaangular.loansapplication.domain.model.enums.IdentificationType;
+
+import java.time.LocalDate;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,9 +16,13 @@ import s1014ftjavaangular.loansapplication.domain.model.enums.HousingStatus;
 public class GeneralData {
 
     private String loanApplicationId;
-    private HousingStatus housingStatus;
-    private Integer yearsInHouse;
-    private Integer monthsInHouse;
+    private String identification;
+    private IdentificationType identificationType;
+    private String name;
+    private String lastname;
+    private String genre;
+    private LocalDate birthdate;
+    private String nationality;
     private String city;
     private String state;
     private String address;

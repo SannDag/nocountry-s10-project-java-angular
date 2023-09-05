@@ -13,9 +13,9 @@ import s1014ftjavaangular.loansapplication.domain.usecase.FindByIdLoanAppUseCase
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/loanapplication")
 public class LoanAppFindByIdController {
+    private final FindByIdLoanAppUseCase useCase;
 
-    FindByIdLoanAppUseCase useCase;
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<LoanApplicationDto> getAllById(@PathVariable String id){
         var response = useCase.findById(id);
 

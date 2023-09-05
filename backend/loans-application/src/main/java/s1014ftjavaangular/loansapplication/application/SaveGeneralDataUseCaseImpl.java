@@ -1,65 +1,65 @@
 package s1014ftjavaangular.loansapplication.application;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import s1014ftjavaangular.loansapplication.domain.mapper.GeneralDataMapper;
+import s1014ftjavaangular.loansapplication.domain.mapper.LoanApplicationMapper;
 import s1014ftjavaangular.loansapplication.domain.model.dto.request.GeneralDataDto;
-import s1014ftjavaangular.loansapplication.domain.model.entity.GeneralData;
-import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
 import s1014ftjavaangular.loansapplication.domain.repository.GeneralDataRepository;
 import s1014ftjavaangular.loansapplication.domain.repository.LoanApplicationRepository;
 import s1014ftjavaangular.loansapplication.domain.usecase.SaveGeneralDataUseCase;
 
-import java.util.UUID;
-import java.util.function.Function;
+import java.time.LocalDate;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class SaveGeneralDataUseCaseImpl implements SaveGeneralDataUseCase {
-
     private final GeneralDataRepository generalDataRepository;
     private final LoanApplicationRepository loanApplicationRepository;
+    private final GeneralDataMapper generalDataMapper;
+    private final LoanApplicationMapper loanApplicationMapper;
 
-    private final Function<GeneralData, GeneralDataDto> entityToModel = (entity) -> (
-            new GeneralDataDto(
-                    entity.getLoanApplicationId(),
-                    entity.getHousingStatus(),
-                    entity.getYearsInHouse(),
-                    entity.getMonthsInHouse(),
-                    entity.getCity(),
-                    entity.getState(),
-                    entity.getAddress(),
-                    entity.getApartment(),
-                    entity.getZipcode(),
-                    entity.getPhone()
-            )
-    );
-
-    private final Function<GeneralDataDto, GeneralData> modelToEntity = (dto) -> {
-        GeneralData entity = new GeneralData();
-        entity.setLoanApplicationId(dto.getLoanApplicationId());
-        entity.setHousingStatus(dto.getHousingStatus());
-        entity.setYearsInHouse(dto.getYearsInHouse());
-        entity.setMonthsInHouse(dto.getMonthsInHouse());
-        entity.setCity(dto.getCity());
-        entity.setState(dto.getState());
-        entity.setAddress(dto.getAddress());
-        entity.setApartment(dto.getApartment());
-        entity.setZipcode(dto.getZipcode());
-        entity.setPhone(dto.getPhone());
-
-        return entity;
-    };
-
+//
     @Override
     public String saveGeneralData(GeneralDataDto request) {
-        var loanApplication = LoanApplication.builder()
-                .loanApplicationId(UUID.randomUUID().toString())
-                // To Do
-                .build();
 
-        loanApplicationRepository.saveLoanApplication(loanApplication);
-        generalDataRepository.saveGeneralData(modelToEntity.apply(request));
+        var countIncompleteOrAuditingLoanApplication = loanApplicationRepository.countOfInactiveOrAuditingLoanApplicatin(request.getIdentification());
+        if(countIncompleteOrAuditingLoanApplication == 1){
+            throw new RuntimeException("Cannot create new request because you already have one in 'AUDITING' or 'INCOMPLETE' status");
+        }
+
+        var actualYear = LocalDate.now().getYear();
+        var lastLoanApplication = loanApplicationRepository.findLastLoanApplicationNumber();
+        var nextNumber = getNextLoanApplicationNumber(lastLoanApplication);
+        String loanApplicationNumber = actualYear + "-" + nextNumber;
+        var loanApplication = loanApplicationMapper.dtoToModel.apply(request, loanApplicationNumber);
+
+        this.loanApplicationRepository.saveLoanApplication(loanApplication);
+
+        request.setLoanApplicationId(loanApplication.getLoanApplicationId());
+        var generalData = generalDataMapper.dtoToModel.apply(request);
+        generalDataRepository.saveGeneralData(generalData, loanApplication);
 
         return loanApplication.getLoanApplicationId();
+    }
+
+    private String getNextLoanApplicationNumber(String lastLoanApplicationNumber) {
+        if (!StringUtils.hasText(lastLoanApplicationNumber)) {
+            return "1";
+        } else {
+            int separatorIndex = lastLoanApplicationNumber.indexOf("-");
+
+            if (separatorIndex != -1 && separatorIndex + 1 < lastLoanApplicationNumber.length()) {
+                String numeration = lastLoanApplicationNumber.substring(separatorIndex + 1);
+                int number = Integer.parseInt(numeration.trim());
+                number++;
+                return String.valueOf(number);
+            } else {
+                return "1";
+            }
+        }
     }
 }

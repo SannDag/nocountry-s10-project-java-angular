@@ -1,6 +1,12 @@
+---
 springdoc:
   swagger-ui:
-    path: /user-service.html
+    path: /swagger-ui/users/index.html
+
+springfox:
+  documentation:
+    swagger-ui:
+      path: /swagger-ui/users
 
 spring:
   application:
@@ -43,6 +49,15 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+
+resilience4j.retry:
+  instances:
+    userRetry:
+      max-attempts: 5
+      wait-duration: 2000ms
+      retry-exceptions:
+        - java.io.IOException
+        - java.lang.RuntimeException
 
 eureka:
   client:

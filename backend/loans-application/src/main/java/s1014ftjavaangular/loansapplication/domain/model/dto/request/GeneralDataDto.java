@@ -6,34 +6,61 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s1014ftjavaangular.loansapplication.domain.model.enums.HousingStatus;
+import s1014ftjavaangular.loansapplication.domain.model.enums.IdentificationType;
+
+import java.time.LocalDate;
+import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 public class GeneralDataDto {
-
-    @NotNull
     private String loanApplicationId;
+
     @NotEmpty(message = "Field required")
-    private HousingStatus housingStatus;
+    private String customersUuid;
+
     @NotEmpty(message = "Field required")
-    private Integer yearsInHouse;
+    private String identification;
+
+    @NotNull(message = "Field required")
+    private IdentificationType identificationType;
+
     @NotEmpty(message = "Field required")
-    private Integer monthsInHouse;
+    private String name;
+
+    @NotEmpty(message = "Field required")
+    private String lastname;
+
+    @NotEmpty(message = "Field required")
+    private String genre;
+
+    @NotNull(message = "Field required")
+    private LocalDate birthdate;
+
+    @NotEmpty(message = "Field required")
+    private String nationality ;
+
+    @NotNull(message = "Field required")
+    private Double requestedAmount;
+
     @NotEmpty(message = "Field required")
     private String city;
+
     @NotEmpty(message = "Field required")
     private String state;
+
     @NotEmpty(message = "Field required")
     private String address;
+
     @NotEmpty(message = "Field required")
     private String apartment;
+
     @NotEmpty(message = "Field required")
     private String zipcode;
+
     @NotEmpty(message = "Field required")
     private String phone;
-
-
 }

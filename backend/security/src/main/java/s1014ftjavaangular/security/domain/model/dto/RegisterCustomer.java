@@ -15,7 +15,6 @@ public class RegisterCustomer {
     @NotEmpty(message = "Email cannot be empty")
     @Length(max = 128, min = 5, message = "5 Minimun and 128 Maximum Characters")
     private String email;
-
     @NotEmpty(message = "Password cannot be empty")
     @Length(max = 128, min = 8, message = "8 Minimun and 128 Maximum Characters")
     private String password;

@@ -16,27 +16,16 @@ import java.util.List;
 @Builder
 public class User {
     private String id;
-
     private String identifier;
     private String identifierNumber;
-
     private String number;
-
     private String type;
-
     private Genre genre;
-
     private String name;
-
     private String lastName;
-
-    private CivilStatus civilStatus;
-
     private LocalDate birthDay;
-
-    private List<PhoneDetails> phoneDetails;
-
+    private String phone;
+    private String nationality;
     private ResidenceDetails residenceDetails;
-
     private Boolean blackList;
 }

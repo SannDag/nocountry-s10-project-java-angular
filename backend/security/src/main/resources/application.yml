@@ -1,12 +1,17 @@
 ---
 app:
   jwt:
-    expiration-in-minute: 5
+    expiration-in-minute: 30
     secret: RandomSecretKey123456789!RandomSecretKey123456789!RandomSecretKey123456789!
-
 springdoc:
   swagger-ui:
-    path: /security.html
+    path: /swagger-ui/security/index.html
+
+springfox:
+  documentation:
+    swagger-ui:
+      path: /swagger-ui/security
+
 spring:
   application:
     name: security
@@ -18,12 +23,13 @@ spring:
     username: root
     password: 12345678
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
   #Connect kafka
   kafka:
     bootstrap-servers: 20.121.214.190:9092
@@ -59,7 +65,16 @@ eureka:
     enabled: true
     service-url:
       #default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
-      default-zone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
+
+resilience4j.retry:
+  instances:
+    securityRetry:
+      max-attempts: 5
+      wait-duration: 2000ms
+      retry-exceptions:
+        - java.io.IOException
+        - java.lang.RuntimeException
 
 management:
   tracing:

@@ -23,25 +23,37 @@ spring:
         locator:
           enabled: true
       routes:
+        - id: security-current-session
+          #uri: https://s10-14-ft-api-security.azurewebsites.net
+          uri: lb://security
+          predicates:
+            - Path=/api/accounts/current-session
+          filters:
+            - JwtAuthenticationFilter
+
         - id: security
           #uri: https://s10-14-ft-api-security.azurewebsites.net
           uri: lb://security
           predicates:
             - Path=/**
-        - id: eureka-server
-          uri: lb://eureka-server
-          predicates:
-            - Path=/**
         - id: user-service
+          #uri: https://s10-14-ft-api-users.azurewebsites.net
           uri: lb://user-service
           predicates:
-            - Path=/**
-        - id: loans-application
-          uri: lb://loans-application
-          predicates:
-            - Path=/**
+            - Path=/api/**
           filters:
             - JwtAuthenticationFilter
+        - id: loans-application
+          #uri: https://s10-14-ft-api-users.azurewebsites.net
+          uri: lb://loans-application
+          predicates:
+            - Path=/api/**
+          filters:
+            - JwtAuthenticationFilter
+        - id: user-service-swagger
+          uri: https://s10-14-ft-api-users.azurewebsites.net
+          predicates:
+            - Path=/**
 
 eureka:
   client:

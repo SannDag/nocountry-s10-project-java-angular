@@ -6,5 +6,4 @@ public interface FindByIdLoanAppUseCase {
 
     LoanApplicationDto findById(String id);
 
-
 }

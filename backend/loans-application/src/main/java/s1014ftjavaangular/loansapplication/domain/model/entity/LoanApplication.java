@@ -24,5 +24,4 @@ public class LoanApplication {
     private GeneralData generalData;
     private CreditAudit creditAuditorId;
     private Status status;
-
 }
