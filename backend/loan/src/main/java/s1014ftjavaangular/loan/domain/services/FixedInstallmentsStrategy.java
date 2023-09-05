@@ -19,10 +19,24 @@ public class FixedInstallmentsStrategy extends AmortizationStrategy{
         return capital / numberInstallments;
     }
 
-    private Double calculateInterest(Double capital, Double annualInterest, Integer numberInstallments) {
+    private Double calculateInterest(Double capital, Double annualInterest, Integer numberInstallments, LocalDate currentDate, FrequencyPayment frequencyPayment) {
+        //Dias del año
+        Integer daysOfYears = daysInYear(currentDate);
+
         Double porcentage = (annualInterest/HUNDRED_PERCENT);
         Double interestInstallmentAnnual = capital * porcentage;
         Double interestInstallmentMonthly = interestInstallmentAnnual/NUMBER_OF_MONTHS;
+
+        if(FrequencyPayment.BI_WEEKLY.getValue() == frequencyPayment.getValue()){
+            interestInstallmentMonthly = interestInstallmentAnnual/BI_WEEKLY;
+        }
+        if(FrequencyPayment.WEEKLY.getValue() == frequencyPayment.getValue()){
+            interestInstallmentMonthly = interestInstallmentAnnual/WEEKS_OF_YEAR;
+        }
+        if(FrequencyPayment.DAILY.getValue() == frequencyPayment.getValue()){
+            interestInstallmentMonthly = interestInstallmentAnnual/daysOfYears;
+        }
+
         return interestInstallmentMonthly;
     }
 
@@ -53,16 +67,18 @@ public class FixedInstallmentsStrategy extends AmortizationStrategy{
             var interestInstallment = calculateInterest(
                     model.getAmountApproved(),
                     model.getInterestRateLoan().getAnnualPercentage(),
-                    model.getNumberInstallments()
+                    model.getNumberInstallments(),
+                    currentPaymentDate,
+                    model.getFrequencyPayment()
             );
 
             var amortizationSchedule = AmortizationSchedule.builder()
                     .loanId(model.getLoanId())
                     .amortizationScheduleId(UUID.randomUUID().toString())
                     .paymentDate(currentPaymentDate)
-                    .capitalInstallment(capitalInstallment)
+                    .capitalInstallment(formatDecimal(capitalInstallment))
                     .interest(formatDecimal(interestInstallment))
-                    .capitalBalance(capitalBalance)
+                    .capitalBalance(formatDecimal(capitalBalance))
                     .totalPaid(0.00)
                     .status(AmortizationStatus.CURRENT)
                     .build();

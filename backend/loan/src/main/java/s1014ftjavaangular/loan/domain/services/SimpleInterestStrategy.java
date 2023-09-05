@@ -81,7 +81,8 @@ public class SimpleInterestStrategy extends AmortizationStrategy {
             var interestInstallment = calculateInterest(
                     (i == 1) ? model.getAmountApproved() : amortizationSchedules.get(i - 2).getCapitalBalance(),
                     model.getInterestRateLoan().getAnnualPercentage(),
-                    numbersInstallments, currentPaymentDate,
+                    numbersInstallments,
+                    currentPaymentDate,
                     model.getFrequencyPayment()
             );
 
@@ -90,8 +91,8 @@ public class SimpleInterestStrategy extends AmortizationStrategy {
                     .amortizationScheduleId(UUID.randomUUID().toString())
                     .paymentDate(currentPaymentDate)
                     .capitalInstallment(formatDecimal(capitalInstallment))
-                    .interest(interestInstallment)
-                    .capitalBalance(capitalBalance)
+                    .interest(formatDecimal(interestInstallment))
+                    .capitalBalance(formatDecimal(capitalBalance))
                     .totalPaid(0.00)
                     .status(AmortizationStatus.CURRENT)
                     .build();
