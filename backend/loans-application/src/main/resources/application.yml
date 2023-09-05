@@ -28,14 +28,20 @@ spring:
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-  #kafka:
-    #template:
-      #default-topic: account-topic
+  kafka:
+    bootstrap-servers: 20.121.214.190:9092
+    template:
+      default-topic: account-topic
     #consumer:
       #bootstrap-servers: 20.121.214.190:9092
       #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       #group-id: message-account-consumer
+
+service:
+  security:
+    secure-key-username: NoCountryKeySecureUsername
+    secure-key-password: NoCountryKeySecurePassword!
 
 server:
   error:

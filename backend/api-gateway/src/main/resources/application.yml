@@ -47,7 +47,7 @@ spring:
           #uri: https://s10-14-ft-api-users.azurewebsites.net
           uri: lb://loans-application
           predicates:
-            - Path=/api/**
+            - Path=/api/v1/**
           filters:
             - JwtAuthenticationFilter
         - id: user-service-swagger

@@ -48,6 +48,9 @@ export class AuthService {
     if(error.status === 0){
       console.error('Se ha producio un error ', error.error);
     }
+    if(error.status === 409){
+      console.error('El Usuario ya existe', error.error);
+    }
     else{
       console.error('Backend retornó el código de estado ', error.status, error.error);
     }

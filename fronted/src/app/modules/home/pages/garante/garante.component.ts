@@ -11,6 +11,7 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class GaranteComponent implements OnInit{
 
+
   private updateIntervalMinutes = 3;
   private updateIntervalMillis = this.updateIntervalMinutes * 60 * 1000;
   private userActivitySubscription: Subscription | undefined;

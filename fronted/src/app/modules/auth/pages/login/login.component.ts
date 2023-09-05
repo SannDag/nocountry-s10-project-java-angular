@@ -47,8 +47,9 @@ export class LoginComponent implements OnInit{
           this.tokenService.setToken(response.token);
           this.tokenService.setRol(response.rol);
           this.tokenService.setEmail(response.email);
+          this.tokenService.setCustomersUuId(response.id);
           this.loginSuccess = "Inicio de sesión exitoso";
-          // Mostrar el mensaje por 3 segundos y luego borrarlo
+          // Mostrar el mensaje por 1 segundos y luego borrarlo
           setTimeout(() => {
             this.loginSuccess = "";
           }, 1000);
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit{
         complete: () => {
           console.info("Login completo");
           setTimeout(() => {
-            this.router.navigateByUrl('');
+            this.router.navigateByUrl('home/general');
           },2000);
 
           this.loginForm.reset();
