@@ -12,6 +12,8 @@ public class UtilitiesCalculations {
     public static final Integer NUMBER_OF_MONTHS = 12;
     public static final  Integer HUNDRED_PERCENT = 100;
     public static final Integer DAYS_OF_YEAR = 365;
+    public static final Integer WEEKS_OF_YEAR = 52;
+    public static final Integer BI_WEEKLY = 26;
     public static final Integer DAYS_OF_YEAR_IN_LEAP = 366;
 
     public static final Map<AmortizationType, AmortizationStrategy> calculationStrategies = Map.of(

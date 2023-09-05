@@ -6,10 +6,7 @@ import s1014ftjavaangular.loan.domain.model.entities.Loan;
 import s1014ftjavaangular.loan.domain.model.enums.AmortizationStatus;
 import s1014ftjavaangular.loan.domain.model.enums.FrequencyPayment;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -22,24 +19,28 @@ public class SimpleInterestStrategy extends AmortizationStrategy {
         return capital / numberInstallments;
     }
 
-    private Double calculateInterest(Double capital, Double annualInterest, Integer numberInstallments,LocalDate currentDate, FrequencyPayment frequencyPayment) {
-
-        //Monto Prestado
-        Double amountLoan = capital;
-        //Interes Anual en porcentaje
-        Double interstAnnualPercentage = annualInterest;
-        //Interes Anual sin porcentaje
-        Double interstAnnual = annualInterest/HUNDRED_PERCENT;
+    private Double calculateInterest(Double capital, Double annualInterest, Integer numberInstallments, LocalDate currentDate, FrequencyPayment frequencyPayment) {
         //Dias del año
         Integer daysOfYears = daysInYear(currentDate);
         //Tasa diaria en porcentaje
-        Double interestDailyPercentage = annualInterest/daysOfYears;
+        Double interestDailyPercentage = annualInterest / daysOfYears;
         //Tasa mensual en porcentaje
         Double percentageMonthly = Double.valueOf(formatDecimal(interestDailyPercentage * getNumberDaysInThisMonth(currentDate)));
-        Double percentageMonthly2 = interstAnnualPercentage/12;
-        Double amortizationInterest = (capital * percentageMonthly/HUNDRED_PERCENT * 1)/numberInstallments;
-
-        Double interestPayment = capital * percentageMonthly2/HUNDRED_PERCENT;
+        //Double percentageMonthly2 = interstAnnualPercentage/12;
+        Double amortizationInterest = (capital * percentageMonthly / HUNDRED_PERCENT * 1) / numberInstallments;
+        if (FrequencyPayment.MONTHLY.getValue() == frequencyPayment.getValue()) {
+            percentageMonthly = annualInterest / NUMBER_OF_MONTHS;
+        }
+        if (FrequencyPayment.DAILY.getValue() == frequencyPayment.getValue()) {
+            percentageMonthly = annualInterest / daysOfYears;
+        }
+        if (FrequencyPayment.WEEKLY.getValue() == frequencyPayment.getValue()) {
+        percentageMonthly = annualInterest / WEEKS_OF_YEAR;
+        }
+        if (FrequencyPayment.BI_WEEKLY.getValue() == frequencyPayment.getValue()){
+            percentageMonthly = annualInterest/ BI_WEEKLY;
+        }
+        Double interestPayment = capital * percentageMonthly / HUNDRED_PERCENT;
 
         return Double.valueOf(formatDecimal(interestPayment));
     }
@@ -51,7 +52,7 @@ public class SimpleInterestStrategy extends AmortizationStrategy {
 
         List<AmortizationSchedule> amortizationSchedules = new LinkedList<>();
 
-        for(int i = 1; i<= numbersInstallments; i++) {
+        for (int i = 1; i <= numbersInstallments; i++) {
 
             var currentPaymentDate = (i == 1)
                     ? model.getStartAt()
@@ -72,15 +73,15 @@ public class SimpleInterestStrategy extends AmortizationStrategy {
                             : amortizationSchedules.get(i - 2).getCapitalBalance() - capitalInstallment
             );
 
-            if(i == numbersInstallments && capitalBalance != 0){
+            if (i == numbersInstallments && capitalBalance != 0) {
                 capitalInstallment += capitalBalance;
                 capitalBalance = 0.00;
             }
 
             var interestInstallment = calculateInterest(
-                    (i == 1) ? model.getAmountApproved() : amortizationSchedules.get(i-2).getCapitalBalance(),
+                    (i == 1) ? model.getAmountApproved() : amortizationSchedules.get(i - 2).getCapitalBalance(),
                     model.getInterestRateLoan().getAnnualPercentage(),
-                    numbersInstallments,currentPaymentDate,
+                    numbersInstallments, currentPaymentDate,
                     model.getFrequencyPayment()
             );
 
@@ -88,7 +89,7 @@ public class SimpleInterestStrategy extends AmortizationStrategy {
                     .loanId(model.getLoanId())
                     .amortizationScheduleId(UUID.randomUUID().toString())
                     .paymentDate(currentPaymentDate)
-                    .capitalInstallment(formatDecimal( capitalInstallment ))
+                    .capitalInstallment(formatDecimal(capitalInstallment))
                     .interest(interestInstallment)
                     .capitalBalance(capitalBalance)
                     .totalPaid(0.00)
