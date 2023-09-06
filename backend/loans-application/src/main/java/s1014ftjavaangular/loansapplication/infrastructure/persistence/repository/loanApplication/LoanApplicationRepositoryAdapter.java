@@ -1,17 +1,15 @@
 package s1014ftjavaangular.loansapplication.infrastructure.persistence.repository.loanApplication;
 
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import s1014ftjavaangular.loansapplication.domain.model.dto.LoanApplicationForCustomer;
 import s1014ftjavaangular.loansapplication.domain.model.entity.LoanApplication;
+import s1014ftjavaangular.loansapplication.domain.model.enums.Status;
 import s1014ftjavaangular.loansapplication.domain.repository.LoanApplicationRepository;
 import s1014ftjavaangular.loansapplication.infrastructure.persistence.entities.LoanApplicationEntity;
 
 import java.util.List;
-import java.util.Set;
-
 @RequiredArgsConstructor
 @Repository
 public class LoanApplicationRepositoryAdapter implements LoanApplicationRepository {
@@ -25,8 +23,13 @@ public class LoanApplicationRepositoryAdapter implements LoanApplicationReposito
     }
 
     @Override
-    public void updateLoanApplicationStatus(LoanApplication dto) {
-
+    public void updateLoanApplicationStatus(String id, Status status ) {
+        var entity = jpaRepository.findById(id).get();
+        if (!entity.getStatus().equals(Status.AUDITING)){
+            throw new RuntimeException("It is not possible to update an application that is not being auditing");
+        }
+        entity.setStatus(status);
+        jpaRepository.save(entity);
     }
 
     @Transactional
@@ -61,7 +64,7 @@ public class LoanApplicationRepositoryAdapter implements LoanApplicationReposito
 
         return loan.isEmpty()
                 ? null
-                : loan.map(entity-> entity.entityToModel());
+                : loan.map(entity-> entity.entityToModel()).get();
     }
 
     @Override
