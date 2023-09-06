@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.util.StringUtils;
 import s1014ftjavaangular.userservice.domain.model.dto.request.UserRequest;
 import s1014ftjavaangular.userservice.domain.model.entity.User;
 import s1014ftjavaangular.userservice.domain.model.enums.CivilStatus;
@@ -57,7 +58,7 @@ public class UserEntity implements Serializable {
         @Column(name = "nationality")
         private String nationality;
 
-        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
         private ResidenceDetailsEntity residenceDetails;
 
         @Column(name = "blacklist")
@@ -86,17 +87,17 @@ public class UserEntity implements Serializable {
                 return User.builder()
                         .id(this.getUserUuid())
                         .number(this.getNumber())
-                        .identifier(this.getIdentifier())
-                        .identifierNumber(this.getIdentifierNumber())
+                        .identifier(StringUtils.hasText(this.getIdentifier()) ? this.getIdentifier() : null)
+                        .identifierNumber(StringUtils.hasText(this.getIdentifierNumber()) ? this.getIdentifierNumber() : null)
                         .type(this.getType())
                         .name(this.getName())
                         .lastName(this.getLastName())
-                        .genre(this.getGenre())
-                        .birthDay(this.getBirthDay())
-                        .nationality(this.getNationality())
-                        .phone(this.getPhone())
+                        .genre(this.getGenre() != null ? this.getGenre() : null)
+                        .birthDay(this.getBirthDay() != null ? this.getBirthDay() : null)
+                        .nationality(StringUtils.hasText(this.getNationality()) ? this.getNationality() : null)
+                        .phone(StringUtils.hasText(this.getPhone()) ? this.getPhone() : null)
                         .blackList(this.getBlackList())
-                        .residenceDetails(this.getResidenceDetails().entityToModel())
+                        .residenceDetails(this.getResidenceDetails() != null ? this.getResidenceDetails().entityToModel() : null )
                         .build();
         }
 }

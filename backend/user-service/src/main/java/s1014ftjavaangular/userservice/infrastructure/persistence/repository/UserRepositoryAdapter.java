@@ -59,11 +59,11 @@ public class UserRepositoryAdapter implements UserRepository {
     public Optional<User> findById(String id) {
         if(id.isEmpty()) throw new IllegalArgumentException("The id cannot be empty");
 
-        var optionalUser = jpaRepository.findById(id);
-        if(optionalUser.isEmpty()) throw new NotFoundException("A User with the ID "+id+" is not registered");
+        var user = jpaRepository.findById(id);
 
-        var userModel = optionalUser.map(entity->entity.entityToModel());
-        return userModel;
+        return user
+                .flatMap(entity-> Optional.of( entity.entityToModel() ))
+                .or(Optional::empty);
     }
 
     @Override

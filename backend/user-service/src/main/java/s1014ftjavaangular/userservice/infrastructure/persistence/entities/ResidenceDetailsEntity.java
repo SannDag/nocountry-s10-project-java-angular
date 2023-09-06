@@ -3,6 +3,7 @@ package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.util.StringUtils;
 import s1014ftjavaangular.userservice.domain.model.entity.ResidenceDetails;
 
 @Data
@@ -40,12 +41,12 @@ public class ResidenceDetailsEntity {
 
     public ResidenceDetails entityToModel(){
         return ResidenceDetails.builder()
-                .id(this.getResidenceUuid())
-                .state(this.getState())
-                .city(this.getCity())
-                .zipCode(this.getZipCode())
-                .address(this.getAddress())
-                .apartment(this.getApartment())
+                .id(StringUtils.hasText(this.getResidenceUuid()) ?  this.getResidenceUuid() : null)
+                .state(StringUtils.hasText(this.getState()) ? this.getState() : null)
+                .city(StringUtils.hasText(this.getCity()) ? this.getCity() : null)
+                .zipCode(StringUtils.hasText(this.getZipCode()) ? this.getZipCode() : null)
+                .address(StringUtils.hasText(this.getAddress()) ? this.getAddress() : null)
+                .apartment(StringUtils.hasText(this.getApartment()) ? this.getApartment() : null)
                 .build();
     }
 }

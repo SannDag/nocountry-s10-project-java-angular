@@ -23,8 +23,9 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
     @Override
     public GatewayFilter apply(JwtAuthenticationFilter.Config config) {
         // Custom Pre Filter. Suppose we can extract JWT and perform Authentication
+        log.info("Gateway filter, antes del return");
         return (exchange, chain) -> {
-            log.debug("Request in JWT Filter: {}", exchange.getRequest());
+            log.info("Request in JWT Filter: {}", exchange.getRequest());
 
             //Si la request no tiene token, arroja una excepcion
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
@@ -33,6 +34,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
 
             //Recupera el AUTHORIZATION header
             String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+            log.info("authHeader: {}", authHeader);
 
             //Validar el token
             try {
@@ -57,7 +59,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
                 return exchange.getResponse().setComplete();
             }
 
-            log.info("End pre filter jwt");
+            log.info("*** End pre filter jw ***t");
             return chain.filter(exchange);
         };
     }

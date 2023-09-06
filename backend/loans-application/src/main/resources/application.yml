@@ -21,19 +21,11 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-  #kafka:
-    #template:
-      #default-topic: account-topic
-    #consumer:
-      #bootstrap-servers: 20.121.214.190:9092
-      #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      #group-id: message-account-consumer
 
 server:
   error:
@@ -53,8 +45,15 @@ logging:
 
 eureka:
   client:
-    fetch-registry: true
-    register-with-eureka: true
+    enabled: true
     service-url:
-      default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
+      defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka/
 
+resilience4j.retry:
+  instances:
+    userRetry:
+      max-attempts: 5
+      wait-duration: 2000ms
+      retry-exceptions:
+        - java.io.IOException
+        - java.lang.RuntimeException

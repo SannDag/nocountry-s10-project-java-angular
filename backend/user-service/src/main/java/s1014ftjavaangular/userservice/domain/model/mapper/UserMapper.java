@@ -31,12 +31,14 @@ public class UserMapper {
                 .identifier(user.getIdentifier())
                 .identifierNumber(user.getIdentifierNumber())
                 .genre(user.getGenre())
+                .type(user.getType())
+                .number(user.getNumber())
                 .name(user.getName())
                 .lastName(user.getLastName())
                 .nationality(user.getNationality())
                 .birthDay(user.getBirthDay())
                 .phone(user.getPhone())
-                .residenceDetails(this.residenceDetailsModelToDto(user.getResidenceDetails()))
+                .residenceDetails(user.getResidenceDetails() != null ? this.residenceDetailsModelToDto(user.getResidenceDetails()) : null)
                 .build();
     }
 
