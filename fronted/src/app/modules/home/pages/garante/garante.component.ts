@@ -117,8 +117,13 @@ export class GaranteComponent implements OnInit{
           //alert('Datos guardados');
         },
         error: err => {
-          alert(err);
           console.log(err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err,
+
+            })
         },
         complete: () =>{
           console.log('Datos guardados correctamente');

@@ -32,7 +32,7 @@ export class GeneralMaterialComponent implements OnInit{
 
       this.generalForm = this.formBuilder.group({
         identification: ['', Validators.required],
-        identificationType: ['', Validators.required],
+        identificationType: ['DNI', Validators.required],
         name:['', Validators.required],
         lastname:['', Validators.required],
         genre:['', Validators.required],
