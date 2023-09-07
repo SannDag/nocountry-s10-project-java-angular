@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { InactivityService } from 'src/app/services/inactivity.service';
 import { LoansApplicationService } from 'src/app/services/loans-application.service';
 import { TokenService } from 'src/app/services/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-garante',
@@ -113,7 +114,7 @@ export class GaranteComponent implements OnInit{
       this.loanAppService.saveGuarantor(guarantorRequest).subscribe({
         next: response =>{
           console.log(response);
-          alert('Datos guardados');
+          //alert('Datos guardados');
         },
         error: err => {
           alert(err);
@@ -121,10 +122,25 @@ export class GaranteComponent implements OnInit{
         },
         complete: () =>{
           console.log('Datos guardados correctamente');
-            alert("Datos guardados");
+
+            Swal.fire({
+              //position: 'center',
+              icon: 'success',
+              title: 'Gracias por elegirnos!',
+              text: "Tu solicitud se ha cargado exitosamente y se encuentra en revisión, Nos comunicaremos contigo a la brevedad",
+
+              showConfirmButton: false,
+              timer: 5000,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            })
             setTimeout(() => {
               this.router.navigateByUrl('/home/confirm');
-            },1000);
+            },6000);
         }
       })
     }else{
