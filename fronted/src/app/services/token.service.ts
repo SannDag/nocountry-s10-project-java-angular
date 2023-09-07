@@ -17,7 +17,7 @@ const LOAN_APP_ID = 'loanApplicationId';
 })
 export class TokenService {
 
-  private ubdateInterval = 3 * 60 * 1000;// 3 minuto en milisegundos
+  private ubdateInterval = 5 * 60 * 1000;// 5 minuto en milisegundos
 
   constructor(private authService:AuthService) { }
 

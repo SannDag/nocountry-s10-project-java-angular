@@ -23,7 +23,7 @@ import { ConfirmationComponent } from './pages/confirmation/confirmation.compone
     FooterComponent,
     GeneralMaterialComponent,
     CalculadoraComponent,
-    
+
     GaranteComponent,
     InformaLaboralComponent,
     ConfirmationComponent

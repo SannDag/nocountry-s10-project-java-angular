@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators,  FormGroup} from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { GeneralDataRequest } from 'src/app/models/general-data-request';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,8 +15,11 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./general-material.component.scss']
 })
 export class GeneralMaterialComponent implements OnInit{
+
   generalDataError: string = "";
-  public generalForm: FormGroup; // Declaración del formulario
+
+  public generalForm: FormGroup;
+
   private updateIntervalMinutes = 3;
   private updateIntervalMillis = this.updateIntervalMinutes * 60 * 1000;
   private userActivitySubscription: Subscription | undefined;
@@ -23,7 +27,7 @@ export class GeneralMaterialComponent implements OnInit{
 
   constructor(private tokenService: TokenService, private authService: AuthService,
     private inactivityService: InactivityService, private loansAppService:LoansApplicationService,
-    private formBuilder:FormBuilder){
+    private formBuilder:FormBuilder, private router:Router){
 
       this.generalForm = this.formBuilder.group({
         identification: ['', Validators.required],
@@ -48,11 +52,10 @@ export class GeneralMaterialComponent implements OnInit{
       if (this.generalForm.valid) {
         const selectedIdentificationType = this.generalForm.get('identificationType')?.value;
         const genreValue = this.generalForm.get('genre')?.value;
-        let custumerId = '';
-        const id = this.tokenService.getCustomersUuId();
-        if(id != null){
-          custumerId = id;
-        }
+        const custumerId  = this.tokenService.getCustomersUuId() || '';
+        // if(id != null){
+        //   custumerId = id;
+        // }
         // Crea el objeto GeneralDataRequest y asigna los valores
         const generalDataRequest: GeneralDataRequest = {
           identification: this.generalForm.get('identification')?.value,
@@ -84,6 +87,10 @@ export class GeneralMaterialComponent implements OnInit{
           },
           complete: () => {
             console.log('Datos guardados correctamente');
+            alert('Datos guardados exitosamente');
+            setTimeout(() => {
+              this.router.navigateByUrl('/home/informeLa');
+            },1000);
           },
         });
       } else {
@@ -91,7 +98,7 @@ export class GeneralMaterialComponent implements OnInit{
         this.generalForm.markAllAsTouched();
       }
     }
-    customerId = this.tokenService.getCustomersUuId();
+    //customerId = this.tokenService.getCustomersUuId();
 
 
 

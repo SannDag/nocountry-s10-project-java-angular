@@ -4,6 +4,9 @@ import { environment } from 'src/environments/environment';
 import { GeneralDataRequest } from '../models/general-data-request';
 import { Observable, catchError, throwError } from 'rxjs';
 import { GeneralDataResponse } from '../models/general-data-response';
+import { JobInformationRequest } from '../models/job-information-request';
+import { GuarantorRequest } from '../models/guarantor-request';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +16,20 @@ export class LoansApplicationService {
 
   constructor(private http: HttpClient) { }
 
-  public saveGeneralData(data:GeneralDataRequest):Observable<GeneralDataResponse>{
+  public saveGeneralData(data: GeneralDataRequest):Observable<GeneralDataResponse>{
     return this.http.post<GeneralDataResponse>(this.apiUrl + 'generaldata', data).pipe(
       catchError(this.handleError)
     );
+  }
+
+  public saveJobInformation(data: JobInformationRequest):Observable<void>{
+    return this.http.post<void>(this.apiUrl + 'jobinformation', data);
+  }
+
+  public saveGuarantor(data: GuarantorRequest): Observable<any>{
+    return this.http.post<any>(this.apiUrl + 'guarantor', data).pipe(
+      catchError(this.handleError)
+    )
   }
 
   private handleError(err:HttpErrorResponse){

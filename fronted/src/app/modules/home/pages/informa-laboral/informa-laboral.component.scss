@@ -20,3 +20,9 @@ width: 85px;
 height: 23px;
 
 }
+/* Clase para el botón desactivado */
+.disabled-button {
+  background-color: gray; /* Cambia el color de fondo a gris o el color que desees */
+  color: white; /* Cambia el color del texto a blanco o el color que desees */
+  cursor: not-allowed; /* Cambia el cursor del mouse a 'no permitido' */
+}
