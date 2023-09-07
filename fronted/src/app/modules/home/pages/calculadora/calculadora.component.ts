@@ -22,8 +22,11 @@ export class CalculadoraComponent implements OnInit{
 
   selectedvalue = 100000;
   formulario!: FormGroup;
+  tasa= "10%"
   valueButton = 0;
   resultado = 0;
+  plazoSeleccionado: number = 3; // Valor inicial del plazo seleccionado
+
 
   constructor(private fb: FormBuilder) {
     // Configura el formulario reactivo
@@ -85,6 +88,10 @@ export class CalculadoraComponent implements OnInit{
 }
 
 
+  }
+
+  seleccionarPlazo(plazo: number) {
+    this.plazoSeleccionado = plazo;
   }
 
 

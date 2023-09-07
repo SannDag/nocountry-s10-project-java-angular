@@ -26,6 +26,7 @@
                 [max]="5000000"
                 [step]="1"
                 [(ngModel)]="selectedvalue"
+                 (input)="   onSubmit(valueButton,selectedvalue)"
                 (input)="onSliderChange($event)"
 
               >
@@ -34,6 +35,8 @@
               <label for="" class="title2">Plazo</label>
               <div class="flex flex-row flex space-x-4 pt-6">
                 <button
+                [class.selected]="plazoSeleccionado === 3"
+                (click)="seleccionarPlazo(3)"
                   class="bg-white rounded-lg border border-gray-200 font-semibold font-poppins hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
                   (click)=" valueButton = 3"
                 >
@@ -56,17 +59,14 @@
               <div class="flex flex-col space-y-4 pt-4">
                 <div class="flex flex-row">
                   <label for="">Cantidad solicitada:</label>
-                  <label for="" class="">{{ selectedvalue }}</label>
+                  <label for="" class=""> {{ selectedvalue }}</label>
                 </div>
                 <div class="flex flex-row">
-                  <label for="">Interés::</label> <label for="">{{valueButton}}</label>
+                  <label for="">Interés::</label> <label for=""> {{tasa}}</label>
                 </div>
-                <div class="flex flex-row">
-                  <label for="">Tarifa administrativa:</label>
-                  <label for="">900.000</label>
-                </div>
+                
                 <div>
-                  <label for="">Total a pagar:</label>
+                  <label for="">Cuota mensual :</label>
                   <label for="">{{resultado}}</label>
                 </div>
               </div>
