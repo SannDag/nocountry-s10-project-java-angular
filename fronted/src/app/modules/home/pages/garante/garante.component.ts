@@ -127,16 +127,14 @@ export class GaranteComponent implements OnInit{
               //position: 'center',
               icon: 'success',
               title: 'Gracias por elegirnos!',
-              text: "Tu solicitud se ha cargado exitosamente y se encuentra en revisión, Nos comunicaremos contigo a la brevedad",
+              html: '<div style="font-size: 18px; color: #333;">Tu solicitud se ha cargado exitosamente y se encuentra en revisión. Nos comunicaremos contigo a la brevedad.</div>',
 
               showConfirmButton: false,
               timer: 5000,
-              showClass: {
-                popup: 'animate__animated animate__fadeInDown'
+              customClass: {
+                popup: 'animate__animated animate__fadeInDown',
+                htmlContainer: 'my-custom-alert',
               },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-              }
             })
             setTimeout(() => {
               this.router.navigateByUrl('/home/confirm');

@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { InactivityService } from 'src/app/services/inactivity.service';
 import { LoansApplicationService } from 'src/app/services/loans-application.service';
 import { TokenService } from 'src/app/services/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-informa-laboral',
@@ -68,8 +69,14 @@ export class InformaLaboralComponent implements OnInit{
 
           },
           error: err =>{
-            alert(err);
+
             console.log(err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err,
+
+            })
           },
           complete: () =>{
             console.log('Datos guardados correctamente');
