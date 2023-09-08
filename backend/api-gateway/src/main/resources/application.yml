@@ -4,15 +4,27 @@ server:
     include-stacktrace: never
   port: 5555
 
+logging:
+  level:
+    root: INFO
+    kafka.*: WARN
+    org.springframework.*: INFO
+    org.neo4j.*: INFO
+    com.memorynotfound: DEBUG
+    org.apache.kafka.*: ERROR
+
 spring:
   main:
     banner-mode: off
   application:
     name: api-gateway
   cloud:
+    kubernetes.discovery.enabled: false
+    kubernetes.ribbon.enabled: false
+    kubernetes.enabled: false
     gateway:
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        #- DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -21,40 +33,46 @@ spring:
             allowedHeaders: "*"
       discovery:
         locator:
-          enabled: true
+          enabled: false
       routes:
+        - id: user-service
+            #uri: https://s10-14-ft-api-users.azurewebsites.net
+          uri: lb://user-service
+          predicates:
+            - name: Path
+              args:
+                pattern: "/api/v1/**"
+          filters:
+            - CustomAuthenticationFilter
         - id: security-current-session
          # uri: https://s10-14-ft-api-security.azurewebsites.net
           uri: http://localhost:8081
           predicates:
             - Path=/api/accounts/current-session
           filters:
-            - JwtAuthenticationFilter
+            - CustomAuthenticationFilter
         - id: security
         #  uri: https://s10-14-ft-api-security.azurewebsites.net
-          uri: lb://security
+          uri: http://localhost:8081
           predicates:
-            - Path=/**
-        - id: user-service
-          #uri: https://s10-14-ft-api-users.azurewebsites.net
-          uri: http://localhost:8082
-          predicates:
-            - Path=/**
-          filters:
-            - JwtAuthenticationFilter
+            - name: Path
+              args:
+                pattern: "/api/**"
         - id: loans-application
           uri: lb://loans-application
           predicates:
-            - Path=/api/**
+            - name: Path
+              args:
+                pattern: "/api/v1/**"
           filters:
-            - JwtAuthenticationFilter
+            - CustomAuthenticationFilter
 
 eureka:
   client:
     enabled: true
     service-url:
-      defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka/
-
+      #defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka/
+      defaultZone: http://localhost:8761/eureka
 management:
   tracing:
     sampling:

@@ -10,14 +10,16 @@ import s1014ftjavaangular.userservice.domain.model.mapper.UserMapper;
 import s1014ftjavaangular.userservice.domain.repository.UserRepository;
 import s1014ftjavaangular.userservice.domain.usecase.UpdateUserUseCase;
 
-@Service
+
 @RequiredArgsConstructor
+@Service
 public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
     private final UserRepository repository;
     private final UserMapper mapper;
 
+//
     @Override
-    public void updateUser(UserRequest request) {
+    public void update(UserRequest request) {
         var modelOptional = repository.findById(request.getId());
         if(modelOptional.isEmpty()) throw new UserNotFoundException("User with ID "+request.getId()+" not found");
         var model = modelOptional.get();

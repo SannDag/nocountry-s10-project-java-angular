@@ -11,22 +11,25 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAuthenticationFilter.Config> {
+public class CustomAuthenticationFilter extends AbstractGatewayFilterFactory<CustomAuthenticationFilter.Config> {
     private final JwtProvider jwtProvider;
 
     @Autowired
-    public JwtAuthenticationFilter(JwtProvider jwtProvider) {
+    public CustomAuthenticationFilter(JwtProvider jwtProvider) {
         super(Config.class);
         this.jwtProvider = jwtProvider;
     }
 
     @Override
-    public GatewayFilter apply(JwtAuthenticationFilter.Config config) {
+    public GatewayFilter apply(CustomAuthenticationFilter.Config config) {
         // Custom Pre Filter. Suppose we can extract JWT and perform Authentication
         log.info("Gateway filter, antes del return");
-        return (exchange, chain) -> {
-            log.info("Request in JWT Filter: {}", exchange.getRequest());
+        //ServerWebExchangeUtils.
 
+        return (exchange, chain) -> {
+            //log.info("Request in JWT Filter: {}", exchange.getRequest());
+            log.info(" Alo ??? ");
+            log.info("Ruta: {}", exchange.getRequest().getPath());
             //Si la request no tiene token, arroja una excepcion
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                 throw new RuntimeException("Missing authorization information");
@@ -59,7 +62,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
                 return exchange.getResponse().setComplete();
             }
 
-            log.info("*** End pre filter jw ***t");
+            log.info("*** End pre filter jwt ***");
             return chain.filter(exchange);
         };
     }
