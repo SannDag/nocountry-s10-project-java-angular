@@ -18,7 +18,7 @@ public class CorsConfig {
         //Seteo los metodos y origines permitidos en la API
         configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Accept", "User-Agent", "Cache-Control", "Content-Type"));
         configuration.setMaxAge(3600l);
 
         var source = new UrlBasedCorsConfigurationSource();

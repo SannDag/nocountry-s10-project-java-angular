@@ -13,11 +13,10 @@ spring:
 #    url: jdbc:sqlserver://20.121.214.190:1434;databaseName=user;encrypt=true;trustServerCertificate=true;
 #    username: sa
 #    password: nocountry2023
-
     #para testear con db en local
-    url: jdbc:${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5434/postgres
+    username: postgres
+    password: postgres
   jpa:
     show-sql: true
     hibernate:

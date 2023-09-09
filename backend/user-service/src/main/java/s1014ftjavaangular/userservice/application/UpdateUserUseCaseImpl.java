@@ -20,6 +20,8 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
 //
     @Override
     public void update(UserRequest request) {
+
+     /*
         var modelOptional = repository.findById(request.getId());
         if(modelOptional.isEmpty()) throw new UserNotFoundException("User with ID "+request.getId()+" not found");
         var model = modelOptional.get();
@@ -39,7 +41,8 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
         if(request.getBirthDay() != null) model.setBirthDay(request.getBirthDay());
         if(request.getPhone() != null) model.setPhone(request.getPhone());
         if(request.getNationality() != null) model.setNationality(request.getPhone());
+     */
 
-        repository.update(model);
+        repository.update(mapper.userDtoToModel(request));
     }
 }

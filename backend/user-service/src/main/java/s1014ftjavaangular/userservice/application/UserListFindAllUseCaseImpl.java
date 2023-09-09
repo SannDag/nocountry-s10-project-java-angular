@@ -19,6 +19,8 @@ public class UserListFindAllUseCaseImpl implements UserListFindAllUseCase {
     @Override
     public List<UserResponse> findAll() {
         List<User> userDto = userRepository.findAll();
-        return userDto.stream().map(model-> mapper.userModelToResponse(model)).toList();
+        return userDto.stream()
+                .map(model-> mapper.userModelToResponse(model))
+                .toList();
     }
 }
