@@ -51,6 +51,14 @@ spring:
             - Path=/api/accounts/current-session
           filters:
             - CustomAuthenticationFilter
+        - id: loans-application
+          uri: lb://loans-application
+          predicates:
+            - name: Path
+              args:
+                pattern: "/api/**"
+          filters:
+            - CustomAuthenticationFilter
         - id: security
         #  uri: https://s10-14-ft-api-security.azurewebsites.net
           uri: http://localhost:8081
@@ -58,21 +66,14 @@ spring:
             - name: Path
               args:
                 pattern: "/api/**"
-        - id: loans-application
-          uri: lb://loans-application
-          predicates:
-            - name: Path
-              args:
-                pattern: "/api/v1/**"
-          filters:
-            - CustomAuthenticationFilter
 
 eureka:
   client:
-    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       #defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka/
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
 management:
   tracing:
     sampling:

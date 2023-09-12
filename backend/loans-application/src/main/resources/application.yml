@@ -6,21 +6,16 @@ spring:
   application:
     name: loans-application
   main:
-    #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-#   driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#    url: jdbc:sqlserver://20.121.214.190:1434;databaseName=user;encrypt=true;trustServerCertificate=true;
-#    username: sa
-#    password: nocountry2023
-    #para testear con db en local
-    url: jdbc:postgresql://localhost:5434/postgres
+
+    url: jdbc:postgresql://20.121.214.190:5434/loanapplicationdb
     username: postgres
-    password: postgres
+    password: Aforo2552023
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -44,10 +39,11 @@ logging:
 
 eureka:
   client:
-    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       #defaultZone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka/
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
 
 resilience4j.retry:
   instances:
