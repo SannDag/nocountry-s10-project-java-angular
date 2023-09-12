@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class InactivityService {
-  private ubdateInterval = 10 * 60 * 1000;// 5 minuto en milisegundos
+  private ubdateInterval = 10 * 60 * 1000; // minutos en milisegundos
   private inactivityTimer: any;
 
   constructor(private authService: AuthService, private tokenService:TokenService,
@@ -20,7 +20,7 @@ export class InactivityService {
         this.tokenService.logOut();
         this.router.navigateByUrl('auth/login');
 
-      }, this.ubdateInterval); // 5 minutos de inactividad antes de cerrar sesión
+      }, this.ubdateInterval);
     });
   }
 

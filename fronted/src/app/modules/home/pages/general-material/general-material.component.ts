@@ -49,14 +49,11 @@ export class GeneralMaterialComponent implements OnInit{
       })
     }
 
-    createGeneralData() {
-      if (this.generalForm.valid) {
+  createGeneralData() {
+    if (this.generalForm.valid) {
         const selectedIdentificationType = this.generalForm.get('identificationType')?.value;
         const genreValue = this.generalForm.get('genre')?.value;
         const custumerId  = this.tokenService.getCustomersUuId() || '';
-        // if(id != null){
-        //   custumerId = id;
-        // }
         // Crea el objeto GeneralDataRequest y asigna los valores
         const generalDataRequest: GeneralDataRequest = {
           identification: this.generalForm.get('identification')?.value,
@@ -100,13 +97,11 @@ export class GeneralMaterialComponent implements OnInit{
             },1000);
           },
         });
-      } else {
-        alert('Error al cargar datos');
-        this.generalForm.markAllAsTouched();
-      }
+    } else {
+      alert('Error al cargar datos');
+      this.generalForm.markAllAsTouched();
     }
-    //customerId = this.tokenService.getCustomersUuId();
-
+  }
 
 
   ngOnInit(): void {

@@ -20,6 +20,10 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class CalculadoraComponent implements OnInit{
 
+  private updateIntervalMinutes = 3;
+  private updateIntervalMillis = this.updateIntervalMinutes * 60 * 1000;
+  private userActivitySubscription: Subscription | undefined;
+
   selectedvalue = 100000;
   formulario!: FormGroup;
   tasa= "10%"
@@ -28,21 +32,29 @@ export class CalculadoraComponent implements OnInit{
   plazoSeleccionado: number = 3; // Valor inicial del plazo seleccionado
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private inactivityService: InactivityService,
+    private tokenService: TokenService, private authService: AuthService) {
     // Configura el formulario reactivo
     this.formulario = this.fb.group({
       necesito: [this.selectedvalue],
-      
+
     });
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    if (this.tokenService.isLoggued()) {
+      // Actualizar token cada 3 minutos
+      this.userActivitySubscription = interval(this.updateIntervalMillis).subscribe(() => {
+        this.updateToken();
+      });
+      this.inactivityService.startInactivityTimer();
+    }
+
   }
 
-  calcularDatos(valueButton: any,selectedvalue:any){
+  calcularDatos(valueButton: any, selectedvalue:any){
     const tasa = 0.01;
 
-    this.resultado=(selectedvalue * tasa)/ (1 - Math.pow(1 + tasa, -valueButton));
+    this.resultado=(selectedvalue * tasa) / (1 - Math.pow(1 + tasa, - valueButton));
 
     this.resultado = parseFloat(this.resultado.toFixed(0));
 
@@ -55,12 +67,12 @@ export class CalculadoraComponent implements OnInit{
     // Actualiza el valor en el formulario reactivo
     this.formulario.get('necesito')?.setValue(this.selectedvalue);
   }
-  
+
 
   onSubmit(valueButton: any,selectedvalue:any) {
-   
 
-    
+
+
     switch (valueButton) {
       case 3:
 
@@ -81,10 +93,10 @@ export class CalculadoraComponent implements OnInit{
     this.calcularDatos(valueButton,selectedvalue)
 
     break;
-  
+
   default:
     console.log("No es un día válido");
-    
+
 }
 
 
@@ -94,6 +106,25 @@ export class CalculadoraComponent implements OnInit{
     this.plazoSeleccionado = plazo;
   }
 
+  private updateToken(): void {
+    this.authService.getCurrentSession().subscribe(
+      updatedSession => {
+        console.log("Token viejo: " + this.tokenService.getToken())
+        this.tokenService.setToken(updatedSession.token);
+        console.log("Token nuevo:" + this.tokenService.getToken());
+      },
+      error => {
+        console.error('Error al actualizar el token:', error);
+      }
 
+    )
+  }
+
+  ngOnDestroy(): void {
+    // Cancelar la suscripción cuando se destruye el componente
+    if (this.userActivitySubscription) {
+      this.userActivitySubscription.unsubscribe();
+    }
+  }
 
 }
