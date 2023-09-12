@@ -9,13 +9,15 @@ const TOKEN_LOGIN = 'AuthToken';
 const ROL_USER = 'RolUser';
 const EMAIL_USER = 'EmailUser';
 const NAME_USER = 'NameUser';
+const CUSTOMERS_UUID = "CustomersUuId";
+const LOAN_APP_ID = 'loanApplicationId';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
-  private ubdateInterval = 1 * 60 * 1000;// 1minuto en milisegundos
+  private ubdateInterval = 5 * 60 * 1000;// 5 minuto en milisegundos
 
   constructor(private authService:AuthService) { }
 
@@ -31,7 +33,19 @@ export class TokenService {
     );
   }
 
+  public setLoanApplicationId(id:string){
+    localStorage.setItem(LOAN_APP_ID, id);
+  }
 
+  public setCustomersUuId(id:string):void{
+    localStorage.setItem(CUSTOMERS_UUID, id);
+  }
+  public getLoanApplicationId():string | null{
+    return localStorage.getItem(LOAN_APP_ID);
+  }
+  public getCustomersUuId():string | null{
+    return localStorage.getItem(CUSTOMERS_UUID);
+  }
   public setNameUser(name:string):void{
     localStorage.setItem(NAME_USER, name);
   }
@@ -67,6 +81,8 @@ export class TokenService {
     localStorage.removeItem(TOKEN_LOGIN);
     localStorage.removeItem(ROL_USER);
     localStorage.removeItem(EMAIL_USER);
+    localStorage.removeItem(CUSTOMERS_UUID);
+    localStorage.removeItem(LOAN_APP_ID);
   }
 
   public isLoggued(): boolean{

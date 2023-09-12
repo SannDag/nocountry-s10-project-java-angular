@@ -47,11 +47,12 @@ export class LoginComponent implements OnInit{
           this.tokenService.setToken(response.token);
           this.tokenService.setRol(response.rol);
           this.tokenService.setEmail(response.email);
+          this.tokenService.setCustomersUuId(response.id);
           this.loginSuccess = "Inicio de sesión exitoso";
-          // Mostrar el mensaje por 3 segundos y luego borrarlo
+          // Mostrar el mensaje por 1 segundos y luego borrarlo
           setTimeout(() => {
             this.loginSuccess = "";
-          }, 5000);
+          }, 1000);
         },
         error: (errorData) => {
           console.log(errorData);
@@ -60,13 +61,13 @@ export class LoginComponent implements OnInit{
           setTimeout(() =>{
             this.showAlert = false;
             this.loginForm.reset();
-          }, 3000);
+          }, 1000);
         },
         complete: () => {
           console.info("Login completo");
           setTimeout(() => {
-            this.router.navigateByUrl('');
-          },6000);
+            this.router.navigateByUrl('home/general');
+          },2000);
 
           this.loginForm.reset();
 

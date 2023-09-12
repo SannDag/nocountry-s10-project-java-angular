@@ -1,5 +1,7 @@
 package s1014ftjavaangular.security.infrastructure.controller;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,12 @@ public class LoginController {
 
     private final LoginUseCase loginUseCase;
 
+    @Retry(name = "securityRetry")
     @PostMapping()
-    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto) {
-
+    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginDTO loginDto){
         var response = loginUseCase.login(loginDto.getEmail(), loginDto.getPassword());
 
         return ResponseEntity.ok(response);
     }
+
 }

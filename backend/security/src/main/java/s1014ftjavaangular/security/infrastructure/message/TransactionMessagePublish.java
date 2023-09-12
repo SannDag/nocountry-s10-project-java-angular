@@ -38,29 +38,6 @@ public class TransactionMessagePublish {
         String value = objectMapper.writeValueAsString(messageModel);
         ProducerRecord<String, String> producerRecord = buildProducerRecord(key, value, topicName);
 
-/*        ListenableFuture<SendResult<String, String>> listenableFuture =kafkaTemplate.send(producerRecord);
-
-        listenableFuture.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-
-            @Override
-            public void onSuccess(SendResult<String, String> result) {
-                // TODO Auto-generated method stub
-                try {
-                    handleSuccess(key, value, result);
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable ex) {
-                // TODO Auto-generated method stub
-                handleFailure(key, value, ex);
-            }
-
-        });
-
-        return listenableFuture;*/
         CompletableFuture<SendResult<String, String>> completableFuture = kafkaTemplate.send(producerRecord);
 
         completableFuture.whenComplete((result, ex) -> {
@@ -83,7 +60,6 @@ public class TransactionMessagePublish {
         List<Header> recordHeaders = List.of(new RecordHeader("account-subscription-source", "scanner".getBytes()));
         return new ProducerRecord<>(topic, null, key, value, recordHeaders);
     }
-
 
     private void handleFailure(String key, String value, Throwable ex) {
         log.error("Error: send message and the error is {}", ex.getMessage());

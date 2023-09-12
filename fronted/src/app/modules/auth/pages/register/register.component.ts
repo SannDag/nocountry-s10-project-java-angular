@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Registro } from 'src/app/models/registro';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-register',
@@ -65,10 +66,12 @@ export class RegisterComponent {
 
         error: err =>{
           console.log(err);
-          this.registerError = err.message;
+          this.registerError = err;
         },
         complete: () => {
           console.log("Registro completo");
+          this.registroForm.markAllAsTouched();
+
         }
 
 

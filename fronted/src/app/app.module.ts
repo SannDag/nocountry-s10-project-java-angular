@@ -8,7 +8,7 @@ import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -27,7 +27,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot()
 
   ],
   providers: [
