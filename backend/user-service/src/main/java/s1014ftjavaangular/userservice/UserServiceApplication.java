@@ -17,6 +17,7 @@ public class UserServiceApplication {
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
+<<<<<<< HEAD
 	@Bean
 	public EurekaClientConfigBean eurekaInstanceConfig(InetUtils inetUtils) {
 		var config = new EurekaClientConfigBean();
@@ -25,4 +26,6 @@ public class UserServiceApplication {
 
 		return config;
 	}
+=======
+>>>>>>> 0bdfb76d059d01b4589c1361f27748c4df95da36
 }
