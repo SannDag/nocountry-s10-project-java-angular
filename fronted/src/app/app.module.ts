@@ -9,6 +9,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 
 
 
@@ -16,6 +19,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @NgModule({
   declarations: [
     AppComponent,
+
 
 
   ],
@@ -28,7 +32,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     ReactiveFormsModule,
     MatIconModule,
     ReactiveFormsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    BrowserAnimationsModule,
+    NgxSpinnerModule
 
   ],
   providers: [

@@ -11,10 +11,13 @@ import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 
 
 
+
+
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+
   ],
   imports: [
     CommonModule,

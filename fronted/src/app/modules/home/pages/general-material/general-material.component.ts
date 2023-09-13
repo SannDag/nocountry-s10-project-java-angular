@@ -91,10 +91,25 @@ export class GeneralMaterialComponent implements OnInit{
           },
           complete: () => {
             console.log('Datos guardados correctamente');
-            alert('Datos guardados exitosamente');
-            setTimeout(() => {
-              this.router.navigateByUrl('/home/informeLa');
-            },1000);
+            //alert('Datos guardados exitosamente');
+
+              Swal.fire({
+                //position: 'center',
+                icon: 'success',
+                title: 'Datos guardados!',
+                // text: 'OK',
+                confirmButtonText: 'OK'
+
+
+              }).then((result) => {
+                if(result.isConfirmed){
+                  setTimeout(() => {
+                    this.router.navigateByUrl('/home/informeLa');
+                  },1000);
+                }
+              })
+
+
           },
         });
     } else {
