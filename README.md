@@ -19,24 +19,27 @@ Querés comprarte la casa de tus sueños? Comprarte el auto que siempre deseaste
 - Angular
 - Typescript
 - HTML5
-- CSS3
-- Bootstrap
-- Netlify (deploy)
+- Tailwind
+- SCSS
+- Netlify 
 
 ### Back-end:
 - Java 17
-- Spring (Boot 3.0.1, Security, DataJPA)
+- Spring Boot 3.0.1
+- Spring Cloud 3
+- ResilenceJ 4
 - Hibernate
 - JWT
 - Lombok
 - Arquitectura Hexagonal
 - Microservicios
-- MySQL8
+- MySQL
 - PostgreSQL
-- SqlServer
+- Microsoft SQL Server
 - Postman
 - Swagger
-- Microsoft Azure (deploy)
+- Docker
+- Microsoft Azure 
   
 ## Conocé nuestro equipo💻: 
 ### PM
