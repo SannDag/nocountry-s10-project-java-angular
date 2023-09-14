@@ -31,6 +31,7 @@ import { NosotrosComponent } from './pages/nosotros/nosotros.component';
     ConfirmationComponent,
     TablaSoComponent,
     NosotrosComponent
+
   ],
   imports: [
     CommonModule,
