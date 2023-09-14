@@ -14,6 +14,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import { GaranteComponent } from './pages/garante/garante.component';
 import { InformaLaboralComponent } from './pages/informa-laboral/informa-laboral.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { TablaSoComponent } from './pages/tabla-so/tabla-so.component';
+import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { ConfirmationComponent } from './pages/confirmation/confirmation.compone
 
     GaranteComponent,
     InformaLaboralComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    TablaSoComponent,
+    NosotrosComponent
   ],
   imports: [
     CommonModule,
