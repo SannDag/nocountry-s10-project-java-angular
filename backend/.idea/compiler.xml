@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
+        <module name="loan" />
         <module name="security" />
         <module name="user-service" />
         <module name="loans-application" />
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="loan" options="-parameters" />
       <module name="loans-application" options="-parameters" />
       <module name="security" options="-parameters" />
       <module name="user-service" options="-parameters" />

@@ -73,7 +73,7 @@ export class ConfirmationComponent implements OnInit {
             }).then((result) => {
               if(result.isConfirmed){
                 setTimeout(() => {
-                  this.router.navigateByUrl('/home/confirm');
+                  this.router.navigateByUrl('/home');
                 },1000);
               }
             })

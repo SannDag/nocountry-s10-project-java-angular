@@ -27,7 +27,7 @@ export class GaranteComponent implements OnInit{
       this.guarantorForm = formBuilder.group({
         name: ['', Validators.required],
         lastname:['', Validators.required],
-        identificationType:['', Validators.required],
+        identificationType:['DNI', Validators.required],
         identification:['', Validators.required],
         city:['', Validators.required],
         state:['', Validators.required],

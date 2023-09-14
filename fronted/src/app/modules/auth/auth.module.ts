@@ -9,25 +9,25 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/interceptors/token.interceptor';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
 
   ],
+
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    HomeModule
+    HomeModule,
+
 
   ],
+
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true}
   ],
+
 })
 export class AuthModule { }

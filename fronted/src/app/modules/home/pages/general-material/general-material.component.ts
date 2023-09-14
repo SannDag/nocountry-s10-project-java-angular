@@ -35,7 +35,7 @@ export class GeneralMaterialComponent implements OnInit{
         identificationType: ['DNI', Validators.required],
         name:['', Validators.required],
         lastname:['', Validators.required],
-        genre:['', Validators.required],
+        genre:['Masculino', Validators.required],
         birthdate:['',Validators.required],
         nationality:['', Validators.required],
         requestedAmount:['', Validators.required],
