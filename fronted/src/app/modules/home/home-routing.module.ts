@@ -6,6 +6,8 @@ import { CalculadoraComponent } from './pages/calculadora/calculadora.component'
 import { GaranteComponent } from './pages/garante/garante.component';
 import { InformaLaboralComponent } from './pages/informa-laboral/informa-laboral.component';
 import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
+import { TablaSoComponent } from './pages/tabla-so/tabla-so.component';
+import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 
 
 
@@ -20,7 +22,9 @@ const routes: Routes = [
     {path: 'calculadora', component: CalculadoraComponent},
     {path: 'garante', component: GaranteComponent},
     {path: 'informeLa', component: InformaLaboralComponent},
-    {path: 'confirm', component: ConfirmationComponent}
+    {path: 'confirm', component: ConfirmationComponent},
+    {path: 'tabla', component: TablaSoComponent},
+    {path: 'nosotros', component: NosotrosComponent},
 
   ]
   }
