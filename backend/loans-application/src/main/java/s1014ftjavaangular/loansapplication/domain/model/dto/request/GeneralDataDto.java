@@ -18,6 +18,7 @@ import java.util.List;
 @Builder
 public class GeneralDataDto {
     private String loanApplicationId;
+
     @NotEmpty(message = "Field required")
     private String customersUuid;
 

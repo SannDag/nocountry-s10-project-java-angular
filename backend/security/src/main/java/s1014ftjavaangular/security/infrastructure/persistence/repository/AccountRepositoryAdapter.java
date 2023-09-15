@@ -25,8 +25,6 @@ public class AccountRepositoryAdapter implements AccountRepositoryPort {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final TransactionMessagePublish transactionMessagePublish;
-
     private final Function<AccountEntity, Account> entityToModel = (entity) -> new Account(
             entity.getAccountUuid(),
             entity.getEmail(),
@@ -49,7 +47,6 @@ public class AccountRepositoryAdapter implements AccountRepositoryPort {
 
     @Override
     public Account registerAccount(String email, String password, Rol rol) {
-        log.info("ENTRE: {}, {}. {}", email, password, rol);
         //Validar que el email no este registrado
         if (this.findByEmail(email).isPresent()) {
             throw new AccountAlreadyExists("This account already exists");

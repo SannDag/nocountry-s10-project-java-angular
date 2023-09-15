@@ -3,8 +3,10 @@ package s1014ftjavaangular.userservice.infrastructure.persistence.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.util.StringUtils;
 import s1014ftjavaangular.userservice.domain.model.entity.ResidenceDetails;
-import s1014ftjavaangular.userservice.domain.model.enums.HousingStatus;
+
+import java.util.Optional;
 
 @Data
 @AllArgsConstructor
@@ -17,27 +19,17 @@ public class ResidenceDetailsEntity {
     @Column(name = "user_id")
     private String residenceUuid;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "housing_status")
-    private HousingStatus housingStatus;
-
-    @Column(name = "years_in_house")
-    private Integer yearsInHouse;
-
-    @Column(name = "months_in_house")
-    private Integer monthsInHouse;
-
     @Column(name = "city")
     private String city;
 
     @Column(name = "state")
     private String state;
 
-    @Column(name = "address1")
-    private String address1;
+    @Column(name = "address")
+    private String address;
 
-    @Column(name = "address2")
-    private String address2;
+    @Column(name = "apartment")
+    private String apartment;
 
     @Column(name = "zipcode")
     private String zipCode;
@@ -49,16 +41,33 @@ public class ResidenceDetailsEntity {
     @MapsId
     private UserEntity user;
 
-    public void update(ResidenceDetails residenceDetails, UserEntity entity){
-        this.setUser(entity);
-        this.setResidenceUuid(entity.getUserUuid());
-        if(residenceDetails.getState() != null) this.setState( residenceDetails.getState() );
-        if(residenceDetails.getCity() != null) this.setCity( residenceDetails.getCity() );
-        if(residenceDetails.getHousingStatus() != null) this.setHousingStatus( residenceDetails.getHousingStatus() );
-        if(residenceDetails.getYearsInHouse() != null) this.setYearsInHouse( residenceDetails.getYearsInHouse() );
-        if(residenceDetails.getMonthsInHouse() != null) this.setMonthsInHouse( residenceDetails.getMonthsInHouse() );
-        if(residenceDetails.getAddress1() != null) this.setAddress1( residenceDetails.getAddress1() );
-        if(residenceDetails.getAddress2() != null) this.setAddress2( residenceDetails.getAddress2() );
-        if(residenceDetails.getZipCode() != null) this.setZipCode( residenceDetails.getZipCode() );
+    public ResidenceDetails entityToModel(){
+        return ResidenceDetails.builder()
+                .id(StringUtils.hasText(this.getResidenceUuid()) ?  this.getResidenceUuid() : null)
+                .state(StringUtils.hasText(this.getState()) ? this.getState() : null)
+                .city(StringUtils.hasText(this.getCity()) ? this.getCity() : null)
+                .zipCode(StringUtils.hasText(this.getZipCode()) ? this.getZipCode() : null)
+                .address(StringUtils.hasText(this.getAddress()) ? this.getAddress() : null)
+                .apartment(StringUtils.hasText(this.getApartment()) ? this.getApartment() : null)
+                .build();
+    }
+
+    public static ResidenceDetailsEntity modelToEntity(ResidenceDetails residenceDetails){
+        return ResidenceDetailsEntity.builder()
+                .city(Optional.of( residenceDetails.getCity() ).orElse(null))
+                .state(Optional.of( residenceDetails.getState() ).orElse(null))
+                .zipCode(Optional.of( residenceDetails.getZipCode() ).orElse(null))
+                .address(Optional.of( residenceDetails.getAddress() ).orElse(null))
+                .apartment(Optional.of( residenceDetails.getApartment() ).orElse(null))
+                .build();
+    }
+
+    public ResidenceDetailsEntity update(ResidenceDetails residenceDetails){
+        this.setAddress(Optional.of( residenceDetails.getAddress() ).orElse(this.getAddress()));
+        this.setState(Optional.of( Optional.of( residenceDetails.getState() ).orElse(this.getState()) ).orElse(this.getState()));
+        this.setZipCode(Optional.of( Optional.of( residenceDetails.getZipCode() ).orElse(this.getZipCode()) ).orElse(this.getZipCode()));
+        this.setCity(Optional.of( residenceDetails.getCity() ).orElse(this.getCity()));
+        this.setApartment(Optional.of( residenceDetails.getApartment() ).orElse(this.getApartment()));
+        return this;
     }
 }

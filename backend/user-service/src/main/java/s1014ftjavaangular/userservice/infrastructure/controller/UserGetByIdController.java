@@ -1,5 +1,6 @@
 package s1014ftjavaangular.userservice.infrastructure.controller;
 
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,8 @@ import s1014ftjavaangular.userservice.domain.usecase.UserListByIdUseCase;
 public class UserGetByIdController {
     private final UserListByIdUseCase userListByIdUseCase;
 
-    @GetMapping("/id/{id}")
+    @Retry(name = "userRetry")
+    @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getAllById(@PathVariable String id){
         var response = userListByIdUseCase.findById(id);
 
