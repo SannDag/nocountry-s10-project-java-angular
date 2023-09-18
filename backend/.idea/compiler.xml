@@ -10,6 +10,7 @@
         <module name="api-gateway" />
         <module name="loan" />
         <module name="security" />
+        <module name="loan" />
         <module name="user-service" />
         <module name="loans-application" />
         <module name="eureka-server" />
