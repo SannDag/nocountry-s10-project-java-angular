@@ -17,6 +17,7 @@ import s1014ftjavaangular.security.domain.usecase.LoginUseCase;
 @RequestMapping("/api/accounts/login")
 @RequiredArgsConstructor
 public class LoginController {
+
     private final LoginUseCase loginUseCase;
 
     @Retry(name = "securityRetry")

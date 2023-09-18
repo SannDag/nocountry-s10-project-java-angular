@@ -1,5 +1,6 @@
 package s1014ftjavaangular.userservice.domain.model.dto.request;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,22 +10,24 @@ import s1014ftjavaangular.userservice.domain.model.enums.Genre;
 import s1014ftjavaangular.userservice.domain.model.enums.CivilStatus;
 import s1014ftjavaangular.userservice.domain.model.entity.PhoneDetails;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Builder
-public class UserRequest {
+public class UserRequest implements Serializable {
+    @NotEmpty(message = "ID cannot be empty")
     private String id;
     private String identifier;
     private String identifierNumber;
     private Genre genre;
     private String name;
     private String lastName;
-    private CivilStatus civilStatus;
+    private String nationality;
     private LocalDate birthDay;
-    private List<PhoneDetails> phoneDetails;
-    private ResidenceDetails residenceDetails;
+    private String phone;
+    private ResidenceDetailsDto residenceDetails;
 }

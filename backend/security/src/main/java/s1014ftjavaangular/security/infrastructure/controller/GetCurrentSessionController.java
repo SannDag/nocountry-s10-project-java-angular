@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import s1014ftjavaangular.security.domain.model.dto.LoginResponse;
 import s1014ftjavaangular.security.domain.usecase.GetCurrentSessionUse;
 import s1014ftjavaangular.security.infrastructure.security.AccountPrincipal;
 
@@ -18,7 +19,7 @@ public class GetCurrentSessionController {
 
     @Retry(name = "securityRetry")
     @GetMapping()
-    public ResponseEntity<?> getCurrentSession(@AuthenticationPrincipal AccountPrincipal accountPrincipal){
+    public ResponseEntity<LoginResponse> getCurrentSession(@AuthenticationPrincipal AccountPrincipal accountPrincipal){
 
         var sesion = accountPrincipal.getUsername();
 

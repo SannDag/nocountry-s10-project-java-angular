@@ -15,18 +15,16 @@ spring:
     #Desactivo el Banner de Spring Boot de consola
     banner-mode: off
   datasource:
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://20.121.214.190:1434;databaseName=user;encrypt=true;trustServerCertificate=true;
-    username: sa
-    password: nocountry2023
+    url: jdbc:mysql://localhost:3306/user_db
+    username: root
+    password: 12345678
   jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.SQLServerDialect
-        format_sql: true
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   kafka:
     template:
       default-topic: account-topic
@@ -63,7 +61,10 @@ resilience4j.retry:
 
 eureka:
   client:
-    fetch-registry: true
     register-with-eureka: true
+    fetch-registry: true
+    enabled: true
     service-url:
-      default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
+      #default-zone: https://s10-14-ft-eurekaserver.azurewebsites.net/eureka
+      default-zone: http://localhost:8761/eureka
+
