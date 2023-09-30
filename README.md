@@ -7,7 +7,7 @@
 
 
 <p align="center">
-  <img src="-" alt="img-cashnow">
+  <img src="img/CASHNOW.png" alt="img-cashnow">
 </p>
   
 Querés comprarte la casa de tus sueños? Comprarte el auto que siempre deseaste? O simplemente refaccionar tu casa? No lo pienses más! Solicita un prestamo con nosotros desde la web o comunicate a los telefonos en el formulario de contacto, y obtenelo en 24hs-48hs. Tenemos asesores disponibles esperando por tu contacto!
